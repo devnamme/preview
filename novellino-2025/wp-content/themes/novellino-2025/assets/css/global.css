@@ -11,13 +11,29 @@
   --text-lg--line-height: 130%;
   --text-h3: 24px;
   --text-h3--line-height: 110%;
-  --text-h3--font-weight: 900;
+  --text-h3--font-weight: 800;
   --text-h2: 32px;
   --text-h2--line-height: 110%;
-  --text-h2--font-weight: 900;
+  --text-h2--font-weight: 800;
   --text-h1: 48px;
   --text-h1--line-height: 110%;
-  --text-h1--font-weight: 900;
+  --text-h1--font-weight: 800;
+
+  --color-red-primary: #6a112a;
+  --color-red-secondary: #4d1320;
+  --color-red-tertiary: #301118;
+  --color-red-light: #dd3b66;
+  --color-red-alternative: #e77a97;
+  --color-green-primary: #1a462b;
+  --color-green-secondary: #359158;
+  --color-green-tertiary: #24643d;
+  --color-green-light: #6bc289;
+  --color-green-alternative: #24643d;
+  --color-yellow-primary: #ae782a;
+  --color-yellow-secondary: #7e4f20;
+  --color-yellow-tertiary: #fec669;
+  --color-yellow-light: #ffd89a;
+  --color-yellow-alternative: #ffeccc;
 }
 
 @font-face {
