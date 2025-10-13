@@ -1,32 +1,36 @@
 jQuery(document).ready(($) => {
-  const $control = $(
-    "input[data-customize-setting-link=nv_index_wines_carousel]"
-  );
-  const $button = $(
-    '<button type="button" class="button">Select Images</button>'
-  );
-  $control.after($button);
+  const settings = [
+    "nv_index_wines_carousel",
+    "nv_index_perfect_pour_carousel",
+  ];
 
-  $button.on("click", (e) => {
-    e.preventDefault();
+  settings.forEach((setting) => {
+    const $control = $(`input[data-customize-setting-link=${setting}]`);
+    const $button = $(
+      '<button type="button" class="button">Select Media</button>'
+    );
+    $control.after($button);
 
-    const frame = wp.media({
-      title: "Select Wine Images",
-      multiple: true,
-      library: { type: "image" },
-      button: { text: "Use Selected Images" },
+    $button.on("click", (e) => {
+      e.preventDefault();
+
+      const frame = wp.media({
+        title: "Select Images",
+        multiple: true,
+        library: { type: "image" },
+        button: { text: "Use Selected Images" },
+      });
+
+      frame.on("select", () => {
+        const attachments = frame.state().get("selection").toJSON();
+        const ids = attachments.map((a) => a.id);
+
+        wp.customize(setting).set(JSON.stringify({ ids }));
+
+        $control.val(`${attachments.length} images selected`);
+      });
+
+      frame.open();
     });
-
-    frame.on("select", () => {
-      const attachments = frame.state().get("selection").toJSON();
-      const ids = attachments.map((a) => a.id);
-      const urls = attachments.map((a) => a.url);
-
-      wp.customize("nv_index_wines_carousel").set(JSON.stringify({ ids }));
-
-      $control.val(`${attachments.length} images selected`);
-    });
-
-    frame.open();
   });
 });
