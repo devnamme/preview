@@ -83,3 +83,11 @@
     @apply text-h3;
   }
 }
+
+@utility active-header {
+  @apply bg-red-secondary;
+
+  & button {
+    @apply bg-white text-red-secondary;
+  }
+}

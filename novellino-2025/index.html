@@ -7,7 +7,8 @@
   <title>Novellino</title>
 <meta name="robots" content="noindex, nofollow">
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
-	<script type="text/javascript">
+	<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<script type="text/javascript">
 /* <![CDATA[ */
 window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.3"}};
 /*! This file is auto-generated */
@@ -40,16 +41,17 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
 </style>
 <link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=1.0.0" type="text/css" media="all">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=1.0.0" id="motion-js"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/index.php/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.8.3">
 </head>
 <body class="min-h-screen bg-white">
 
-<header class="fixed z-10 top-0 left-0 w-full px-14">
+<header class="fixed z-10 top-0 left-0 w-full px-14 transition-colors">
   <div class="mx-auto max-w-[1240px] flex flex-row justify-between items-center">
     <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18 shrink-0 grow-0">
 
-    <div class="flex flex-row gap-x-10 shrink-0 grow-1 justify-center text-white font-medium">
+    <div class="flex flex-row gap-x-10 shrink-0 grow-1 justify-center text-base text-white font-medium">
       <span>Home</span>
       <span>Our Wines</span>
       <span>Our Purpose</span>
@@ -58,16 +60,34 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
     </div>
 
     <a href="http://localhost/todo" class="block shrink-0 grow-0">
-      <button class="rounded-xl py-2.5 px-6 min-w-[175px] bg-red-primary text-white font-extrabold cursor-pointer">
+      <button class="rounded-xl py-2.5 px-6 min-w-[175px] bg-red-primary text-base text-white font-extrabold cursor-pointer transition-colors">
         Shop now      </button>
     </a>
   </div>
 </header>
-<div class="relative w-full min-h-screen px-24 py-24 flex flex-col justify-end">
-  <video autoplay muted loop playsinline class="absolute z-0 top-0 left-0 w-full h-full object-cover">
-    <source src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/hero.mp4" type="video/mp4">
-  </source></video>
 
+<script type="module">
+const { scroll } = Motion;
+
+const header = document.querySelector("header");
+
+scroll((y) => {
+  const isPastHero =
+    y * (document.documentElement.scrollHeight - window.innerHeight) >
+    window.innerHeight;
+
+  if (isPastHero) {
+    header.classList.add("active-header");
+  } else {
+    header.classList.remove("active-header");
+  }
+});
+</script>
+<div class="relative w-full min-h-screen px-24 py-24 flex flex-col justify-end">
+      <video id="" class="absolute z-0 top-0 left-0 w-full h-full object-cover" autoplay muted loop playsinline>
+      <source src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/hero.mp4" type="video/mp4">
+    </source></video>
+  
   <div class="relative z-1 mx-auto w-full max-w-[1240px] text-white">
     <div class="max-w-[800px]">
       <h1 class="mb-4 font-black">
@@ -211,7 +231,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
     </div>
 
   </div>
-</section><section class="pt-30 pb-30">
+</section><section class="pt-30 pb-30 overflow-clip">
   <div class="mx-auto max-w-[1240px]">
     <div class="max-w-[780px] mb-14">
       <h1 class="mb-8 text-red-primary">
@@ -220,29 +240,123 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         Novellino is built on a bold vision: to offer uncompromising quality through absolute control. We are the only local maker who sources grapes directly, overseeing every step of the process to guarantee your favorite sweet sip.      </p>
     </div>
 
-    <div class="grid grid-cols-3 gap-x-15">
-              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sparkling_red_1_3x.webp" class="rounded-lg">
-              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sangria_1_3x.webp" class="rounded-lg">
-              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_1_3_3x.webp" class="rounded-lg">
-          </div>
+    
+    <div class="relative overflow-visible flex flex-row gap-x-15 h-[600px]">
+          <img id="wines-0" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sparkling_red_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      <img id="wines-1" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sangria_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      <img id="wines-2" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_1_3_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      <img id="wines-3" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_1_2_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      <img id="wines-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_1_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      <img id="wines-5" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/luscious_peach_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      <img id="wines-6" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_cabernet_sauvignon_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-[600px]">
+      </div>
   </div>
-</section><section class="bg-[#FFF4F4] py-24">
+</section>
+
+<script type="module">
+const { animate } = Motion;
+
+var wines_idx = 0;
+const wines_max = 7;
+
+function getIndex(index) {
+  return (index + wines_max) % wines_max;
+}
+
+const ANIMATE_OPTIONS = {
+  duration: 3,
+  ease: 'easeInOut',
+};
+
+function runAnimation() {
+  const R2 = getIndex(wines_idx + 1);
+  const R = getIndex(wines_idx);
+  const C = getIndex(wines_idx - 1);
+  const L = getIndex(wines_idx - 2);
+
+  // right2 to right
+  animate(`#wines-${R2}`, {
+    left: ['100%', '100%'],
+    transform: [
+      'translateX(-100%) scale(90%)',
+      'translateX(-100%) scale(90%)',
+    ],
+    transformOrigin: ['right', 'right'],
+    opacity: [0, 1],
+  }, ANIMATE_OPTIONS);
+
+  // right to center
+  animate(`#wines-${R}`, {
+    left: ['100%', '50%'],
+    transform: [
+      'translateX(-100%) scale(90%)',
+      'translateX(-50%) scale(100%)',
+    ],
+    transformOrigin: ['right', 'right'],
+  }, ANIMATE_OPTIONS);
+
+  // center to left
+  animate(`#wines-${C}`, {
+    left: ['50%', '0%'],
+    transform: [
+      'translateX(-50%) scale(100%)',
+      'translateX(0%) scale(90%)',
+    ],
+    transformOrigin: ['left', 'left'],
+  }, ANIMATE_OPTIONS);
+
+  // left to left2
+  animate(`#wines-${L}`, {
+    transform: [
+      'translateX(0%) scale(90%)',
+      'translateX(0%) scale(90%)',
+    ],
+    transformOrigin: ['left', 'left'],
+    opacity: [1, 0],
+  }, ANIMATE_OPTIONS);
+
+  for (let i = 0; i < wines_max; i++) {
+    if (i != R2 && i != R && i != C && i != L) {
+      animate(`#wines-${i}`, {
+        opacity: [0, 0],
+        scale: ['90%', '90%'],
+        transformOrigin: ['center', 'center'],
+      }, {
+        duration: 0,
+      });
+    }
+  }
+}
+
+runAnimation();
+
+setInterval(() => {
+  wines_idx++;
+  if (wines_idx >= wines_max) {
+    wines_idx = 0;
+  }
+
+  runAnimation();
+}, 5000);
+</script>
+<section class="bg-[#FFF4F4] py-24">
   <div class="mx-auto max-w-[1160px]">
     <div class="mx-auto mb-14 max-w-[760px] flex flex-col gap-y-6 items-center text-red-primary text-center">
       <h1 class="">
         The first local wine maker to create a distinct wine for Filipinos      </h1>
 
-      <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b border-b-red-primary w-fit text-base font-extrabold">
-        Discover our purpose        <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-        </svg>
-      </a>
-    </div>
+      <div class="w-fit">
+  <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary">
+    Discover our purpose    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
+    </svg>
+  </a>
+</div>    </div>
 
-    <div class="flex flex-col gap-y-6">
-              <div class="rounded-3xl bg-red-primary grid grid-cols-[380px_1fr] text-white overflow-clip">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/craft.png" class="h-full object-cover">
-
+    <div class="flex flex-col gap-y-6 relative">
+              <div class="rounded-3xl bg-red-primary grid grid-cols-[380px_1fr] text-white overflow-clip sticky top-[100px]">
+              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/craft.png" class="h-full object-cover">
+  
           <div class="py-36 px-16">
             <p class="mb-4 rounded-xl py-2 px-4 w-fit bg-white text-red-primary font-extrabold text-center uppercase">
               Craft            </p>
@@ -252,9 +366,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
               Achieving this rich, sweet taste is difficult and costly&mdash;but your expectation is worth it. We invest in state-of-the-art Italian equipment to precisely control fermentation, securing the flawless, sweet flavor you love every time.            </p>
           </div>
         </div>
-              <div class="rounded-3xl bg-red-primary grid grid-cols-[380px_1fr] text-white overflow-clip">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/culture.png" class="h-full object-cover">
-
+              <div class="rounded-3xl bg-red-primary grid grid-cols-[380px_1fr] text-white overflow-clip sticky top-[132px]">
+              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/culture.png" class="h-full object-cover">
+  
           <div class="py-36 px-16">
             <p class="mb-4 rounded-xl py-2 px-4 w-fit bg-white text-red-primary font-extrabold text-center uppercase">
               Culture            </p>
@@ -264,9 +378,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
               We've redefined how Filipinos enjoy wine. From Noche Buena to simple movie nights, Novellino is the sparkling joy that helps you focus on connecting with the people you love. We're building a shared movement together.            </p>
           </div>
         </div>
-              <div class="rounded-3xl bg-red-primary grid grid-cols-[380px_1fr] text-white overflow-clip">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/conservation.png" class="h-full object-cover">
-
+              <div class="rounded-3xl bg-red-primary grid grid-cols-[380px_1fr] text-white overflow-clip sticky top-[164px]">
+              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/conservation.png" class="h-full object-cover">
+  
           <div class="py-36 px-16">
             <p class="mb-4 rounded-xl py-2 px-4 w-fit bg-white text-red-primary font-extrabold text-center uppercase">
               Conservation            </p>
@@ -279,23 +393,24 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
           </div>
   </div>
 </section><section class="">
-  <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/break-scaled.jpg" class="w-full h-dvh object-cover">
-
+      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/break-scaled.jpg" class="w-full h-dvh object-cover">
+  
   <div class="mx-auto max-w-[1240px] py-8 grid grid-cols-2 gap-x-10 items-center">
     <div class="flex flex-col gap-6">
       <h1 class="text-red-primary">
         Our Legacy of Quality      </h1>
       <p class="text-lg">
         For years, Filipinos felt wine was either too foreign, too expensive, or too confusing. Our founder saw that as an opportunity to create something truly ours. Since 1999, Novellino has been on a singular mission: to make delicious, approachable wine that makes everyone feel welcome. Discover how we built the Philippines' #1 wine brand from the ground up.      </p>
-      <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b border-b-red-primary w-fit text-red-primary text-base font-extrabold">
-        Get to know our story        <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-        </svg>
-      </a>
-    </div>
+      <div class="w-fit">
+  <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
+    Get to know our story    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
+    </svg>
+  </a>
+</div>    </div>
 
-    <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/home-legacy.png" class="rounded-lg">
-  </div>
+        <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/home-legacy.png" class="rounded-lg">
+    </div>
 </section><section class="mx-auto rounded-2xl max-w-[1240px] bg-[#FFF4F4] py-12 px-20">
   <div class="mb-8 grid grid-cols-2 items-start">
     <div class="">
@@ -305,7 +420,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         Whether you're craving something sweet and light for a simple meal or a lively sparkle for a grand toast, we have the ideal wine ready for your occasion.      </p>
     </div>
 
-    <a href="" class="self-start justify-self-end block w-fit">
+    <a href="http://localhost/todo" class="self-start justify-self-end block w-fit">
       <button class="rounded-xl py-2.5 px-6 bg-red-secondary font-extrabold text-white flex flex-row items-center gap-x-2.5 cursor-pointer">
         Shop now        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 24C18.6 24 24 18.6 24 12C24 5.4 18.6 0 12 0C5.4 0 0 5.4 0 12C0 18.6 5.4 24 12 24ZM12 0.923077C18.0923 0.923077 23.0769 5.90769 23.0769 12C23.0769 18.0923 18.0923 23.0769 12 23.0769C5.90769 23.0769 0.923077 18.0923 0.923077 12C0.923077 5.90769 5.90769 0.923077 12 0.923077Z" fill="currentColor"></path>
@@ -340,45 +455,47 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         Partner with us      </p>
       <p class="text-lg font-extrabold text-[#00000080]">
         Let&rsquo;s make your venture your next celebration.      </p>
-      <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b border-b-red-primary w-fit text-red-primary text-base font-extrabold">
-        Send an inquiry        <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-        </svg>
-      </a>
-    </div>
+      <div class="w-fit">
+  <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
+    Send an inquiry    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
+    </svg>
+  </a>
+</div>    </div>
 
     <p class="text-lg">
       Our unique, quality-controlled process has made Novellino the fastest-growing wine category in the country. Secure our reliable, high-demand product today, whether for corporate gifting or boosting your retail success.    </p>
   </div>
 </section>
 
-<section class="rounded-t-3xl min-h-dvh bg-red-secondary grid grid-cols-2 text-white">
+<section class="rounded-t-3xl min-h-dvh bg-red-secondary grid grid-cols-2 text-white overflow-clip">
   <div class="flex flex-col justify-center px-20">
     <div class="ml-auto max-w-[560px] self-center">
       <p class="mb-10 text-[56px] font-bold leading-[120%]">
         Whether it&rsquo;s a party, a date night, or a meaningful gift, the right wine is here      </p>
 
       <div class="flex flex-row flex-wrap gap-x-2.5 mb-6">
-        <a href="https://shopee.ph/novellinowines_officialstore" target="_blank" class="block">
-          <button class="rounded-xl py-2.5 px-6 bg-white text-red-primary text-center text-base font-extrabold cursor-pointer">
-            Shop on Shopee          </button>
-        </a>
-        <a href="http://localhost/todo" target="_blank" class="block">
-          <button class="rounded-xl py-2.5 px-6 bg-white text-red-primary text-center text-base font-extrabold cursor-pointer">
-            Shop on Lazada          </button>
-        </a>
-      </div>
+                  <a href="https://shopee.ph/novellinowines_officialstore" target="_blank" class="block">
+            <button class="rounded-xl py-2.5 px-6 bg-white text-red-primary text-center text-base font-extrabold cursor-pointer">
+              Shop on Shopee            </button>
+          </a>
+                  <a href="http://localhost/todo" target="_blank" class="block">
+            <button class="rounded-xl py-2.5 px-6 bg-white text-red-primary text-center text-base font-extrabold cursor-pointer">
+              Shop on Lazada            </button>
+          </a>
+              </div>
 
-      <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b border-b-white w-fit text-base font-extrabold">
-        Find us in-store        <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-        </svg>
-      </a>
-    </div>
+      <div class="w-fit">
+  <a href="http://localhost/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
+    Find us in-store    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
+    </svg>
+  </a>
+</div>    </div>
   </div>
 
-  <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/culture.png" class="h-full w-auto object-cover object-[70%_center]">
-</section>
+      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/culture.png" class="h-full w-auto object-cover object-[70%_center]">
+  </section>
 <footer class="bg-red-secondary text-white">
   <div class="max-w-[1280px] min-h-48 mx-auto grid grid-cols-[1fr_max-content_1fr] items-center">
     <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18 shrink-0 grow-0">

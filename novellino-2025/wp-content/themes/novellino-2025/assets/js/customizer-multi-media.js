@@ -15,10 +15,10 @@ jQuery(document).ready(($) => {
       e.preventDefault();
 
       const frame = wp.media({
-        title: "Select Images",
+        title: "Select Media",
         multiple: true,
-        library: { type: "image" },
-        button: { text: "Use Selected Images" },
+        library: { type: "image,video" },
+        button: { text: "Use Selected Media" },
       });
 
       frame.on("select", () => {
@@ -27,7 +27,7 @@ jQuery(document).ready(($) => {
 
         wp.customize(setting).set(JSON.stringify({ ids }));
 
-        $control.val(`${attachments.length} images selected`);
+        $control.val(`${attachments.length} media selected`);
       });
 
       frame.open();
