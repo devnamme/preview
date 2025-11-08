@@ -51,26 +51,42 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 </head>
 <body class="flex flex-col min-h-screen bg-white">
 
-<header class="sticky z-10 top-0 left-0 w-full px-14 transition-colors active-header">
-  <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 justify-between items-center">
-    <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18 shrink-0 grow-0">
+<header class="sticky z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors active-header">
+  <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 lg:justify-between items-center">
+    <a href="https://preview.emmanevangelista.com/novellino-2025" class="shrink-0 grow-0 mr-auto lg:mr-0">
+      <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18" alt="Novellino">
+    </a>
 
-    <div class="flex flex-row gap-x-10 shrink-0 grow-1 items-center justify-center text-base text-white font-medium"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
+    <div class="hidden lg:flex flex-row gap-x-10 shrink-0 grow-1 items-center justify-center text-base text-white font-medium"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="text-lg font-bold">Our Wines</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-purpose/" class="">Our Purpose</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-story/" class="">Our Story</a>
-<a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="">Contact US</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="">Contact Us</a>
 </div>
-    <a href="http://localhost/todo" class="block shrink-0 grow-0">
-      <button class="rounded-xl py-2.5 px-6 min-w-[175px] bg-red-primary text-base text-white font-extrabold cursor-pointer transition-colors">
-        Shop now      </button>
-    </a>
+    <div class="relative shrink-0 grow-0" id="shop-now-container" data-active="false">
+      
+<a class="block " onclick="toggleShopList()">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors flex flex-row items-center justify-center gap-x-2.5" role="button">
+Shop now
+      <svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.3535 6.35403L8.35354 11.354C8.3071 11.4005 8.25196 11.4374 8.19126 11.4626C8.13056 11.4877 8.0655 11.5007 7.99979 11.5007C7.93408 11.5007 7.86902 11.4877 7.80832 11.4626C7.74762 11.4374 7.69248 11.4005 7.64604 11.354L2.64604 6.35403C2.55222 6.26021 2.49951 6.13296 2.49951 6.00028C2.49951 5.8676 2.55222 5.74035 2.64604 5.64653C2.73986 5.55271 2.86711 5.5 2.99979 5.5C3.13247 5.5 3.25972 5.55271 3.35354 5.64653L7.99979 10.2934L12.646 5.64653C12.6925 5.60007 12.7476 5.56322 12.8083 5.53808C12.869 5.51294 12.9341 5.5 12.9998 5.5C13.0655 5.5 13.1305 5.51294 13.1912 5.53808C13.2519 5.56322 13.3071 5.60007 13.3535 5.64653C13.4 5.69298 13.4368 5.74813 13.462 5.80883C13.4871 5.86953 13.5001 5.93458 13.5001 6.00028C13.5001 6.06598 13.4871 6.13103 13.462 6.19173C13.4368 6.25242 13.4 6.30757 13.3535 6.35403Z" fill="currentColor"></path>
+      </svg>
+
+        </button>
+</a>
+    </div>
+
+    <button class="border-none lg:hidden cursor-pointer text-white">
+      <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 16C28 16.2652 27.8946 16.5196 27.7071 16.7071C27.5196 16.8946 27.2652 17 27 17H5C4.73478 17 4.48043 16.8946 4.29289 16.7071C4.10536 16.5196 4 16.2652 4 16C4 15.7348 4.10536 15.4804 4.29289 15.2929C4.48043 15.1054 4.73478 15 5 15H27C27.2652 15 27.5196 15.1054 27.7071 15.2929C27.8946 15.4804 28 15.7348 28 16ZM5 9H27C27.2652 9 27.5196 8.89464 27.7071 8.70711C27.8946 8.51957 28 8.26522 28 8C28 7.73478 27.8946 7.48043 27.7071 7.29289C27.5196 7.10536 27.2652 7 27 7H5C4.73478 7 4.48043 7.10536 4.29289 7.29289C4.10536 7.48043 4 7.73478 4 8C4 8.26522 4.10536 8.51957 4.29289 8.70711C4.48043 8.89464 4.73478 9 5 9ZM27 23H5C4.73478 23 4.48043 23.1054 4.29289 23.2929C4.10536 23.4804 4 23.7348 4 24C4 24.2652 4.10536 24.5196 4.29289 24.7071C4.48043 24.8946 4.73478 25 5 25H27C27.2652 25 27.5196 24.8946 27.7071 24.7071C27.8946 24.5196 28 24.2652 28 24C28 23.7348 27.8946 23.4804 27.7071 23.2929C27.5196 23.1054 27.2652 23 27 23Z" fill="currentColor"></path>
+      </svg>
+    </button>
   </div>
 </header>
 
 
-<div class="grow-1 mx-auto py-16 w-full max-w-[1240px] grid grid-cols-[auto_auto] gap-y-8 items-start">
-  <div class="sticky top-[136px] col-span-2 flex flex-row items-center gap-x-8">
+<div class="grow-1 mx-auto pb-16 w-full max-w-[1240px] grid grid-cols-[auto_auto] gap-y-4 items-start">
+  <div class="sticky top-18 col-span-2 pt-16 pb-4 flex flex-row items-center gap-x-8 bg-white">
     <h1 class="text-red-secondary text-[56px]">
       Our Wines    </h1>
 
@@ -79,514 +95,540 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 
   <sidebar class="sticky top-[230px]">
           <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="alcohol-free" onclick="scrollToWineGroup('alcohol-free')">
-        Alcohol-free      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="casual" onclick="scrollToWineGroup('casual')">
-        Casual      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="classico" onclick="scrollToWineGroup('classico')">
-        Classico      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="imported" onclick="scrollToWineGroup('imported')">
-        Imported      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="light" onclick="scrollToWineGroup('light')">
-        Light      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="sangria" onclick="scrollToWineGroup('sangria')">
-        Sangria      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="tradizionale" onclick="scrollToWineGroup('tradizionale')">
-        Tradizionale      </div>
-          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="vivace" onclick="scrollToWineGroup('vivace')">
-        Vivace      </div>
+        Alcohol-Free      </div>
+          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="everyday-red" onclick="scrollToWineGroup('everyday-red')">
+        Everyday Red      </div>
+          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="everyday-white" onclick="scrollToWineGroup('everyday-white')">
+        Everyday White      </div>
+          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="italian-collection" onclick="scrollToWineGroup('italian-collection')">
+        Italian Collection      </div>
+          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="premium-red" onclick="scrollToWineGroup('premium-red')">
+        Premium Red      </div>
+          <div class="border-l-2 border-[#CFD8DC] px-6 py-3 text-lg cursor-pointer transition data-[active=true]:border-red-primary data-[active=true]:font-extrabold" data-wine-type="premium-white" onclick="scrollToWineGroup('premium-white')">
+        Premium White      </div>
       </sidebar>
 
   <main class="grow">
           <div class="p-12 wine-type-group" id="alcohol-free">
         <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
+          <div class="grow flex flex-row items-center gap-x-6">
+            <svg class="w-5" width="20" height="49" viewbox="0 0 20 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.306 47.9513L13.2054 46.7739C11.8507 46.525 10.8246 45.3391 10.8246 43.911V33.8114C10.8246 32.3966 11.7202 31.0753 13.1362 30.5975C17.233 29.2161 19.8197 25.3938 19.8197 21.2945H19.8166C19.8166 13.8849 18.7103 6.73508 16.6507 0H3.34932C1.29213 6.73568 0.183983 13.8849 0.183983 21.2945H0.181555C0.179127 25.3932 2.76702 29.2155 6.86684 30.5975C8.28344 31.0753 9.17664 32.3966 9.17664 33.8114V43.911C9.17664 45.3391 8.14864 46.525 6.79458 46.7739L0.695246 47.9513C0.289028 48.0284 0.00728642 48.3818 0 48.7801H20C19.9957 48.3818 19.7122 48.0284 19.306 47.9513ZM7.41271 28.9939C4.1739 27.9015 1.97705 24.9104 1.8969 21.5095V21.3109C1.8969 19.6375 1.95337 17.9701 2.07056 16.3112H17.93C18.0454 17.9701 18.1049 19.6381 18.1049 21.3109V21.5223C18.0163 24.9165 15.8231 27.9039 12.5879 28.9939C12.5879 28.9939 11.0274 29.4942 9.84456 29.4942C8.66173 29.4942 7.41271 28.9939 7.41271 28.9939Z" fill="#954D4D"></path>
+            </svg>
 
             <h1 class="text-red-secondary">
-              Alcohol-free            </h1>
+              Alcohol-Free            </h1>
           </div>
 
           <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            Enjoy the full flavor and aroma of wine without the alcohol, perfect for mindful indulgence anytime          </p>
+            Celebratory sparkle without the alcohol          </p>
         </div>
 
         <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('sparkling-red')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sparkling_red_1_5x.webp" alt="">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sparkling_red_1_5x.webp" alt="Sparkling Red">
 
               <div class="flex flex-col gap-y-3">
+                                <div class="flex flex-row gap-2">
+                  <div class="border border-white/50 rounded-sm px-2 py-1 bg-red-primary text-base font-extrabold text-center text-white">
+  Bestseller!</div>                </div>
                 
                 <h3>
                   Sparkling Red                </h3>
                 <p>
-                  A lively and refreshing red with soft bubbles and a hint of sweetness&mdash;perfect for any celebration, without the alcohol.                </p>
+                  Made from premium <i>Vitis Vinifera</i> grapes, 100% grape juice with no sugar added                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For a guilt-free indulgence perfect for family celebrations  </p>
+</div>              </div>
             </div>
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('sparkling-strawberry')">
-              <img class="w-full h-[420px] object-contain" src="" alt="">
+              <img class="w-full h-[420px] object-contain" src="" alt="Sparkling Strawberry">
 
               <div class="flex flex-col gap-y-3">
+                                <div class="flex flex-row gap-2">
+                  <div class="border border-white/50 rounded-sm px-2 py-1 bg-red-primary text-base font-extrabold text-center text-white">
+  Bestseller!</div>                </div>
                 
                 <h3>
                   Sparkling Strawberry                </h3>
                 <p>
-                  Bright and bubbly with the juicy aroma of ripe strawberries&mdash;this alcohol-free sparkler brings sweetness to every moment.                </p>
+                  Made from premium <i>Vitis Vinifera</i> grapes, blended with natural strawberry extracts imported from Italy                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For a guilt-free indulgence perfect for family celebrations  </p>
+</div>              </div>
             </div>
                   </div>
       </div>
-          <div class="p-12 wine-type-group" id="casual">
+          <div class="p-12 wine-type-group" id="everyday-red">
         <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #BA7400"></div>
+          <div class="grow flex flex-row items-center gap-x-6">
+            <svg class="w-5" width="20" height="49" viewbox="0 0 20 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.306 47.9513L13.2054 46.7739C11.8507 46.525 10.8246 45.3391 10.8246 43.911V33.8114C10.8246 32.3966 11.7202 31.0753 13.1362 30.5975C17.233 29.2161 19.8197 25.3938 19.8197 21.2945H19.8166C19.8166 13.8849 18.7103 6.73508 16.6507 0H3.34932C1.29213 6.73568 0.183983 13.8849 0.183983 21.2945H0.181555C0.179127 25.3932 2.76702 29.2155 6.86684 30.5975C8.28344 31.0753 9.17664 32.3966 9.17664 33.8114V43.911C9.17664 45.3391 8.14864 46.525 6.79458 46.7739L0.695246 47.9513C0.289028 48.0284 0.00728642 48.3818 0 48.7801H20C19.9957 48.3818 19.7122 48.0284 19.306 47.9513ZM7.41271 28.9939C4.1739 27.9015 1.97705 24.9104 1.8969 21.5095V21.3109C1.8969 19.6375 1.95337 17.9701 2.07056 16.3112H17.93C18.0454 17.9701 18.1049 19.6381 18.1049 21.3109V21.5223C18.0163 24.9165 15.8231 27.9039 12.5879 28.9939C12.5879 28.9939 11.0274 29.4942 9.84456 29.4942C8.66173 29.4942 7.41271 28.9939 7.41271 28.9939Z" fill="#954D4D"></path>
+            </svg>
 
             <h1 class="text-red-secondary">
-              Casual            </h1>
+              Everyday Red            </h1>
           </div>
 
           <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            Easy-going and approachable, made for relaxed gatherings and effortless enjoyment          </p>
+            Smooth, easy-drinking red wines to enjoy anytime          </p>
         </div>
 
         <div class="grid gap-4" style="grid-template-columns: repeat(3, 1fr)">
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('wild-blackberry')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wild_blackberry_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Wild Blackberry                </h3>
-                <p>
-                  A burst of wild blackberry flavor meets smooth sweetness&mdash;an easygoing red that&rsquo;s perfect for relaxed gatherings.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('strawberry-passion')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/strawberry_passion_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                                <div class="flex flex-row gap-2">
-                                      <div class="rounded-sm px-2 py-1 bg-[#FFE3E0] text-sm font-extrabold text-center text-red-secondary/80">
-                      Bestseller!                    </div>
-                                  </div>
-                
-                <h3>
-                  Strawberry Passion                </h3>
-                <p>
-                  Sweet and aromatic with lush strawberry notes, this fruity favorite captures the taste of summer in every glass.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('luscious-peach')">
-              <img class="w-full h-[420px] object-contain" src="" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Luscious Peach                </h3>
-                <p>
-                  Juicy and aromatic with the golden sweetness of ripe peaches&mdash;an irresistibly smooth wine for any laid-back moment.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                  </div>
-      </div>
-          <div class="p-12 wine-type-group" id="classico">
-        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
-
-            <h1 class="text-red-secondary">
-              Classico            </h1>
-          </div>
-
-          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            A timeless expression of traditional craftsmanship, offering balanced flavors and elegant character          </p>
-        </div>
-
-        <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-classico')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_1_5x-1.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                                <div class="flex flex-row gap-2">
-                                      <div class="rounded-sm px-2 py-1 bg-[#FFE3E0] text-sm font-extrabold text-center text-red-secondary/80">
-                      Bestseller!                    </div>
-                                  </div>
-                
-                <h3>
-                  Rosso Classico                </h3>
-                <p>
-                  Smooth and balanced with rich red fruit flavors, this classic Italian-style wine delivers timeless charm in every sip.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      For fun and festivities                    </p>
-                  </div>
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      For those who want it light                    </p>
-                  </div>
-                              </div>
-            </div>
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('bianco-classico')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/bianco_classico_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Bianco Classico                </h3>
-                <p>
-                  Crisp, refreshing, and elegantly light&mdash;Bianco Classico captures the essence of traditional white wine with a modern touch.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                  </div>
-      </div>
-          <div class="p-12 wine-type-group" id="imported">
-        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
-
-            <h1 class="text-red-secondary">
-              Imported            </h1>
-          </div>
-
-          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            Sourced from renowned vineyards abroad, bringing the world&rsquo;s finest tastes to your table          </p>
-        </div>
-
-        <div class="grid gap-4" style="grid-template-columns: repeat(3, 1fr)">
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-dell-azienda')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_dell_azienda_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Rosso Dell' Azienda                </h3>
-                <p>
-                  Rich and full-bodied with deep red fruit and subtle spice, this imported classic exudes Italian sophistication.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      12% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('cabernet-sauvignon')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_cabernet_sauvignon_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Cabernet Sauvignon                </h3>
-                <p>
-                  Bold and structured with notes of blackcurrant and oak&mdash;an imported favorite for those who love depth and character.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      12% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('merlot')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_merlot_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Merlot                </h3>
-                <p>
-                  Smooth, velvety, and beautifully rounded&mdash;this imported Merlot offers classic flavors of plum and dark cherry.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      12% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                  </div>
-      </div>
-          <div class="p-12 wine-type-group" id="light">
-        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
-
-            <h1 class="text-red-secondary">
-              Light            </h1>
-          </div>
-
-          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            Whether you're craving something sweet and light for a simple meal          </p>
-        </div>
-
-        <div class="grid gap-4" style="grid-template-columns: repeat(3, 1fr)">
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-classico-light')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_light_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Rosso Classico Light                </h3>
-                <p>
-                  A gentle twist on a classic red&mdash;smooth, fruity, and delicately light for effortless enjoyment any time of day.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
-                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-vivace-light')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_vivace_light_1_5x.webp" alt="">
-
-              <div class="flex flex-col gap-y-3">
-                
-                <h3>
-                  Rosso Vivace Light                </h3>
-                <p>
-                  Crisp, bright, and slightly sparkling&mdash;Rosso Vivace Light offers a lively taste with a lighter touch.                </p>
-              </div>
-
-              <hr class="text-red-alternative">
-
-              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      7.5% alcohol content                    </p>
-                  </div>
-                              </div>
-            </div>
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('strawberry-passion-light')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/strawberry_passion_light_1_5x.webp" alt="">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/strawberry_passion_light_1_5x.webp" alt="Strawberry Passion Light">
 
               <div class="flex flex-col gap-y-3">
                 
                 <h3>
                   Strawberry Passion Light                </h3>
                 <p>
-                  A lighter expression of our beloved Strawberry Passion&mdash;sweet, fruity, and refreshingly easy to enjoy.                </p>
+                  Same taste of the original variant, but with lesser calories                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who crave the same berry taste, minus the calories  </p>
+</div>              </div>
             </div>
-                  </div>
-      </div>
-          <div class="p-12 wine-type-group" id="sangria">
-        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-classico')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_1_5x-1.webp" alt="Rosso Classico">
 
-            <h1 class="text-red-secondary">
-              Sangria            </h1>
-          </div>
+              <div class="flex flex-col gap-y-3">
+                                <div class="flex flex-row gap-2">
+                  <div class="border border-white/50 rounded-sm px-2 py-1 bg-red-primary text-base font-extrabold text-center text-white">
+  Bestseller!</div>                </div>
+                
+                <h3>
+                  Rosso Classico                </h3>
+                <p>
+                  Classic sweet red wine                </p>
+              </div>
 
-          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            A vibrant, fruit-infused blend that captures the lively spirit of shared moments and sunny days          </p>
-        </div>
+              <hr class="text-red-alternative opacity-50">
 
-        <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who want it sweet and light  </p>
+</div>              </div>
+            </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('strawberry-passion')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/strawberry_passion_1_5x.webp" alt="Strawberry Passion">
+
+              <div class="flex flex-col gap-y-3">
+                                <div class="flex flex-row gap-2">
+                  <div class="border border-white/50 rounded-sm px-2 py-1 bg-red-primary text-base font-extrabold text-center text-white">
+  Bestseller!</div>                </div>
+                
+                <h3>
+                  Strawberry Passion                </h3>
+                <p>
+                  Classic sweet red wine with natural strawberry extracts                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who like a fruity twist  </p>
+</div>              </div>
+            </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('wild-blackberry')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wild_blackberry_1_5x.webp" alt="Wild Blackberry">
+
+              <div class="flex flex-col gap-y-3">
+                                <div class="flex flex-row gap-2">
+                  <div class="border border-white/50 rounded-sm px-2 py-1 bg-red-primary text-base font-extrabold text-center text-white">
+  Bestseller!</div>                </div>
+                
+                <h3>
+                  Wild Blackberry                </h3>
+                <p>
+                  Classic sweet red wine with natural blackberry extracts                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who want bold sweetness  </p>
+</div>              </div>
+            </div>
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('sangria')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sangria_1_5x.webp" alt="">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/sangria_1_5x.webp" alt="Sangria">
 
               <div class="flex flex-col gap-y-3">
                 
                 <h3>
                   Sangria                </h3>
                 <p>
-                  Inspired by Spanish tradition, this lively mix bursts with the flavors of ripe fruits and red wine&mdash;perfect for sharing.                </p>
+                  Classic sweet red wine with a blend of natural citrus fruits                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      4.5% alcohol content                    </p>
-                  </div>
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who love a zesty, tropical mix  </p>
+</div>              </div>
             </div>
-                  </div>
-      </div>
-          <div class="p-12 wine-type-group" id="tradizionale">
-        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
-
-            <h1 class="text-red-secondary">
-              Tradizionale            </h1>
-          </div>
-
-          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            Rooted in heritage and authenticity, honoring age-old winemaking traditions in every sip          </p>
-        </div>
-
-        <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-tradizionale')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_tradizionale_1_5x.webp" alt="">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_tradizionale_1_5x.webp" alt="Rosso Tradizionale">
 
               <div class="flex flex-col gap-y-3">
                 
                 <h3>
                   Rosso Tradizionale                </h3>
                 <p>
-                  Deep, robust, and elegantly dry&mdash;Rosso Tradizionale embodies old-world craftsmanship with a refined modern balance.                </p>
+                  Semi-dry and slightly effervescent                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      9.5% alcohol content                    </p>
-                  </div>
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    9.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who prefer a more traditional taste  </p>
+</div>              </div>
+            </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-classico-light')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_classico_light_1_5x.webp" alt="Rosso Classico Light">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Rosso Classico Light                </h3>
+                <p>
+                  Same taste of the original variant, but with lesser calories                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who like it light, easy and guilt-free  </p>
+</div>              </div>
             </div>
                   </div>
       </div>
-          <div class="p-12 wine-type-group" id="vivace">
+          <div class="p-12 wine-type-group" id="everyday-white">
         <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
-          <div class="grow flex flex-row items-center gap-x-4 max-w-[354px]">
-            <div class="shrink-0 size-16 rounded-full" style="background-color: #4C1220"></div>
+          <div class="grow flex flex-row items-center gap-x-6">
+            <svg class="w-5" width="20" height="49" viewbox="0 0 20 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.306 47.9513L13.2054 46.7739C11.8507 46.525 10.8246 45.3391 10.8246 43.911V33.8114C10.8246 32.3966 11.7202 31.0753 13.1362 30.5975C17.233 29.2161 19.8197 25.3938 19.8197 21.2945H19.8166C19.8166 13.8849 18.7103 6.73508 16.6507 0H3.34932C1.29213 6.73568 0.183983 13.8849 0.183983 21.2945H0.181555C0.179127 25.3932 2.76702 29.2155 6.86684 30.5975C8.28344 31.0753 9.17664 32.3966 9.17664 33.8114V43.911C9.17664 45.3391 8.14864 46.525 6.79458 46.7739L0.695246 47.9513C0.289028 48.0284 0.00728642 48.3818 0 48.7801H20C19.9957 48.3818 19.7122 48.0284 19.306 47.9513ZM7.41271 28.9939C4.1739 27.9015 1.97705 24.9104 1.8969 21.5095V21.3109C1.8969 19.6375 1.95337 17.9701 2.07056 16.3112H17.93C18.0454 17.9701 18.1049 19.6381 18.1049 21.3109V21.5223C18.0163 24.9165 15.8231 27.9039 12.5879 28.9939C12.5879 28.9939 11.0274 29.4942 9.84456 29.4942C8.66173 29.4942 7.41271 28.9939 7.41271 28.9939Z" fill="#954D4D"></path>
+            </svg>
 
             <h1 class="text-red-secondary">
-              Vivace            </h1>
+              Everyday White            </h1>
           </div>
 
           <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
-            Bright, lively, and full of zest&mdash;crafted to energize any occasion with its playful sparkle          </p>
+            Smooth, easy-drinking white wines to enjoy anytime          </p>
+        </div>
+
+        <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('bianco-classico')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/bianco_classico_1_5x.webp" alt="Bianco Classico">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Bianco Classico                </h3>
+                <p>
+                  Classic sweet white wine                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For light lunches or easy, refreshing sips  </p>
+</div>              </div>
+            </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('luscious-peach')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/luscious_peach_11_1_5x.webp" alt="Luscious Peach">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Luscious Peach                </h3>
+                <p>
+                  Classic sweet white wine with natural peach extracts                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    4.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who like a smooth, fruity white  </p>
+</div>              </div>
+            </div>
+                  </div>
+      </div>
+          <div class="p-12 wine-type-group" id="italian-collection">
+        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
+          <div class="grow flex flex-row items-center gap-x-6">
+            <svg class="w-5" width="20" height="49" viewbox="0 0 20 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.306 47.9513L13.2054 46.7739C11.8507 46.525 10.8246 45.3391 10.8246 43.911V33.8114C10.8246 32.3966 11.7202 31.0753 13.1362 30.5975C17.233 29.2161 19.8197 25.3938 19.8197 21.2945H19.8166C19.8166 13.8849 18.7103 6.73508 16.6507 0H3.34932C1.29213 6.73568 0.183983 13.8849 0.183983 21.2945H0.181555C0.179127 25.3932 2.76702 29.2155 6.86684 30.5975C8.28344 31.0753 9.17664 32.3966 9.17664 33.8114V43.911C9.17664 45.3391 8.14864 46.525 6.79458 46.7739L0.695246 47.9513C0.289028 48.0284 0.00728642 48.3818 0 48.7801H20C19.9957 48.3818 19.7122 48.0284 19.306 47.9513ZM7.41271 28.9939C4.1739 27.9015 1.97705 24.9104 1.8969 21.5095V21.3109C1.8969 19.6375 1.95337 17.9701 2.07056 16.3112H17.93C18.0454 17.9701 18.1049 19.6381 18.1049 21.3109V21.5223C18.0163 24.9165 15.8231 27.9039 12.5879 28.9939C12.5879 28.9939 11.0274 29.4942 9.84456 29.4942C8.66173 29.4942 7.41271 28.9939 7.41271 28.9939Z" fill="#954D4D"></path>
+            </svg>
+
+            <h1 class="text-red-secondary">
+              Italian Collection            </h1>
+          </div>
+
+          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
+            Denominazione di Origine Controllata          </p>
+        </div>
+
+        <div class="grid gap-4" style="grid-template-columns: repeat(3, 1fr)">
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('merlot')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_merlot_1_5x.webp" alt="Merlot">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Merlot                </h3>
+                <p>
+                  Full-bodied, ruby red wine made with choice Merlot grapes from Italy&rsquo;s Veneto region                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    12% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who like a smooth, elegant finish  </p>
+</div>              </div>
+            </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('cabernet-sauvignon')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_cabernet_sauvignon_1_5x.webp" alt="Cabernet Sauvignon">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Cabernet Sauvignon                </h3>
+                <p>
+                  Full-bodied, ruby red wine made with choice Cabernet Sauvignon grapes from Italy&rsquo;s Veneto region                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    12% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who want deep flavor and structure  </p>
+</div>              </div>
+            </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-dell-azienda')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/imported_dell_azienda_1_5x.webp" alt="Rosso Dell Azienda">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Rosso Dell Azienda                </h3>
+                <p>
+                  Special house wine which is a blend of Merlot and Cabernet Sauvignon from Italy&rsquo;s Veneto region                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    12% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who appreciate depth, complexity and smoothness  </p>
+</div>              </div>
+            </div>
+                  </div>
+      </div>
+          <div class="p-12 wine-type-group" id="premium-red">
+        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
+          <div class="grow flex flex-row items-center gap-x-6">
+            <svg class="w-5" width="20" height="49" viewbox="0 0 20 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.306 47.9513L13.2054 46.7739C11.8507 46.525 10.8246 45.3391 10.8246 43.911V33.8114C10.8246 32.3966 11.7202 31.0753 13.1362 30.5975C17.233 29.2161 19.8197 25.3938 19.8197 21.2945H19.8166C19.8166 13.8849 18.7103 6.73508 16.6507 0H3.34932C1.29213 6.73568 0.183983 13.8849 0.183983 21.2945H0.181555C0.179127 25.3932 2.76702 29.2155 6.86684 30.5975C8.28344 31.0753 9.17664 32.3966 9.17664 33.8114V43.911C9.17664 45.3391 8.14864 46.525 6.79458 46.7739L0.695246 47.9513C0.289028 48.0284 0.00728642 48.3818 0 48.7801H20C19.9957 48.3818 19.7122 48.0284 19.306 47.9513ZM7.41271 28.9939C4.1739 27.9015 1.97705 24.9104 1.8969 21.5095V21.3109C1.8969 19.6375 1.95337 17.9701 2.07056 16.3112H17.93C18.0454 17.9701 18.1049 19.6381 18.1049 21.3109V21.5223C18.0163 24.9165 15.8231 27.9039 12.5879 28.9939C12.5879 28.9939 11.0274 29.4942 9.84456 29.4942C8.66173 29.4942 7.41271 28.9939 7.41271 28.9939Z" fill="#954D4D"></path>
+            </svg>
+
+            <h1 class="text-red-secondary">
+              Premium Red            </h1>
+          </div>
+
+          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
+            Bold and bubbly red made for life&rsquo;s finer moments          </p>
         </div>
 
         <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-vivace')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_vivace_1_5x.webp" alt="">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_vivace_1_5x.webp" alt="Rosso Vivace">
 
               <div class="flex flex-col gap-y-3">
                 
                 <h3>
                   Rosso Vivace                </h3>
                 <p>
-                  Vibrant and slightly effervescent, Rosso Vivace offers bold red berry notes with a lively sparkle that excites the palate.                </p>
+                  Rich and sparkling red wine                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      7.5% alcohol content                    </p>
-                  </div>
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    7.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who like their red wine bubbly and refined  </p>
+</div>              </div>
             </div>
+                      <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('rosso-vivace-light')">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/rosso_vivace_light_1_5x.webp" alt="Rosso Vivace Light">
+
+              <div class="flex flex-col gap-y-3">
+                
+                <h3>
+                  Rosso Vivace Light                </h3>
+                <p>
+                  Same taste of the original variant, but with lesser calories                </p>
+              </div>
+
+              <hr class="text-red-alternative opacity-50">
+
+              <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    7.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who want to indulge, minus the calories  </p>
+</div>              </div>
+            </div>
+                  </div>
+      </div>
+          <div class="p-12 wine-type-group" id="premium-white">
+        <div class="flex flex-row items-center justify-between gap-x-4 mb-8">
+          <div class="grow flex flex-row items-center gap-x-6">
+            <svg class="w-5" width="20" height="49" viewbox="0 0 20 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.306 47.9513L13.2054 46.7739C11.8507 46.525 10.8246 45.3391 10.8246 43.911V33.8114C10.8246 32.3966 11.7202 31.0753 13.1362 30.5975C17.233 29.2161 19.8197 25.3938 19.8197 21.2945H19.8166C19.8166 13.8849 18.7103 6.73508 16.6507 0H3.34932C1.29213 6.73568 0.183983 13.8849 0.183983 21.2945H0.181555C0.179127 25.3932 2.76702 29.2155 6.86684 30.5975C8.28344 31.0753 9.17664 32.3966 9.17664 33.8114V43.911C9.17664 45.3391 8.14864 46.525 6.79458 46.7739L0.695246 47.9513C0.289028 48.0284 0.00728642 48.3818 0 48.7801H20C19.9957 48.3818 19.7122 48.0284 19.306 47.9513ZM7.41271 28.9939C4.1739 27.9015 1.97705 24.9104 1.8969 21.5095V21.3109C1.8969 19.6375 1.95337 17.9701 2.07056 16.3112H17.93C18.0454 17.9701 18.1049 19.6381 18.1049 21.3109V21.5223C18.0163 24.9165 15.8231 27.9039 12.5879 28.9939C12.5879 28.9939 11.0274 29.4942 9.84456 29.4942C8.66173 29.4942 7.41271 28.9939 7.41271 28.9939Z" fill="#954D4D"></path>
+            </svg>
+
+            <h1 class="text-red-secondary">
+              Premium White            </h1>
+          </div>
+
+          <p class="grow max-w-[470px] text-lg font-extrabold text-right text-[#546E7A]">
+            Bold and bubbly white made for life&rsquo;s finer moments          </p>
+        </div>
+
+        <div class="grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
                       <div class="rounded-2xl px-6 pb-6 bg-[#FFF4F4] flex flex-col gap-y-4 cursor-pointer" onclick="openWineModal('bianco-vivace')">
-              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/bianco_vivace_1_5x.webp" alt="">
+              <img class="w-full h-[420px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/bianco_vivace_1_5x.webp" alt="Bianco Vivace">
 
               <div class="flex flex-col gap-y-3">
                 
                 <h3>
                   Bianco Vivace                </h3>
                 <p>
-                  Lightly sparkling and full of freshness, Bianco Vivace enchants with fruity aromas and a crisp, playful finish.                </p>
+                  Rich and sparkling white wine                </p>
               </div>
 
-              <hr class="text-red-alternative">
+              <hr class="text-red-alternative opacity-50">
 
               <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
-                                  <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
-                                          <img class="size-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg" alt="object-contain">
-                                          <p class="text-red-secondary/80">
-                      7.5% alcohol content                    </p>
-                  </div>
-                              </div>
+                <div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/wine.svg">
+      <p class="text-red-secondary/80">
+    7.5% alc, 750ml  </p>
+</div><div class="border border-[#0000001A] rounded-sm bg-[#FFFFFF80] px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/heart.svg">
+      <p class="text-red-secondary/80">
+    For those who like their white wine bubbly and refined  </p>
+</div>              </div>
             </div>
                   </div>
       </div>
@@ -634,7 +676,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 
 <script>
 const ALL_SHOPS = [{"name":"Shopee","url":"https:\/\/shopee.ph\/novellinowines_officialstore","cta":"Shop on Shopee"},{"name":"Lazada","url":"https:\/\/lazada.com","cta":"Shop on Lazada"}];
-const ALL_WINES = {"sparkling-red":{"id":960,"title":"Sparkling Red","content":"A lively and refreshing red with soft bubbles and a hint of sweetness\u2014perfect for any celebration, without the alcohol.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/sparkling_red_1_5x.webp","chips":[],"labels":[],"shops":["",""]},"sparkling-strawberry":{"id":961,"title":"Sparkling Strawberry","content":"Bright and bubbly with the juicy aroma of ripe strawberries\u2014this alcohol-free sparkler brings sweetness to every moment.","thumbnail":false,"chips":[],"labels":[],"shops":["",""]},"wild-blackberry":{"id":966,"title":"Wild Blackberry","content":"A burst of wild blackberry flavor meets smooth sweetness\u2014an easygoing red that\u2019s perfect for relaxed gatherings.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wild_blackberry_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"strawberry-passion":{"id":967,"title":"Strawberry Passion","content":"Sweet and aromatic with lush strawberry notes, this fruity favorite captures the taste of summer in every glass.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/strawberry_passion_1_5x.webp","chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"luscious-peach":{"id":968,"title":"Luscious Peach","content":"Juicy and aromatic with the golden sweetness of ripe peaches\u2014an irresistibly smooth wine for any laid-back moment.","thumbnail":false,"chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"rosso-classico":{"id":962,"title":"Rosso Classico","content":"Smooth and balanced with rich red fruit flavors, this classic Italian-style wine delivers timeless charm in every sip.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_classico_1_5x-1.webp","chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For fun and festivities"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who want it light"}],"shops":["https:\/\/shopee.com","https:\/\/lazada.com"]},"bianco-classico":{"id":963,"title":"Bianco Classico","content":"Crisp, refreshing, and elegantly light\u2014Bianco Classico captures the essence of traditional white wine with a modern touch.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/bianco_classico_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"rosso-dell-azienda":{"id":974,"title":"Rosso Dell' Azienda","content":"Rich and full-bodied with deep red fruit and subtle spice, this imported classic exudes Italian sophistication.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/imported_dell_azienda_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"12% alcohol content"}],"shops":["",""]},"cabernet-sauvignon":{"id":975,"title":"Cabernet Sauvignon","content":"Bold and structured with notes of blackcurrant and oak\u2014an imported favorite for those who love depth and character.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/imported_cabernet_sauvignon_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"12% alcohol content"}],"shops":["",""]},"merlot":{"id":976,"title":"Merlot","content":"Smooth, velvety, and beautifully rounded\u2014this imported Merlot offers classic flavors of plum and dark cherry.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/imported_merlot_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"12% alcohol content"}],"shops":["",""]},"rosso-classico-light":{"id":971,"title":"Rosso Classico Light","content":"A gentle twist on a classic red\u2014smooth, fruity, and delicately light for effortless enjoyment any time of day.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_classico_light_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"rosso-vivace-light":{"id":972,"title":"Rosso Vivace Light","content":"Crisp, bright, and slightly sparkling\u2014Rosso Vivace Light offers a lively taste with a lighter touch.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_vivace_light_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"7.5% alcohol content"}],"shops":["",""]},"strawberry-passion-light":{"id":973,"title":"Strawberry Passion Light","content":"A lighter expression of our beloved Strawberry Passion\u2014sweet, fruity, and refreshingly easy to enjoy.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/strawberry_passion_light_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"sangria":{"id":969,"title":"Sangria","content":"Inspired by Spanish tradition, this lively mix bursts with the flavors of ripe fruits and red wine\u2014perfect for sharing.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/sangria_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alcohol content"}],"shops":["",""]},"rosso-tradizionale":{"id":970,"title":"Rosso Tradizionale","content":"Deep, robust, and elegantly dry\u2014Rosso Tradizionale embodies old-world craftsmanship with a refined modern balance.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_tradizionale_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"9.5% alcohol content"}],"shops":["",""]},"rosso-vivace":{"id":964,"title":"Rosso Vivace","content":"Vibrant and slightly effervescent, Rosso Vivace offers bold red berry notes with a lively sparkle that excites the palate.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_vivace_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"7.5% alcohol content"}],"shops":["",""]},"bianco-vivace":{"id":965,"title":"Bianco Vivace","content":"Lightly sparkling and full of freshness, Bianco Vivace enchants with fruity aromas and a crisp, playful finish.","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/bianco_vivace_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"7.5% alcohol content"}],"shops":["",""]}};
+const ALL_WINES = {"sparkling-red":{"id":1158,"title":"Sparkling Red","content":"Made from premium <i>Vitis Vinifera<\/i> grapes, 100% grape juice with no sugar added","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/sparkling_red_1_5x.webp","chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For a guilt-free indulgence perfect for family celebrations"}],"shops":["",""]},"sparkling-strawberry":{"id":1159,"title":"Sparkling Strawberry","content":"Made from premium <i>Vitis Vinifera<\/i> grapes, blended with natural strawberry extracts imported from Italy","thumbnail":false,"chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For a guilt-free indulgence perfect for family celebrations"}],"shops":["",""]},"strawberry-passion-light":{"id":1152,"title":"Strawberry Passion Light","content":"Same taste of the original variant, but with lesser calories","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/strawberry_passion_light_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who crave the same berry taste, minus the calories"}],"shops":["",""]},"rosso-classico":{"id":1146,"title":"Rosso Classico","content":"Classic sweet red wine","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_classico_1_5x-1.webp","chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who want it sweet and light"}],"shops":["",""]},"strawberry-passion":{"id":1147,"title":"Strawberry Passion","content":"Classic sweet red wine with natural strawberry extracts","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/strawberry_passion_1_5x.webp","chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who like a fruity twist"}],"shops":["",""]},"wild-blackberry":{"id":1148,"title":"Wild Blackberry","content":"Classic sweet red wine with natural blackberry extracts","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wild_blackberry_1_5x.webp","chips":["Bestseller!"],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who want bold sweetness"}],"shops":["",""]},"sangria":{"id":1149,"title":"Sangria","content":"Classic sweet red wine with a blend of natural citrus fruits","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/sangria_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who love a zesty, tropical mix"}],"shops":["",""]},"rosso-tradizionale":{"id":1150,"title":"Rosso Tradizionale","content":"Semi-dry and slightly effervescent","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_tradizionale_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"9.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who prefer a more traditional taste"}],"shops":["",""]},"rosso-classico-light":{"id":1151,"title":"Rosso Classico Light","content":"Same taste of the original variant, but with lesser calories","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_classico_light_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who like it light, easy and guilt-free"}],"shops":["",""]},"bianco-classico":{"id":1153,"title":"Bianco Classico","content":"Classic sweet white wine","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/bianco_classico_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For light lunches or easy, refreshing sips"}],"shops":["",""]},"luscious-peach":{"id":1154,"title":"Luscious Peach","content":"Classic sweet white wine with natural peach extracts","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/11\/luscious_peach_11_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"4.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who like a smooth, fruity white"}],"shops":["",""]},"merlot":{"id":1160,"title":"Merlot","content":"Full-bodied, ruby red wine made with choice Merlot grapes from Italy\u2019s Veneto region","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/imported_merlot_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"12% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who like a smooth, elegant finish"}],"shops":["",""]},"cabernet-sauvignon":{"id":1161,"title":"Cabernet Sauvignon","content":"Full-bodied, ruby red wine made with choice Cabernet Sauvignon grapes from Italy\u2019s Veneto region","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/imported_cabernet_sauvignon_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"12% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who want deep flavor and structure"}],"shops":["",""]},"rosso-dell-azienda":{"id":1162,"title":"Rosso Dell Azienda","content":"Special house wine which is a blend of Merlot and Cabernet Sauvignon from Italy\u2019s Veneto region","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/imported_dell_azienda_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"12% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who appreciate depth, complexity and smoothness"}],"shops":["",""]},"rosso-vivace":{"id":1155,"title":"Rosso Vivace","content":"Rich and sparkling red wine","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_vivace_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"7.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who like their red wine bubbly and refined"}],"shops":["",""]},"rosso-vivace-light":{"id":1156,"title":"Rosso Vivace Light","content":"Same taste of the original variant, but with lesser calories","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/rosso_vivace_light_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"7.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who want to indulge, minus the calories"}],"shops":["",""]},"bianco-vivace":{"id":1157,"title":"Bianco Vivace","content":"Rich and sparkling white wine","thumbnail":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/bianco_vivace_1_5x.webp","chips":[],"labels":[{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/wine.svg","name":"7.5% alc, 750ml"},{"icon":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/uploads\/2025\/10\/heart.svg","name":"For those who like their white wine bubbly and refined"}],"shops":["",""]}};
 
 document.querySelectorAll(".wine-type-group").forEach((group) => {
   Motion.scroll((y) => {
@@ -665,6 +707,8 @@ function openWineModal(slug) {
 
   modal.querySelector(".thumbnail")
     .setAttribute("src", WINE.thumbnail);
+  modal.querySelector(".thumbnail")
+    .setAttribute("alt", WINE.title);
   modal.querySelector(".name")
     .innerHTML = WINE.title;
   modal.querySelector(".description")
@@ -676,7 +720,7 @@ function openWineModal(slug) {
     WINE.chips.forEach((chip) => {
       const chipElement = document.createElement("div");
       chipElement.textContent = chip;
-      chipElement.className = "rounded-sm px-2 py-1 bg-[#FFE3E0] text-sm font-extrabold text-center text-red-secondary/80";
+      chipElement.className = "border border-white/50 rounded-sm px-2 py-1 bg-red-primary text-base font-extrabold text-center text-white";
 
       chipContainer.appendChild(chipElement);
     });
@@ -763,11 +807,13 @@ function onModalWrapperClick(event) {
 }
 </script>
 
-<footer class="bg-red-secondary text-white">
-  <div class="max-w-[1280px] min-h-48 mx-auto grid grid-cols-[1fr_max-content_1fr] items-center">
-    <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18 shrink-0 grow-0">
+<footer class="border-t border-[#EFF0F6] p-4 bg-red-secondary text-white">
+  <div class="max-w-[1280px] md:min-h-48 mx-auto grid gap-y-4 md:grid-cols-[1fr_max-content_1fr] items-center">
+    <a href="https://preview.emmanevangelista.com/novellino-2025" class="w-fit shrink-0 grow-0 -translate-x-4">
+      <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18" alt="Novellino">
+    </a>
 
-    <div class="flex flex-row gap-x-6 items-center">
+    <div class="flex flex-row gap-x-10 md:gap-x-6 items-center">
       <a href="https://www.facebook.com/novellinowines" target="_blank" class="size-6 flex items-center justify-center">
         <svg width="11" height="21" viewbox="0 0 11 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.63067 4.04753H10.4424V0.892183C10.1298 0.849186 9.05486 0.752441 7.80297 0.752441C5.19088 0.752441 3.40152 2.39544 3.40152 5.41518V8.1943H0.519043V11.7217H3.40152V20.5974H6.93558V11.7226H9.70147L10.1405 8.19513H6.93475V5.76495C6.93558 4.74541 7.2101 4.04753 8.63067 4.04753Z" fill="currentColor"></path>
@@ -787,9 +833,33 @@ function onModalWrapperClick(event) {
           <circle cx="17.3932" cy="5.83981" r="0.732875" fill="currentColor"></circle>
         </svg>
       </a>
+
+      <a href="https://shopee.ph/novellinowines_officialstore" target="_blank" class="size-6 flex items-center justify-center">
+        <svg width="24" height="25" viewbox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_1056_2931)">
+            <path d="M16.0194 18.4659C15.8834 19.6358 15.1742 20.5829 14.0758 21.0512C13.4604 21.3107 12.6385 21.4529 11.9792 21.4106C10.9649 21.3683 10.0141 21.117 9.12666 20.6709C8.81965 20.5019 8.34656 20.185 7.98566 19.8892C7.89666 19.8047 7.88175 19.7624 7.94629 19.6749C7.97466 19.6237 8.03802 19.5299 8.16793 19.3399C8.36602 19.0598 8.3872 19.0228 8.40829 18.9869C8.47165 18.8959 8.5682 18.8877 8.66911 18.9595C8.68293 18.9736 8.68293 18.9736 8.69056 18.9804C8.70402 18.9951 8.70402 18.9951 8.7402 19.0227C8.77756 19.0513 8.80466 19.0649 8.81129 19.0811C9.76229 19.8256 10.8693 20.2482 11.9868 20.2905C13.538 20.2696 14.6527 19.5721 14.8581 18.4943C15.0696 17.3213 14.1451 16.2973 12.3373 15.7263C11.7677 15.5573 10.3345 14.9849 10.0698 14.8256C8.83084 14.0999 8.24929 13.1473 8.33384 11.966C8.46066 10.3335 9.97729 9.1184 11.8941 9.10777C12.7449 9.10777 13.6026 9.28513 14.4162 9.6274C14.7097 9.75222 15.2334 10.0359 15.4076 10.1716C15.5121 10.249 15.5344 10.3335 15.4699 10.4281C15.4485 10.4859 15.3854 10.5719 15.2765 10.7562C15.1177 10.9984 15.1117 11.0085 15.0829 11.0618C15.0264 11.1507 14.9456 11.1578 14.8379 11.0941C13.9683 10.5027 12.9874 10.2067 11.9157 10.1856C10.5845 10.2067 9.58356 11.0001 9.51911 12.0873C9.50584 13.0639 10.2352 13.7754 11.8147 14.3111C15.0274 15.3461 16.2528 16.5553 16.0194 18.4659ZM12.0579 1.61277C14.1452 1.61277 15.8504 3.59322 15.9348 6.07595H8.18602C8.26056 3.59322 9.97075 1.61277 12.0579 1.61277ZM22.8762 6.54631C22.8762 6.28722 22.6757 6.07595 22.4197 6.07595H22.403H17.3938C17.2671 2.80031 14.924 0.182129 12.0579 0.182129C9.19011 0.182129 6.85311 2.80031 6.72811 6.07595H1.69793C1.44566 6.08167 1.24547 6.28831 1.24547 6.54631C1.24547 6.56122 1.24547 6.56777 1.24547 6.58267H1.23975L1.9542 22.3825C1.9542 22.4252 1.96256 22.4683 1.96256 22.5197C1.96256 22.5297 1.96393 22.5328 1.96393 22.5516V22.5758L1.9692 22.5841C2.07675 23.6857 2.87256 24.5639 3.9602 24.6069V24.6152H19.9156C19.9239 24.6152 19.9288 24.6152 19.9371 24.6152C19.9495 24.6152 19.9495 24.6152 19.9586 24.6152H19.9917V24.6069C21.0947 24.58 21.9979 23.6857 22.084 22.572L22.0888 22.5516C22.0888 22.5411 22.0888 22.5298 22.0888 22.5197C22.0888 22.4875 22.0972 22.467 22.0972 22.4336L22.8762 6.56777C22.8762 6.56195 22.8762 6.55295 22.8762 6.54631Z" fill="white"></path>
+          </g>
+          <defs>
+            <clippath id="clip0_1056_2931">
+              <rect width="24" height="24.6364" fill="white"></rect>
+            </clippath>
+          </defs>
+        </svg>
+      </a>
+
+      <a href="https://lazada.com/" target="_blank" class="size-6">
+        <svg class="size-full" width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.0058 27.6911C15.8012 27.6926 15.6001 27.6402 15.422 27.5394C13.8986 26.658 2.6161 19.5838 2.19007 19.3678C1.86575 19.2164 1.64431 18.9066 1.60624 18.5506V8.62788C1.59781 8.25765 1.78089 7.90892 2.09068 7.70579L2.17234 7.659C3.26386 6.98188 6.91766 4.75235 7.49539 4.43123C7.6279 4.35248 7.77902 4.31034 7.93333 4.30859C8.07776 4.31034 8.21987 4.34637 8.34774 4.4135C8.34774 4.4135 13.4607 7.74647 14.243 8.04405C14.7916 8.2963 15.3903 8.42184 15.9939 8.41167C16.6783 8.42591 17.3542 8.26085 17.9549 7.93304C18.7195 7.53026 23.6049 4.43094 23.6575 4.43094C23.7807 4.35654 23.9222 4.31818 24.0661 4.31993C24.2204 4.3208 24.3715 4.36294 24.5037 4.44256C25.1692 4.81018 29.6986 7.58286 29.891 7.70521C30.2095 7.8973 30.4028 8.2437 30.399 8.61568V18.5384C30.3632 18.8953 30.1412 19.2063 29.8154 19.3556C29.3894 19.589 18.1418 26.6632 16.5891 27.5272C16.4127 27.6327 16.2113 27.6891 16.0058 27.6911Z" fill="white"></path>
+          <path d="M15.9476 27.6912H16.006C16.2106 27.6927 16.4117 27.6404 16.5895 27.5395C18.1129 26.6581 29.3896 19.5839 29.8159 19.3679C30.1417 19.2186 30.3637 18.9073 30.3994 18.5508V8.628C30.4015 8.46003 30.3634 8.29409 30.2884 8.14355L15.9473 16.0173V27.6912" fill="white"></path>
+          <path d="M15.8974 27.5518H15.8396C15.6372 27.5532 15.4382 27.5015 15.2623 27.4017C13.7551 26.5297 2.59857 19.5308 2.17708 19.3172C1.85478 19.1694 1.63512 18.8618 1.59975 18.5087V8.69168C1.59774 8.5255 1.6354 8.36133 1.70958 8.2124L15.8979 16.0025V27.5518" fill="white"></path>
+          <path d="M8.98975 11.876H10.2971V18.1678H12.5516V19.4096H8.99535L8.98975 11.876Z" fill="#4D1320"></path>
+          <path d="M15.5804 13.7643C16.2729 13.7555 16.9302 14.0718 17.3561 14.6178V13.8764H18.5762V19.4221H17.3561V18.6808C16.9302 19.2276 16.2729 19.543 15.5804 19.5342C14.0592 19.5342 12.9048 18.2349 12.9048 16.6481C12.9048 15.0605 14.0592 13.7643 15.5804 13.7643ZM15.8021 14.8748C14.8142 14.8748 14.1601 15.6521 14.1601 16.6473C14.1601 17.6432 14.8246 18.423 15.8021 18.423C16.7789 18.423 17.4434 17.6464 17.4434 16.6473C17.4434 15.6489 16.7893 14.8748 15.8021 14.8748Z" fill="#4D1320"></path>
+          <path d="M19.5247 18.4581L22.4325 14.9835H19.568V13.8755H24.0081V14.8522L21.1107 18.3132H24.0737V19.4212H19.5239V18.4581" fill="#4D1320"></path>
+        </svg>
+      </a>
     </div>
 
-    <p class="text-sm font-extrabold text-right">
+    <p class="text-sm font-extrabold md:text-right">
       Copyright &copy; 2025 Novellino    </p>
   </div>
 </footer>

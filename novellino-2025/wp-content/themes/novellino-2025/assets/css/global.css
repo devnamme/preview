@@ -72,22 +72,22 @@
   }
 
   h1 {
-    @apply text-h1;
+    @apply text-h2 md:text-h1;
   }
 
   h2 {
-    @apply text-h2;
+    @apply text-h3 md:text-h2;
   }
 
   h3 {
-    @apply text-h3;
+    @apply text-[20px] md:text-h3;
   }
 }
 
 @utility active-header {
   @apply bg-red-secondary;
 
-  & button {
+  & button[role="button"] {
     @apply bg-white text-red-secondary;
   }
 }
