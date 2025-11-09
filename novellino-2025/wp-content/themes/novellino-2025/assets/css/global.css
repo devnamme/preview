@@ -9,6 +9,9 @@
   --text-base--line-height: 130%;
   --text-lg: 18px;
   --text-lg--line-height: 130%;
+  --text-h4: 20px;
+  --text-h4--line-height: 110%;
+  --text-h4--font-weight: 800;
   --text-h3: 24px;
   --text-h3--line-height: 110%;
   --text-h3--font-weight: 800;
@@ -69,6 +72,7 @@
     margin: 0;
     padding: 0;
     font-family: "Avenir", sans-serif;
+    @apply text-base;
   }
 
   h1 {
@@ -80,14 +84,14 @@
   }
 
   h3 {
-    @apply text-[20px] md:text-h3;
+    @apply text-h4 md:text-h3;
   }
 }
 
 @utility active-header {
   @apply bg-red-secondary;
 
-  & button[role="button"] {
+  & button.white-on-active {
     @apply bg-white text-red-secondary;
   }
 }
