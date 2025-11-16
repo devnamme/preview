@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+<head><meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Contact &ndash; Novellino</title>
+  <title>Contact – Novellino</title>
 <meta name="robots" content="noindex, nofollow">
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
@@ -42,14 +42,15 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 </style>
 <link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=1.0.0" type="text/css" media="all">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=1.0.0" id="motion-js"></script>
-<link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/wp/v2/pages/821"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
+<link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/wp/v2/pages/15"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.8.3">
 <link rel="canonical" href="https://preview.emmanevangelista.com/novellino-2025/contact/">
-<link rel="shortlink" href="https://preview.emmanevangelista.com/novellino-2025/?p=821">
+<link rel="shortlink" href="https://preview.emmanevangelista.com/novellino-2025/?p=15">
 <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpreview.emmanevangelista.com%2Fnovellino-2025%2Fcontact%2F">
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpreview.emmanevangelista.com%2Fnovellino-2025%2Fcontact%2F&amp;format=xml">
 </head>
 <body class="flex flex-col min-h-screen bg-white">
+<!-- <div id="main-body" class="min-h-screen overflow-auto"> -->
 
 <header class="fixed z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors ">
   <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 lg:justify-between items-center">
@@ -63,12 +64,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-story/" class="">Our Story</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="text-lg font-bold">Contact Us</a>
 </div>
-    
-<a class="block hidden lg:block">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer border border-white/50 bg-transparent text-white  flex flex-row items-center justify-center gap-x-2.5" role="button">
-Send a Gift  </button>
-</a>
-
     <div class="relative shrink-0 grow-0" id="shop-now-container" data-active="false">
       
 <a class="block " onclick="toggleShopList()">
@@ -85,13 +80,13 @@ Shop now
                   <a class="block" href="https://shopee.ph/novellinowines_officialstore">
             <div class="min-h-10 flex flex-row items-center gap-x-1 justify-between font-extrabold text-base text-red-secondary">
               <span>Shopee</span>
-                              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/shopee-colored.png" alt="Shopee" class="size-10 object-contain">
+                              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/shopee-colored-icon.png" alt="Shopee" class="size-10 object-contain">
                           </div>
           </a>
                   <a class="block" href="https://preview.emmanevangelista.com/novellino-2025/todo">
             <div class="min-h-10 flex flex-row items-center gap-x-1 justify-between font-extrabold text-base text-red-secondary">
               <span>Lazada</span>
-                              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/lazada-colored.svg" alt="Lazada" class="size-10 object-contain">
+                              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/lazada-colored-icon.svg" alt="Lazada" class="size-10 object-contain">
                           </div>
           </a>
               </div>
@@ -107,10 +102,11 @@ Shop now
 
   <script>
   const header = document.querySelector("header");
+  const body = document.getElementById("main-body") ?? document.documentElement;
 
   Motion.scroll((y) => {
     const isPastHero =
-      y * (document.documentElement.scrollHeight - window.innerHeight) >
+      y * (body.scrollHeight - window.innerHeight) >
       window.innerHeight;
 
     if (isPastHero) {
@@ -118,6 +114,9 @@ Shop now
     } else {
       header.classList.remove("active-header");
     }
+  }, {
+    source: body,
+    target: body,
   });
   </script>
 
@@ -149,7 +148,7 @@ function toggleShopList() {
 </script>
 <div class="relative w-full min-h-screen lg:px-24 lg:py-24 flex flex-col justify-end px-4 py-10">
       <video id="" class="absolute z-0 top-0 left-0 w-full h-full object-cover" autoplay muted loop playsinline>
-      <source src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/hero.mp4" type="video/mp4">
+      <source src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/watermarked_preview.mp4" type="video/mp4">
     </source></video>
   
   <div class="relative z-1 mx-auto w-full max-w-[1240px] text-white">
@@ -194,7 +193,7 @@ Shop now  </button>
 
         <div class="flex flex-col">
           <p class="mb-4 grow text-sm">
-            You can tell they care about their quality. Whether I grab the Bianco Vivace for a party or just a casual bottle, the taste is consistently refreshing. It&rsquo;s a premium sip without the expensive price.          </p>
+            You can tell they care about their quality. Whether I grab the Bianco Vivace for a party or just a casual bottle, the taste is consistently refreshing. It’s a premium sip without the expensive price.          </p>
 
           <div class="flex flex-row gap-x-1 mb-2">
                           <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -260,7 +259,7 @@ Shop now  </button>
 
         <div class="flex flex-col">
           <p class="mb-4 grow text-sm">
-            Every bottle I&rsquo;ve opened has been consistent&mdash;smooth, flavorful, and refreshing without being overpowering. I appreciate that it feels premium without breaking the bank.          </p>
+            Every bottle I’ve opened has been consistent—smooth, flavorful, and refreshing without being overpowering. I appreciate that it feels premium without breaking the bank.          </p>
 
           <div class="flex flex-row gap-x-1 mb-2">
                           <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -296,13 +295,13 @@ Shop now  </button>
 
     
     <div class="-mx-30 sm:-mx-20 md:-mx-30 xl:mx-0 relative overflow-visible flex flex-row gap-x-15 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-          <img id="wines-0" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-sparkling_red_1_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-1" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-sangria_1_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-2" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-rosso_classico_1_3_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-3" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-rosso_classico_1_2_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-rosso_classico_1_1_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-5" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-luscious_peach_1_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-6" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/colored-imported_cabernet_sauvignon_1_3x-1.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+          <img id="wines-0" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-sparkling_red_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+      <img id="wines-1" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-sangria_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+      <img id="wines-2" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-rosso_classico_1_3_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+      <img id="wines-3" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-rosso_classico_1_2_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+      <img id="wines-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-rosso_classico_1_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+      <img id="wines-5" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-luscious_peach_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
+      <img id="wines-6" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-imported_cabernet_sauvignon_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
       </div>
   </div>
 </section>
@@ -417,7 +416,7 @@ setInterval(() => {
 
     <div class="flex flex-col gap-y-6 relative">
               <div class="rounded-3xl grid grid-rows-[260px_auto] lg:grid-rows-1 lg:grid-cols-[380px_1fr] overflow-clip sticky top-[100px] bg-[#771935] text-white">
-              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/craft.png" class="size-full object-cover">
+              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/craft.png" class="size-full object-cover">
   
           <div class="px-4 py-6 lg:py-36 lg:px-16">
             <p class="mb-4 rounded-xl py-2 px-4 w-fit font-extrabold text-center uppercase bg-white text-red-primary">
@@ -425,11 +424,11 @@ setInterval(() => {
             <h2 class="text-h2 lg:text-h2 mb-2.5 font-black">
               The Process That Perfected Sweet            </h2>
             <p class="text-lg">
-              Achieving this rich, sweet taste is difficult and costly&mdash;but your expectation is worth it. We invest in state-of-the-art Italian equipment to precisely control fermentation, securing the flawless, sweet flavor you love every time.            </p>
+              Achieving this rich, sweet taste is difficult and costly—but your expectation is worth it. We invest in state-of-the-art Italian equipment to precisely control fermentation, securing the flawless, sweet flavor you love every time.            </p>
           </div>
         </div>
               <div class="rounded-3xl grid grid-rows-[260px_auto] lg:grid-rows-1 lg:grid-cols-[380px_1fr] overflow-clip sticky top-[132px] bg-[#771935] text-white">
-              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/culture.png" class="size-full object-cover">
+              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/culture.png" class="size-full object-cover">
   
           <div class="px-4 py-6 lg:py-36 lg:px-16">
             <p class="mb-4 rounded-xl py-2 px-4 w-fit font-extrabold text-center uppercase bg-white text-red-primary">
@@ -441,7 +440,7 @@ setInterval(() => {
           </div>
         </div>
               <div class="rounded-3xl grid grid-rows-[260px_auto] lg:grid-rows-1 lg:grid-cols-[380px_1fr] overflow-clip sticky top-[164px] bg-[#771935] text-white">
-              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/conservation.png" class="size-full object-cover">
+              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/conservation.png" class="size-full object-cover">
   
           <div class="px-4 py-6 lg:py-36 lg:px-16">
             <p class="mb-4 rounded-xl py-2 px-4 w-fit font-extrabold text-center uppercase bg-white text-red-primary">
@@ -449,13 +448,13 @@ setInterval(() => {
             <h2 class="text-h2 lg:text-h2 mb-2.5 font-black">
               Honoring Our Environment            </h2>
             <p class="text-lg">
-              Our commitment extends beyond the bottle. We utilize solar energy and have pioneered a revolutionary, Philippines-developed wastewater solution to ensure our growth is sustainable&mdash;protecting the environment for the next generation of Filipinos.            </p>
+              Our commitment extends beyond the bottle. We utilize solar energy and have pioneered a revolutionary, Philippines-developed wastewater solution to ensure our growth is sustainable—protecting the environment for the next generation of Filipinos.            </p>
           </div>
         </div>
           </div>
   </div>
 </section><section class="">
-      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/break-scaled.jpg" class="w-full h-[564px] xl:h-dvh 2xl:h-[564px] object-cover">
+      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/break.jpg" class="w-full h-[564px] xl:h-dvh 2xl:h-[564px] object-cover">
   
   <div class="mx-auto max-w-[1240px] pt-8 lg:pb-8 grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8 items-center">
     <div class="px-4 xl:px-0 flex flex-col gap-6 text-center lg:text-left">
@@ -471,7 +470,7 @@ setInterval(() => {
   </a>
 </div>    </div>
 
-        <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/home-legacy.png" class="w-full lg:rounded-lg">
+        <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-legacy.png" class="w-full lg:rounded-lg">
     </div>
 </section><section class="p-4 overflow-clip">
   <div class="lg:mx-auto rounded-2xl max-w-[1240px] bg-[#FFF4F4] py-12 px-4 lg:px-20">
@@ -497,7 +496,7 @@ Shop now
     </div>
 
     <div id="perfect-pour-carousel" class="-mx-20 mb-6 flex flex-row justify-center">
-                <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-bianco_classico_1_5x-1.webp);">
+                <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-bianco_classico_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -507,7 +506,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-bianco_vivace_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-bianco_vivace_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -517,7 +516,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-imported_cabernet_sauvignon_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-imported_cabernet_sauvignon_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -527,7 +526,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-luscious_peach_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-luscious_peach_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -537,7 +536,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-imported_merlot_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-imported_merlot_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -547,7 +546,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-rosso_classico_1__1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-rosso_classico_1__1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -557,7 +556,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-rosso_classico_light_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-rosso_classico_light_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -567,7 +566,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-imported_dell_azienda_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-imported_dell_azienda_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -577,7 +576,7 @@ Shop now
                 </div>
                           </div>
           </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/gray-rosso_tradizionale_1_5x-1.webp);">
+                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-rosso_tradizionale_1_5x.webp);">
             <div class="flex flex-row flex-wrap p-4 items-start">
                               <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
                   <div class="rounded-full size-3" style="background-color: #4C1220">
@@ -688,7 +687,7 @@ Shop now
       <p class="text-h2 text-red-secondary font-extrabold mb-2">
         Partner with us      </p>
       <p class="text-lg font-extrabold text-[#00000080] mb-4 lg:mb-2">
-        Let&rsquo;s make your venture your next celebration.      </p>
+        Let’s make your venture your next celebration.      </p>
       <div class="w-fit ">
   <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
     Send an inquiry    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -706,7 +705,7 @@ Shop now
   <div class="flex flex-col justify-center px-4 py-10 2xl:py-30 lg:px-20">
     <div class="ml-auto lg:max-w-[560px] self-center">
       <p class="mb-6 lg:mb-10 text-h2 lg:text-[56px] font-bold leading-[120%] text-center lg:text-left">
-        Whether it&rsquo;s a party, a date night, or a meaningful gift, the right wine is here      </p>
+        Whether it’s a party, a date night, or a meaningful gift, the right wine is here      </p>
 
       <div class="flex flex-row flex-wrap gap-2.5 mb-6 justify-center lg:justify-start">
         
@@ -730,7 +729,7 @@ Shop on Lazada  </button>
 </div>    </div>
   </div>
 
-      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/10/culture.png" class="h-full w-full object-cover object-[70%_center]">
+      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/culture.png" class="h-full w-full object-cover object-[70%_center]">
   </section>
 <footer class="border-t border-[#EFF0F6] p-4 bg-red-secondary text-white">
   <div class="max-w-[1280px] md:min-h-48 mx-auto grid gap-y-4 md:grid-cols-[1fr_max-content_1fr] items-center">
@@ -757,9 +756,10 @@ Shop on Lazada  </button>
           </div>
 
     <p class="text-sm font-extrabold md:text-right">
-      Copyright &copy; 2025 Novellino    </p>
+      Copyright © 2025 Novellino    </p>
   </div>
 </footer>
 
+<!-- </div> -->
 </body>
 </html>
