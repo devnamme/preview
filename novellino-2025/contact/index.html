@@ -49,7 +49,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpreview.emmanevangelista.com%2Fnovellino-2025%2Fcontact%2F">
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpreview.emmanevangelista.com%2Fnovellino-2025%2Fcontact%2F&amp;format=xml">
 </head>
-<body class="flex flex-col min-h-screen bg-white bg-[#FFF4F4]!">
+<body class="flex flex-col min-h-screen bg-white bg-red-custom-light!">
 <!-- <div id="main-body" class="min-h-screen overflow-auto"> -->
 
 <header class="sticky z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors active-header">
@@ -127,8 +127,8 @@ function toggleShopList() {
   }
 }
 </script>
-    <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/break.jpg" class="h-[400px] object-cover">
-  <main class="mt-[-200px] mx-auto mb-16 rounded-xl w-full max-w-[900px] bg-white">
+    <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/break.jpg" class="h-[200px] lg:h-[400px] object-cover object-bottom">
+  <main class="-mt-3 lg:mt-[-200px] mx-auto mb-6 lg:mb-16 rounded-t-xl lg:rounded-xl px-6 w-full max-w-[900px] bg-white">
   <div class="border-b border-[#ECEFF1] pb-6 flex flex-col items-center">
     <div class="-mt-9 mb-6 p-3.5 size-18 bg-red-primary rounded-full">
       <svg class="size-11" width="44" height="44" viewbox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,85 +147,128 @@ function toggleShopList() {
     </div>
   </div>
 
-  <form class="pt-6 pb-12 px-14 flex flex-col gap-y-6" onsubmit="event.preventDefault(); alert('TODO');">
+  <form class="pt-6 pb-6 lg:pb-12 lg:px-14 flex flex-col gap-y-10 lg:gap-y-6" onsubmit="event.preventDefault()">
     <div>
   <h4 class="mb-3">
     About you  </h4>
 
-  <div class="grid grid-cols-3 gap-x-2.5 gap-y-2.5">
-    <div class="flex flex-col gap-y-1 ">
+  <div class="grid lg:grid-cols-3 gap-2.5">
+    <div class="flex flex-col gap-y-1 " data-field-name="name">
       <label for="name" class="text-base font-medium text-red-tertiary">
-      Name              <span class="text-[#78909C]">
+      Name              <span class="text-[#78909C]  required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="name" id="name" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="name" id="name" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
-<div class="flex flex-col gap-y-1 ">
+<div class="flex flex-col gap-y-1 " data-field-name="company">
       <label for="company" class="text-base font-medium text-red-tertiary">
-      Company              <span class="text-[#78909C]">
+      Company              <span class="text-[#78909C] hidden required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="company" id="company" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="company" id="company" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
-<div class="flex flex-col gap-y-1 ">
+<div class="flex flex-col gap-y-1 " data-field-name="position">
       <label for="position" class="text-base font-medium text-red-tertiary">
-      Company Position              <span class="text-[#78909C]">
+      Company Position              <span class="text-[#78909C] hidden required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="position" id="position" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="position" id="position" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
-<div class="flex flex-col gap-y-1 col-span-3">
+<div class="flex flex-col gap-y-1 hidden" data-field-name="business-type" data-sell-only>
+  <label for="business-type" class="text-base font-medium text-red-tertiary">
+    Business type  </label>
+
+  <select id="business-type" name="business-type" placeholder="Select type" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium invalid:text-[#78909C]" required onchange="onBusinessTypeChange(event)">
+          <option value="" disabled selected hidden>
+        Select type      </option>
+
+          <option value="distributor" class="text-black">
+        Distributor      </option>
+          <option value="retailer" class="text-black">
+        Retailer      </option>
+          <option value="wholesaler" class="text-black">
+        Wholesaler      </option>
+          <option value="corporate" class="text-black">
+        Corporate      </option>
+          <option value="exporter" class="text-black">
+        Exporter      </option>
+          <option value="food_service" class="text-black">
+        Food service      </option>
+          <option value="others" class="text-black">
+        Others (please specify)      </option>
+      </select>
+</div>
+<div class="flex flex-col gap-y-1 hidden" data-field-name="business-type-specify" data-sell-only>
+      <label for="business-type-specify" class="text-base font-medium text-red-tertiary">
+      Please specify business type          </label>
+  
+  <input type="text" name="business-type-specify" id="business-type-specify" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] grow">
+</div>
+<div class="flex flex-col gap-y-1 lg:col-span-3" data-field-name="address">
       <label for="address" class="text-base font-medium text-red-tertiary">
-      Address              <span class="text-[#78909C]">
+      Address              <span class="text-[#78909C]  required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="address" id="address" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="address" id="address" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
   </div>
 </div>
-<div class="border border-[#CFD8DC] p-10">
-  <h4 class="mb-6">
+
+<script>
+function onBusinessTypeChange(event) {
+  const value = event.target.value;
+
+  const specifyGroup = document.querySelector("[data-field-name='business-type-specify']");
+  if (value === 'others') {
+    specifyGroup.classList.remove('hidden');
+  } else {
+    specifyGroup.classList.add('hidden');
+  }
+}
+</script>
+<div class="lg:border border-[#CFD8DC] rounded-sm lg:p-10">
+  <h4 class="mb-6 text-red-tertiary">
     How do you prefer to be contacted?  </h4>
 
-  <div class="grid grid-cols-3 gap-x-2.5 gap-y-2.5">
+  <div class="grid lg:grid-cols-3 gap-2.5">
     <div class="flex flex-col gap-y-2.5">
-      <div class="flex flex-row items-center gap-x-2">
+      <div class="flex flex-row items-center gap-x-2" data-field-name="contact_mobile">
   <input type="checkbox" name="contact" id="contact_mobile" class="shrink-0 grow-0 size-5 text-red-secondary accent-red-secondary" value="mobile" onclick="onContactValueClick(event)">
 
   <label for="contact_mobile" class="text-base font-medium text-red-tertiary">
     Mobile Number  </label>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-contact-field="mobile">
+<div class="flex flex-col gap-y-1 hidden" data-field-name="contact-mobile" data-contact-field="mobile">
   
-  <input type="text" name="contact-mobile" id="contact-mobile" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="contact-mobile" id="contact-mobile" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
     </div>
     <div class="flex flex-col gap-y-2.5">
-      <div class="flex flex-row items-center gap-x-2">
+      <div class="flex flex-row items-center gap-x-2" data-field-name="contact_email">
   <input type="checkbox" name="contact" id="contact_email" class="shrink-0 grow-0 size-5 text-red-secondary accent-red-secondary" value="email" onclick="onContactValueClick(event)">
 
   <label for="contact_email" class="text-base font-medium text-red-tertiary">
     Email  </label>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-contact-field="email">
+<div class="flex flex-col gap-y-1 hidden" data-field-name="contact-email" data-contact-field="email">
   
-  <input type="text" name="contact-email" id="contact-email" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="contact-email" id="contact-email" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
     </div>
     <div class="flex flex-col gap-y-2.5">
-      <div class="flex flex-row items-center gap-x-2">
+      <div class="flex flex-row items-center gap-x-2" data-field-name="contact_messenger">
   <input type="checkbox" name="contact" id="contact_messenger" class="shrink-0 grow-0 size-5 text-red-secondary accent-red-secondary" value="messenger" onclick="onContactValueClick(event)">
 
   <label for="contact_messenger" class="text-base font-medium text-red-tertiary">
     FB Messenger  </label>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-contact-field="messenger">
+<div class="flex flex-col gap-y-1 hidden" data-field-name="contact-messenger" data-contact-field="messenger">
   
-  <input type="text" name="contact-messenger" id="contact-messenger" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C]">
+  <input type="text" name="contact-messenger" id="contact-messenger" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
 </div>
     </div>
   </div>
@@ -245,24 +288,178 @@ function onContactValueClick(event) {
     subfield.classList.add("hidden");
   }
 }
-</script><div class="border border-[#CFD8DC] p-10" data-buy-only="true">
-  <h4 class="mb-2">
+</script><div class="lg:border border-[#CFD8DC] rounded-sm lg:p-10" data-buy-only>
+  <h4 class="mb-2 text-red-tertiary">
     Your request  </h4>
-  <p class="text-base text-red-tertiary">
+  <p class="mb-3 text-base text-red-tertiary">
     List the Novellino products and quantities you wish to include in your gift boxes.  </p>
+
+  <div id="requests-container" class="mb-5 flex flex-col gap-y-5 lg:gap-y-2">
+    <div class="grid lg:grid-cols-[1fr_2fr_3fr] gap-5 justify-items-start lg:justify-items-stretch">
+      <div class="flex flex-col gap-y-1 " data-field-name="quantity-0">
+  <label for="quantity-0" class="text-base font-medium text-red-tertiary">
+    Quantity  </label>
+
+  <div class="grid grid-cols-[1fr_auto_1fr] border border-[#CFD8DC] rounded-sm bg-red-custom-light grow">
+    <div class="px-2 flex flex-col items-center justify-center">
+      <button class="size-5 rounded-full bg-red-primary flex flex-col items-center justify-center cursor-pointer" onclick="onIncrementButtonClick(event, -1)" type="button">
+        <svg width="8" height="1" viewbox="0 0 8 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.83333 0H0.166667C0.0745833 0 0 0.0745833 0 0.166667V0.833333C0 0.925417 0.0745833 1 0.166667 1H7.83333C7.92542 1 8 0.925417 8 0.833333V0.166667C8 0.0745833 7.92542 0 7.83333 0Z" fill="white"></path>
+        </svg>
+      </button>
+    </div>
+
+    <input type="number" step="1" value="1" min="1" id="quantity-0" name="quantity-0" class="border-x border-[#CFD8DC] py-3 px-1 w-12 text-center bg-white focus:outline-none no-scrollbar">
+
+    <div class="px-2 flex flex-col items-center justify-center">
+      <button class="size-5 rounded-full bg-red-primary flex flex-col items-center justify-center cursor-pointer" onclick="onIncrementButtonClick(event, 1)" type="button">
+        <svg width="8" height="8" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.83333 3.5H4.5V0.166667C4.5 0.0745833 4.42542 0 4.33333 0H3.66667C3.57458 0 3.5 0.0745833 3.5 0.166667V3.5H0.166667C0.0745833 3.5 0 3.57458 0 3.66667V4.33333C0 4.42542 0.0745833 4.5 0.166667 4.5H3.5V7.83333C3.5 7.92542 3.57458 8 3.66667 8H4.33333C4.42542 8 4.5 7.92542 4.5 7.83333V4.5H7.83333C7.92542 4.5 8 4.42542 8 4.33333V3.66667C8 3.57458 7.92542 3.5 7.83333 3.5Z" fill="white"></path>
+        </svg>
+      </button></div>
+    
+  </div>
 </div>
+<div class="flex flex-col gap-y-1 " data-field-name="units-0">
+  <label for="units-0" class="text-base font-medium text-red-tertiary">
+    Units  </label>
+
+  <select id="units-0" name="units-0" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium invalid:text-[#78909C]" required>
+          <option value="bottles" class="text-black">
+        Bottles      </option>
+          <option value="cases" class="text-black">
+        Cases      </option>
+      </select>
+</div>
+<div class="flex flex-col gap-y-1 " data-field-name="product-0">
+  <label for="product-0" class="text-base font-medium text-red-tertiary">
+    Product  </label>
+
+  <select id="product-0" name="product-0" placeholder="Select Product" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium invalid:text-[#78909C]" required>
+          <option value="" disabled selected hidden>
+        Select Product      </option>
+
+          <option value="Bianco Classico" class="text-black">
+        Bianco Classico      </option>
+          <option value="Bianco Vivace" class="text-black">
+        Bianco Vivace      </option>
+          <option value="Cabernet Sauvignon" class="text-black">
+        Cabernet Sauvignon      </option>
+          <option value="Luscious Peach" class="text-black">
+        Luscious Peach      </option>
+          <option value="Merlot" class="text-black">
+        Merlot      </option>
+          <option value="Rosso Classico" class="text-black">
+        Rosso Classico      </option>
+          <option value="Rosso Classico Light" class="text-black">
+        Rosso Classico Light      </option>
+          <option value="Rosso Dell Azienda" class="text-black">
+        Rosso Dell Azienda      </option>
+          <option value="Rosso Tradizionale" class="text-black">
+        Rosso Tradizionale      </option>
+          <option value="Rosso Vivace" class="text-black">
+        Rosso Vivace      </option>
+          <option value="Rosso Vivace Light" class="text-black">
+        Rosso Vivace Light      </option>
+          <option value="Sangria" class="text-black">
+        Sangria      </option>
+          <option value="Sparkling Red" class="text-black">
+        Sparkling Red      </option>
+          <option value="Sparkling Strawberry" class="text-black">
+        Sparkling Strawberry      </option>
+          <option value="Strawberry Passion" class="text-black">
+        Strawberry Passion      </option>
+          <option value="Strawberry Passion Light" class="text-black">
+        Strawberry Passion Light      </option>
+          <option value="Wild Blackberry" class="text-black">
+        Wild Blackberry      </option>
+      </select>
+</div>
+    </div>
+  </div>
+
+  <button class="w-fit flex flex-row gap-x-2 items-center text-red-primary cursor-pointer" type="button" onclick="addProduct(event)">
+    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 13H5V11H11V5H13V11H19V13H13V19H11V13Z" fill="currentColor"></path>
+    </svg>
+
+    <p class="text-base font-extrabold">
+      Add another product    </p>
+  </button>
+</div>
+
+<script>
+function addProduct(event) {
+  const container = document.getElementById("requests-container");
+  const clone = container.lastElementChild.cloneNode(true);
+
+  const quantityGroup = clone.querySelector("div[data-field-name^=quantity-]");
+  const unitsGroup = clone.querySelector("div[data-field-name^=units-]");
+  const productsGroup = clone.querySelector("div[data-field-name^=product-]");
+
+  const names = ["quantity", "units", "product"];
+  for (let i = 0; i < names.length; i++) {
+    const count = container.children.length;
+
+    const dataEls = clone.querySelectorAll(`[data-field-name^="${names[i]}-"`);
+    const idEls = clone.querySelectorAll(`[id^="${names[i]}-"]`);
+    const nameEls = clone.querySelectorAll(`[name^="${names[i]}-"]`);
+    const forEls = clone.querySelectorAll(`[for^="${names[i]}-"]`);
+
+    dataEls.forEach(el => {
+      el.dataset.fieldName = `${names[i]}-${count}`;
+    });
+    idEls.forEach(el => {
+      el.setAttribute("id", `${names[i]}-${count}`);
+
+      if (i === 0 && el.tagName === 'INPUT') {
+        el.value = 1;
+      }
+    });
+    nameEls.forEach(el => {
+      el.setAttribute("name", `${names[i]}-${count}`);
+    });
+    forEls.forEach(el => {
+      el.setAttribute("for", `${names[i]}-${count}`);
+    });
+  }
+
+  container.appendChild(clone);
+}
+
+function onIncrementButtonClick(event, delta) {
+  const root = event.target.closest("[data-field-name]");
+  const input = root.querySelector("input");
+
+  let value = input.value;
+  if (value === "") {
+    input.value = 1;
+  } else {
+    value = parseInt(value) + delta;
+    if (value <= 1) {
+      value = 1;
+    }
+
+    input.value = value;
+  }
+}
+</script>
+
 <div class="">
-  <h4 class="mb-3">
+  <h4 class="mb-3 text-red-tertiary" data-buy-only>
     Additional requests or concerns  </h4>
 
-  <div class="flex flex-col gap-y-1 ">
+  <h4 class="mb-3 text-red-tertiary hidden" data-sell-only>
+    Message  </h4>
+
+  <div class="flex flex-col gap-y-1 " data-field-name="comments">
   
-  <textarea name="comments" id="comments" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] resize-none"></textarea>
+  <textarea name="comments" id="comments" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] resize-none" rows="3"></textarea>
 </div>
 </div>
 
-<a class="block w-fit self-end mt-8">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white min-w-[200px] bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" role="button">
+<a class="block w-fit w-full! lg:self-end mt-8">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white min-w-[200px] w-full bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" type="button" onclick="validateContactForm(event)" role="button">
 Submit  </button>
 </a>
   </form>
@@ -279,13 +476,47 @@ function setActiveFormTab(event) {
   buttons.forEach((button) => {
     button.dataset.active = button.dataset.tab === tab;
   });
+
+  if (tab === "BUY") {
+    document.querySelectorAll("[data-sell-only]").forEach(el => {
+      el.classList.add("hidden");
+    });
+    document.querySelectorAll("[data-buy-only]").forEach(el => {
+      el.classList.remove("hidden");
+    });
+
+    document.querySelectorAll("[data-field-name='company'] .required-text, [data-field-name='position'] .required-text").forEach(el => {
+      el.classList.add("hidden");
+    });
+  } else {
+    document.querySelectorAll("[data-buy-only]").forEach(el => {
+      el.classList.add("hidden");
+    });
+    document.querySelectorAll("[data-sell-only]").forEach(el => {
+      if (el.dataset.fieldName !== 'business-type-specify') {
+        el.classList.remove("hidden");
+      } else {
+        if (document.querySelector("[data-field-name='business-type'] select").value === 'others') {
+          el.classList.remove("hidden");
+        }
+      }
+    });
+
+    document.querySelectorAll("[data-field-name='company'] .required-text, [data-field-name='position'] .required-text").forEach(el => {
+      el.classList.remove("hidden");
+    });
+  }
 }
 
-</script><div class="mx-auto border border-black/10 rounded-xl mb-8 px-20 py-14 w-full max-w-[1240px] bg-white">
-  <h1 class="mb-2 text-red-primary">
+function validateContactForm(event) {
+  console.log('TODO VALIDATION');
+}
+
+</script><div class="mx-auto border-b lg:border border-black/10 lg:rounded-xl lg:mb-8 px-6 lg:px-20 py-8 lg:py-14 w-full max-w-[1240px] bg-white">
+  <h1 class="mb-8 lg:mb-2 text-red-primary">
     Visit us  </h1>
 
-  <div class="grid grid-cols-2 gap-x-14 gap-y-8">
+  <div class="grid lg:grid-cols-2 gap-x-14 gap-y-14">
           <div class="flex flex-col gap-y-3">
         <h3 class="text-red-primary">
           Manila Office        </h3>
@@ -354,8 +585,8 @@ function setActiveFormTab(event) {
               </div>
       </div>
 </div>
-<div class="mx-auto border border-black/10 rounded-xl mb-24 px-20 py-14 w-full max-w-[1240px] bg-white">
-  <div class="grid grid-cols-2 gap-x-14 gap-y-8 items-center">
+<div class="mx-auto lg:border border-black/10 lg:rounded-xl mb-0 px-6 lg:px-20 py-8 lg:py-14 w-full max-w-[1240px] bg-white">
+  <div class="grid lg:grid-cols-2 gap-x-14 gap-y-6 items-center">
     <div>
       <h2 class="mb-2 text-red-primary">
         Stay connected!      </h2>
@@ -363,7 +594,7 @@ function setActiveFormTab(event) {
         Follow us to get the latest Novellino updates      </p>
     </div>
 
-    <div class="grid grid-cols-3 gap-x-6 gap-y-6">
+    <div class="grid lg:grid-cols-3 gap-x-6 gap-y-6">
               <a href="https://www.facebook.com/novellinowines" target="_blank">
           <div class="border border-[#B0BEC5] rounded-lg p-5 flex flex-col gap-y-3 items-start justify-center">
                 <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/facebook-icon-colored.svg" class="h-10">
@@ -393,6 +624,56 @@ function setActiveFormTab(event) {
           </div>
   </div>
 </div>
+<section class="px-4 pt-4 pb-8 lg:pt-8 lg:pb-16 lg:px-0">
+  <div class="mx-auto max-w-[1240px] border-[1.5px] border-[#0000001A] rounded-2xl p-6 lg:py-12 lg:px-20 bg-white grid lg:grid-cols-[4fr_5fr] gap-x-32 gap-y-4">
+    <div class="">
+      <p class="text-h2 text-red-secondary font-extrabold mb-2">
+        Partner with us      </p>
+      <p class="text-lg font-extrabold text-[#00000080] mb-4 lg:mb-2">
+        Let’s make your venture your next celebration.      </p>
+      <div class="w-fit ">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
+    Send an inquiry    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
+    </svg>
+  </a>
+</div>    </div>
+
+    <p class="text-lg">
+      Our unique, quality-controlled process has made Novellino the fastest-growing wine category in the country. Secure our reliable, high-demand product today, whether for corporate gifting or boosting your retail success.    </p>
+  </div>
+</section>
+
+<section class="rounded-t-3xl lg:min-h-dvh 2xl:min-h-[unset] bg-red-secondary flex flex-col-reverse lg:grid grid-cols-2 text-white overflow-clip">
+  <div class="flex flex-col justify-center px-4 py-10 2xl:py-30 lg:px-20">
+    <div class="ml-auto lg:max-w-[560px] self-center">
+      <p class="mb-6 lg:mb-10 text-h2 lg:text-[56px] font-bold leading-[120%] text-center lg:text-left">
+        Whether it’s a party, a date night, or a meaningful gift, the right wine is here      </p>
+
+      <div class="flex flex-row flex-wrap gap-2.5 mb-6 justify-center lg:justify-start">
+        
+<a class="block w-fit " href="https://shopee.ph/novellinowines_officialstore" target="_blank">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5" role="button">
+Shop on Shopee  </button>
+</a>
+
+<a class="block w-fit " href="https://www.lazada.com.ph/shop/novellino-wines-official-store" target="_blank">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5" role="button">
+Shop on Lazada  </button>
+</a>
+      </div>
+
+      <div class="w-fit mx-auto lg:mx-0">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
+    Find us in-store    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
+    </svg>
+  </a>
+</div>    </div>
+  </div>
+
+      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/cta-scaled.jpg" class="h-full max-h-[240px] lg:max-h-[unset] w-full object-cover object-[70%_center]">
+  </section>
 
 <footer class="mt-auto border-t border-[#EFF0F6] p-4 bg-red-secondary text-white">
   <div class="max-w-[1280px] md:min-h-48 mx-auto grid gap-y-4 md:grid-cols-[1fr_max-content_1fr] items-center">
