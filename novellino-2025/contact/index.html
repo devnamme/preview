@@ -42,6 +42,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 </style>
 <link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=1.0.0" type="text/css" media="all">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=1.0.0" id="motion-js"></script>
+<script type="text/javascript" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/contact.js?ver=1.0.0" id="nv-contact-js"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/wp/v2/pages/15"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.8.3">
 <link rel="canonical" href="https://preview.emmanevangelista.com/novellino-2025/contact/">
@@ -128,8 +129,8 @@ function toggleShopList() {
 }
 </script>
     <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/break.jpg" class="h-[200px] lg:h-[400px] object-cover object-bottom">
-  <main class="-mt-3 lg:mt-[-200px] mx-auto mb-6 lg:mb-16 rounded-t-xl lg:rounded-xl px-6 w-full max-w-[900px] bg-white">
-  <div class="border-b border-[#ECEFF1] pb-6 flex flex-col items-center">
+  <main class="-mt-3 lg:mt-[-200px] mx-auto mb-6 lg:mb-16 rounded-t-xl lg:rounded-xl px-6 lg:px-0 w-full max-w-[900px] bg-white">
+  <div class="form-header border-b border-[#ECEFF1] pb-6 flex flex-col items-center">
     <div class="-mt-9 mb-6 p-3.5 size-18 bg-red-primary rounded-full">
       <svg class="size-11" width="44" height="44" viewbox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M38.2199 27.235L30.1228 23.6067L30.1005 23.5964C29.6801 23.4166 29.2216 23.3444 28.7663 23.3864C28.3111 23.4285 27.8735 23.5833 27.4931 23.837C27.4484 23.8666 27.4053 23.8987 27.3642 23.9332L23.1808 27.4997C20.5305 26.2123 17.7942 23.4967 16.5069 20.8807L20.0785 16.6337C20.1128 16.5907 20.1455 16.5478 20.1764 16.5014C20.4247 16.122 20.5753 15.6872 20.6149 15.2356C20.6544 14.784 20.5818 14.3297 20.4033 13.9129V13.8923L16.7647 5.78153C16.5288 5.23714 16.1231 4.78365 15.6083 4.48875C15.0935 4.19385 14.4971 4.07337 13.9081 4.14528C11.5792 4.45174 9.44142 5.5955 7.89412 7.36294C6.34682 9.13038 5.4958 11.4006 5.50002 13.7497C5.50002 27.3965 16.6031 38.4997 30.25 38.4997C32.599 38.5039 34.8693 37.6528 36.6367 36.1055C38.4042 34.5582 39.5479 32.4205 39.8544 30.0915C39.9264 29.5028 39.8062 28.9065 39.5116 28.3917C39.2171 27.8769 38.7639 27.4712 38.2199 27.235ZM30.25 35.7497C24.4172 35.7433 18.8251 33.4234 14.7007 29.299C10.5763 25.1745 8.25638 19.5825 8.25002 13.7497C8.24355 12.0713 8.84823 10.4479 9.95113 9.18277C11.054 7.91762 12.5797 7.09717 14.2433 6.87465C14.2426 6.88151 14.2426 6.88842 14.2433 6.89528L17.8527 14.9734L14.3 19.2256C14.264 19.2671 14.2312 19.3113 14.202 19.3579C13.9434 19.7548 13.7917 20.2118 13.7616 20.6846C13.7314 21.1573 13.824 21.6299 14.0302 22.0564C15.5874 25.2412 18.7963 28.4261 22.0155 29.9815C22.4451 30.1858 22.9204 30.2751 23.3949 30.2408C23.8693 30.2064 24.3268 30.0496 24.7225 29.7856C24.7666 29.7559 24.8091 29.7237 24.8497 29.6893L29.028 26.1247L37.1061 29.7426C37.1061 29.7426 37.1199 29.7426 37.125 29.7426C36.9052 31.4085 36.086 32.9373 34.8206 34.0429C33.5552 35.1486 31.9304 35.7553 30.25 35.7497Z" fill="white"></path>
@@ -147,41 +148,72 @@ function toggleShopList() {
     </div>
   </div>
 
-  <form class="pt-6 pb-6 lg:pb-12 lg:px-14 flex flex-col gap-y-10 lg:gap-y-6" onsubmit="event.preventDefault()">
+  <div class="form-success-container rounded-xl px-6 py-12 lg:p-8 flex flex-col items-center text-center hidden!">
+  <div class="rounded-full mb-6 lg:mb-4 size-18 bg-green-primary flex flex-col items-center justify-center">
+    <svg width="40" height="42" viewbox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-green-primary text-white">
+      <circle cx="20" cy="20.8747" r="20" fill="currentColor"></circle>
+      <g clip-path="url(#clip0_1564_8905)">
+        <path d="M20.0003 3.73212C16.6097 3.73212 13.2954 4.73753 10.4762 6.62121C7.6571 8.50489 5.45985 11.1822 4.16235 14.3147C2.86485 17.4471 2.52536 20.894 3.18682 24.2194C3.84829 27.5448 5.48098 30.5993 7.87846 32.9968C10.2759 35.3943 13.3305 37.027 16.6559 37.6884C19.9813 38.3499 23.4281 38.0104 26.5606 36.7129C29.693 35.4154 32.3704 33.2182 34.254 30.399C36.1377 27.5799 37.1431 24.2655 37.1431 20.875C37.1383 16.3299 35.3307 11.9723 32.1168 8.75844C28.9029 5.54457 24.5454 3.73692 20.0003 3.73212ZM27.5267 17.8519L18.2959 27.0827C18.1734 27.2053 18.028 27.3025 17.8679 27.3689C17.7078 27.4353 17.5362 27.4694 17.3629 27.4694C17.1896 27.4694 17.018 27.4353 16.8579 27.3689C16.6979 27.3025 16.5524 27.2053 16.43 27.0827L12.4739 23.1266C12.2265 22.8792 12.0875 22.5436 12.0875 22.1937C12.0875 21.8437 12.2265 21.5081 12.4739 21.2607C12.7213 21.0132 13.0569 20.8742 13.4069 20.8742C13.7568 20.8742 14.0924 21.0132 14.3398 21.2607L17.3629 24.2854L25.6607 15.986C25.7832 15.8634 25.9287 15.7663 26.0888 15.6999C26.2488 15.6336 26.4204 15.5995 26.5937 15.5995C26.767 15.5995 26.9385 15.6336 27.0986 15.6999C27.2587 15.7663 27.4041 15.8634 27.5267 15.986C27.6492 16.1085 27.7464 16.2539 27.8127 16.414C27.879 16.5741 27.9131 16.7457 27.9131 16.9189C27.9131 17.0922 27.879 17.2638 27.8127 17.4238C27.7464 17.5839 27.6492 17.7294 27.5267 17.8519Z" fill="currentFill"></path>
+      </g>
+      <defs>
+      <clippath id="clip0_1564_8905">
+        <rect width="34.2857" height="34.2857" fill="currentColor" transform="translate(2.85742 3.73242)"></rect>
+      </clippath>
+      </defs>
+    </svg>
+  </div>
+
+  <h2 class="mb-2 lg:mb-6 text-green-primary">
+    Thank you!    <br>
+    We are processing your request  </h2>
+
+  <p class="mb-6 lg:mb-14 text-lg font-medium">
+    Our team will be in touch soon with your confirmation and further details.  </p>
+
+  
+<a class="block w-fit ">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" onclick="startAnotherForm()" role="button">
+Submit another form  </button>
+</a>
+</div>
+
+  <form class="pt-6 pb-6 lg:pb-12 lg:px-14 flex flex-col gap-y-10 lg:gap-y-6" onsubmit="event.preventDefault()" id="contact-form">
+    <input type="hidden" id="mode" name="mode" value="BUY">
+
     <div>
   <h4 class="mb-3">
     About you  </h4>
 
   <div class="grid lg:grid-cols-3 gap-2.5">
-    <div class="flex flex-col gap-y-1 " data-field-name="name">
+    <div class="group flex flex-col gap-y-1 " data-field-name="name">
       <label for="name" class="text-base font-medium text-red-tertiary">
       Name              <span class="text-[#78909C]  required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="name" id="name" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="name" id="name" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
-<div class="flex flex-col gap-y-1 " data-field-name="company">
+<div class="group flex flex-col gap-y-1 " data-field-name="company">
       <label for="company" class="text-base font-medium text-red-tertiary">
       Company              <span class="text-[#78909C] hidden required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="company" id="company" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="company" id="company" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
-<div class="flex flex-col gap-y-1 " data-field-name="position">
+<div class="group flex flex-col gap-y-1 " data-field-name="position">
       <label for="position" class="text-base font-medium text-red-tertiary">
       Company Position              <span class="text-[#78909C] hidden required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="position" id="position" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="position" id="position" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-field-name="business-type" data-sell-only>
+<div class="group flex flex-col gap-y-1 hidden" data-field-name="business-type" data-sell-only>
   <label for="business-type" class="text-base font-medium text-red-tertiary">
-    Business type  </label>
+    Business Type  </label>
 
-  <select id="business-type" name="business-type" placeholder="Select type" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium invalid:text-[#78909C]" required onchange="onBusinessTypeChange(event)">
+  <select id="business-type" name="business-type" placeholder="Select type" class="box-border border border-[#CFD8DC] rounded-sm px-3 py-2.5 text-base font-medium invalid:text-[#78909C] group-data-has-error:border-red-alternative" required onchange="onBusinessTypeChange(event)">
           <option value="" disabled selected hidden>
         Select type      </option>
 
@@ -201,102 +233,102 @@ function toggleShopList() {
         Others (please specify)      </option>
       </select>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-field-name="business-type-specify" data-sell-only>
-      <label for="business-type-specify" class="text-base font-medium text-red-tertiary">
+<div class="group flex flex-col gap-y-1 hidden" data-field-name="business-type-others" data-sell-only>
+      <label for="business-type-others" class="text-base font-medium text-red-tertiary">
       Please specify business type          </label>
   
-  <input type="text" name="business-type-specify" id="business-type-specify" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] grow">
+  <input type="text" name="business-type-others" id="business-type-others" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative grow">
 </div>
-<div class="flex flex-col gap-y-1 lg:col-span-3" data-field-name="address">
+<div class="group flex flex-col gap-y-1 lg:col-span-3" data-field-name="address">
       <label for="address" class="text-base font-medium text-red-tertiary">
       Address              <span class="text-[#78909C]  required-text">
           (required)        </span>
           </label>
   
-  <input type="text" name="address" id="address" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="address" id="address" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
   </div>
 </div>
 
-<script>
-function onBusinessTypeChange(event) {
-  const value = event.target.value;
-
-  const specifyGroup = document.querySelector("[data-field-name='business-type-specify']");
-  if (value === 'others') {
-    specifyGroup.classList.remove('hidden');
-  } else {
-    specifyGroup.classList.add('hidden');
-  }
-}
-</script>
 <div class="lg:border border-[#CFD8DC] rounded-sm lg:p-10">
   <h4 class="mb-6 text-red-tertiary">
     How do you prefer to be contacted?  </h4>
 
-  <div class="grid lg:grid-cols-3 gap-2.5">
+  <div class="contact-group grid lg:grid-cols-3 gap-2.5">
     <div class="flex flex-col gap-y-2.5">
-      <div class="flex flex-row items-center gap-x-2" data-field-name="contact_mobile">
-  <input type="checkbox" name="contact" id="contact_mobile" class="shrink-0 grow-0 size-5 text-red-secondary accent-red-secondary" value="mobile" onclick="onContactValueClick(event)">
+      <div class="group relative" data-field-name="contact_mobile">
+  <label for="contact_mobile" class="w-fit flex flex-row items-center gap-x-2">
+    <input type="checkbox" name="contact" id="contact_mobile" class="peer sr-only" value="mobile" onchange="onContactCheckboxChange(event)">
 
-  <label for="contact_mobile" class="text-base font-medium text-red-tertiary">
-    Mobile Number  </label>
+    <span class="border-2 border-[#78909C] rounded-xs size-4.5 box-border text-red-secondary peer-checked:hidden peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-black group-data-has-error:border-red-alternative">
+    </span>
+
+    <svg width="18" height="18" viewbox="0 -0.5 18 17.5" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden peer-checked:block rounded-xs peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-black bg-red-secondary text-white">
+      <path d="M 7 14 L 2 9 L 3.41 7.59 L 7 11.17 L 14.59 3.58 L 16 5 L 7 14 Z" fill="currentColor"></path>
+    </svg>
+
+    <span class="text-base font-medium text-red-tertiary leading-none">
+      Mobile Number    </span>
+  </label>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-field-name="contact-mobile" data-contact-field="mobile">
+<div class="group flex flex-col gap-y-1 hidden" data-field-name="contact-mobile" data-contact-field="mobile">
   
-  <input type="text" name="contact-mobile" id="contact-mobile" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="contact-mobile" id="contact-mobile" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
     </div>
     <div class="flex flex-col gap-y-2.5">
-      <div class="flex flex-row items-center gap-x-2" data-field-name="contact_email">
-  <input type="checkbox" name="contact" id="contact_email" class="shrink-0 grow-0 size-5 text-red-secondary accent-red-secondary" value="email" onclick="onContactValueClick(event)">
+      <div class="group relative" data-field-name="contact_email">
+  <label for="contact_email" class="w-fit flex flex-row items-center gap-x-2">
+    <input type="checkbox" name="contact" id="contact_email" class="peer sr-only" value="email" onchange="onContactCheckboxChange(event)">
 
-  <label for="contact_email" class="text-base font-medium text-red-tertiary">
-    Email  </label>
+    <span class="border-2 border-[#78909C] rounded-xs size-4.5 box-border text-red-secondary peer-checked:hidden peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-black group-data-has-error:border-red-alternative">
+    </span>
+
+    <svg width="18" height="18" viewbox="0 -0.5 18 17.5" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden peer-checked:block rounded-xs peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-black bg-red-secondary text-white">
+      <path d="M 7 14 L 2 9 L 3.41 7.59 L 7 11.17 L 14.59 3.58 L 16 5 L 7 14 Z" fill="currentColor"></path>
+    </svg>
+
+    <span class="text-base font-medium text-red-tertiary leading-none">
+      Email    </span>
+  </label>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-field-name="contact-email" data-contact-field="email">
+<div class="group flex flex-col gap-y-1 hidden" data-field-name="contact-email" data-contact-field="email">
   
-  <input type="text" name="contact-email" id="contact-email" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="contact-email" id="contact-email" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
     </div>
     <div class="flex flex-col gap-y-2.5">
-      <div class="flex flex-row items-center gap-x-2" data-field-name="contact_messenger">
-  <input type="checkbox" name="contact" id="contact_messenger" class="shrink-0 grow-0 size-5 text-red-secondary accent-red-secondary" value="messenger" onclick="onContactValueClick(event)">
+      <div class="group relative" data-field-name="contact_messenger">
+  <label for="contact_messenger" class="w-fit flex flex-row items-center gap-x-2">
+    <input type="checkbox" name="contact" id="contact_messenger" class="peer sr-only" value="messenger" onchange="onContactCheckboxChange(event)">
 
-  <label for="contact_messenger" class="text-base font-medium text-red-tertiary">
-    FB Messenger  </label>
+    <span class="border-2 border-[#78909C] rounded-xs size-4.5 box-border text-red-secondary peer-checked:hidden peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-black group-data-has-error:border-red-alternative">
+    </span>
+
+    <svg width="18" height="18" viewbox="0 -0.5 18 17.5" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden peer-checked:block rounded-xs peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-black bg-red-secondary text-white">
+      <path d="M 7 14 L 2 9 L 3.41 7.59 L 7 11.17 L 14.59 3.58 L 16 5 L 7 14 Z" fill="currentColor"></path>
+    </svg>
+
+    <span class="text-base font-medium text-red-tertiary leading-none">
+      FB Messenger    </span>
+  </label>
 </div>
-<div class="flex flex-col gap-y-1 hidden" data-field-name="contact-messenger" data-contact-field="messenger">
+<div class="group flex flex-col gap-y-1 hidden" data-field-name="contact-messenger" data-contact-field="messenger">
   
-  <input type="text" name="contact-messenger" id="contact-messenger" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] ">
+  <input type="text" name="contact-messenger" id="contact-messenger" value="" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-red-alternative ">
 </div>
     </div>
   </div>
 </div>
-
-<script>
-function onContactValueClick(event) {
-  const target = event.target;
-
-  const value = target.getAttribute("value");
-  const isChecked = target.checked;
-
-  const subfield = target.parentNode.parentNode.querySelector("[data-contact-field]");
-  if (isChecked) {
-    subfield.classList.remove("hidden");
-  } else {
-    subfield.classList.add("hidden");
-  }
-}
-</script><div class="lg:border border-[#CFD8DC] rounded-sm lg:p-10" data-buy-only>
+<div class="lg:border border-[#CFD8DC] rounded-sm lg:p-10" data-buy-only>
   <h4 class="mb-2 text-red-tertiary">
     Your request  </h4>
   <p class="mb-3 text-base text-red-tertiary">
     List the Novellino products and quantities you wish to include in your gift boxes.  </p>
 
   <div id="requests-container" class="mb-5 flex flex-col gap-y-5 lg:gap-y-2">
-    <div class="grid lg:grid-cols-[1fr_2fr_3fr] gap-5 justify-items-start lg:justify-items-stretch">
-      <div class="flex flex-col gap-y-1 " data-field-name="quantity-0">
+    <div class="request-row border lg:border-none border-[#CFD8DC] rounded-sm p-3 lg:p-0 grid grid-cols-[auto_1fr] lg:grid-cols-[1fr_2fr_3fr_32px] grid-rows-[auto_auto_auto] lg:grid-rows-1 gap-5 justify-items-start lg:justify-items-stretch">
+      <div class="group flex flex-col gap-y-1 order-2 lg:order-0" data-field-name="quantity-0">
   <label for="quantity-0" class="text-base font-medium text-red-tertiary">
     Quantity  </label>
 
@@ -320,22 +352,22 @@ function onContactValueClick(event) {
     
   </div>
 </div>
-<div class="flex flex-col gap-y-1 " data-field-name="units-0">
+<div class="group flex flex-col gap-y-1 order-3 lg:order-0" data-field-name="units-0">
   <label for="units-0" class="text-base font-medium text-red-tertiary">
     Units  </label>
 
-  <select id="units-0" name="units-0" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium invalid:text-[#78909C]" required>
+  <select id="units-0" name="units-0" placeholder="" class="box-border border border-[#CFD8DC] rounded-sm px-3 py-2.5 text-base font-medium invalid:text-[#78909C] group-data-has-error:border-red-alternative" required>
           <option value="bottles" class="text-black">
-        Bottles      </option>
+        bottles      </option>
           <option value="cases" class="text-black">
-        Cases      </option>
+        cases      </option>
       </select>
 </div>
-<div class="flex flex-col gap-y-1 " data-field-name="product-0">
+<div class="group flex flex-col gap-y-1 w-full lg:w-unset col-span-2 lg:col-span-1 order-1 lg:order-0" data-field-name="product-0">
   <label for="product-0" class="text-base font-medium text-red-tertiary">
     Product  </label>
 
-  <select id="product-0" name="product-0" placeholder="Select Product" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium invalid:text-[#78909C]" required>
+  <select id="product-0" name="product-0" placeholder="Select Product" class="box-border border border-[#CFD8DC] rounded-sm px-3 py-2.5 text-base font-medium invalid:text-[#78909C] group-data-has-error:border-red-alternative" required>
           <option value="" disabled selected hidden>
         Select Product      </option>
 
@@ -375,6 +407,14 @@ function onContactValueClick(event) {
         Wild Blackberry      </option>
       </select>
 </div>
+
+      <button type="button" class="remove-row order-4 lg:order-0 hidden lg:w-8 h-12 flex-row gap-x-2 items-center justify-center cursor-pointer self-end" onclick="removeProduct(event)">
+        <svg width="24" height="26" viewbox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 4H18V3C18 2.20435 17.6839 1.44129 17.1213 0.87868C16.5587 0.316071 15.7956 0 15 0H9C8.20435 0 7.44129 0.316071 6.87868 0.87868C6.31607 1.44129 6 2.20435 6 3V4H1C0.734784 4 0.48043 4.10536 0.292893 4.29289C0.105357 4.48043 0 4.73478 0 5C0 5.26522 0.105357 5.51957 0.292893 5.70711C0.48043 5.89464 0.734784 6 1 6H2V24C2 24.5304 2.21071 25.0391 2.58579 25.4142C2.96086 25.7893 3.46957 26 4 26H20C20.5304 26 21.0391 25.7893 21.4142 25.4142C21.7893 25.0391 22 24.5304 22 24V6H23C23.2652 6 23.5196 5.89464 23.7071 5.70711C23.8946 5.51957 24 5.26522 24 5C24 4.73478 23.8946 4.48043 23.7071 4.29289C23.5196 4.10536 23.2652 4 23 4ZM8 3C8 2.73478 8.10536 2.48043 8.29289 2.29289C8.48043 2.10536 8.73478 2 9 2H15C15.2652 2 15.5196 2.10536 15.7071 2.29289C15.8946 2.48043 16 2.73478 16 3V4H8V3ZM20 24H4V6H20V24ZM10 11V19C10 19.2652 9.89464 19.5196 9.70711 19.7071C9.51957 19.8946 9.26522 20 9 20C8.73478 20 8.48043 19.8946 8.29289 19.7071C8.10536 19.5196 8 19.2652 8 19V11C8 10.7348 8.10536 10.4804 8.29289 10.2929C8.48043 10.1054 8.73478 10 9 10C9.26522 10 9.51957 10.1054 9.70711 10.2929C9.89464 10.4804 10 10.7348 10 11ZM16 11V19C16 19.2652 15.8946 19.5196 15.7071 19.7071C15.5196 19.8946 15.2652 20 15 20C14.7348 20 14.4804 19.8946 14.2929 19.7071C14.1054 19.5196 14 19.2652 14 19V11C14 10.7348 14.1054 10.4804 14.2929 10.2929C14.4804 10.1054 14.7348 10 15 10C15.2652 10 15.5196 10.1054 15.7071 10.2929C15.8946 10.4804 16 10.7348 16 11Z" fill="#90A4AE"></path>
+        </svg>
+        <span class="text-base font-medium text-[#78909C] lg:hidden">
+          Remove        </span>
+      </button>
     </div>
   </div>
 
@@ -387,64 +427,6 @@ function onContactValueClick(event) {
       Add another product    </p>
   </button>
 </div>
-
-<script>
-function addProduct(event) {
-  const container = document.getElementById("requests-container");
-  const clone = container.lastElementChild.cloneNode(true);
-
-  const quantityGroup = clone.querySelector("div[data-field-name^=quantity-]");
-  const unitsGroup = clone.querySelector("div[data-field-name^=units-]");
-  const productsGroup = clone.querySelector("div[data-field-name^=product-]");
-
-  const names = ["quantity", "units", "product"];
-  for (let i = 0; i < names.length; i++) {
-    const count = container.children.length;
-
-    const dataEls = clone.querySelectorAll(`[data-field-name^="${names[i]}-"`);
-    const idEls = clone.querySelectorAll(`[id^="${names[i]}-"]`);
-    const nameEls = clone.querySelectorAll(`[name^="${names[i]}-"]`);
-    const forEls = clone.querySelectorAll(`[for^="${names[i]}-"]`);
-
-    dataEls.forEach(el => {
-      el.dataset.fieldName = `${names[i]}-${count}`;
-    });
-    idEls.forEach(el => {
-      el.setAttribute("id", `${names[i]}-${count}`);
-
-      if (i === 0 && el.tagName === 'INPUT') {
-        el.value = 1;
-      }
-    });
-    nameEls.forEach(el => {
-      el.setAttribute("name", `${names[i]}-${count}`);
-    });
-    forEls.forEach(el => {
-      el.setAttribute("for", `${names[i]}-${count}`);
-    });
-  }
-
-  container.appendChild(clone);
-}
-
-function onIncrementButtonClick(event, delta) {
-  const root = event.target.closest("[data-field-name]");
-  const input = root.querySelector("input");
-
-  let value = input.value;
-  if (value === "") {
-    input.value = 1;
-  } else {
-    value = parseInt(value) + delta;
-    if (value <= 1) {
-      value = 1;
-    }
-
-    input.value = value;
-  }
-}
-</script>
-
 <div class="">
   <h4 class="mb-3 text-red-tertiary" data-buy-only>
     Additional requests or concerns  </h4>
@@ -452,67 +434,19 @@ function onIncrementButtonClick(event, delta) {
   <h4 class="mb-3 text-red-tertiary hidden" data-sell-only>
     Message  </h4>
 
-  <div class="flex flex-col gap-y-1 " data-field-name="comments">
+  <div class="group flex flex-col gap-y-1 " data-field-name="comments">
   
-  <textarea name="comments" id="comments" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-sm font-medium placeholder:text-[#78909C] resize-none" rows="3"></textarea>
+  <textarea name="comments" id="comments" placeholder="" class="border border-[#CFD8DC] rounded-sm p-3 text-base font-medium placeholder:text-[#78909C] group-data-has-error:border-alternative resize-none" rows="3"></textarea>
 </div>
 </div>
 
-<a class="block w-fit w-full! lg:self-end mt-8">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white min-w-[200px] w-full bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" type="button" onclick="validateContactForm(event)" role="button">
+<a class="block w-fit w-full lg:w-fit lg:self-end mt-8">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white min-w-[200px] w-full lg:w-fit bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" type="button" onclick="validateContactForm(event)" role="button">
 Submit  </button>
 </a>
   </form>
 </main>
-
-<script>
-var active_form_tab = "BUY";
-
-function setActiveFormTab(event) {
-  const tab = event.target.dataset.tab;
-  const buttons = document.querySelectorAll("button[data-tab]");
-
-  active_form_tab = tab;
-  buttons.forEach((button) => {
-    button.dataset.active = button.dataset.tab === tab;
-  });
-
-  if (tab === "BUY") {
-    document.querySelectorAll("[data-sell-only]").forEach(el => {
-      el.classList.add("hidden");
-    });
-    document.querySelectorAll("[data-buy-only]").forEach(el => {
-      el.classList.remove("hidden");
-    });
-
-    document.querySelectorAll("[data-field-name='company'] .required-text, [data-field-name='position'] .required-text").forEach(el => {
-      el.classList.add("hidden");
-    });
-  } else {
-    document.querySelectorAll("[data-buy-only]").forEach(el => {
-      el.classList.add("hidden");
-    });
-    document.querySelectorAll("[data-sell-only]").forEach(el => {
-      if (el.dataset.fieldName !== 'business-type-specify') {
-        el.classList.remove("hidden");
-      } else {
-        if (document.querySelector("[data-field-name='business-type'] select").value === 'others') {
-          el.classList.remove("hidden");
-        }
-      }
-    });
-
-    document.querySelectorAll("[data-field-name='company'] .required-text, [data-field-name='position'] .required-text").forEach(el => {
-      el.classList.remove("hidden");
-    });
-  }
-}
-
-function validateContactForm(event) {
-  console.log('TODO VALIDATION');
-}
-
-</script><div class="mx-auto border-b lg:border border-black/10 lg:rounded-xl lg:mb-8 px-6 lg:px-20 py-8 lg:py-14 w-full max-w-[1240px] bg-white">
+<div class="mx-auto border-b lg:border border-black/10 lg:rounded-xl lg:mb-8 px-6 lg:px-20 py-8 lg:py-14 w-full max-w-[1240px] bg-white">
   <h1 class="mb-8 lg:mb-2 text-red-primary">
     Visit us  </h1>
 
