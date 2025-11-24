@@ -42,6 +42,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 </style>
 <link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=1.0.0" type="text/css" media="all">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=1.0.0" id="motion-js"></script>
+<script type="text/javascript" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/header.js?ver=1.0.0" id="nv-header-js"></script>
 <script type="text/javascript" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/contact.js?ver=1.0.0" id="nv-contact-js"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/wp/v2/pages/15"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.8.3">
@@ -51,9 +52,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fpreview.emmanevangelista.com%2Fnovellino-2025%2Fcontact%2F&amp;format=xml">
 </head>
 <body class="flex flex-col min-h-screen bg-white bg-red-custom-light!">
-<!-- <div id="main-body" class="min-h-screen overflow-auto"> -->
+<!-- <div id="main-body" class="h-full overflow-auto"> -->
 
-<header class="sticky z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors active-header">
+<header class="group/header z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors data-active:bg-red-secondary data-active-mobile-nav:bg-red-secondary data-always-active:bg-red-secondary data-always-active-mobile-nav:bg-red-secondary sticky active " data-always-active="true">
   <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 lg:justify-between items-center">
     <a href="https://preview.emmanevangelista.com/novellino-2025" class="shrink-0 grow-0 mr-auto lg:mr-0">
       <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18" alt="Novellino">
@@ -68,7 +69,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
     <div class="relative shrink-0 grow-0" id="shop-now-container" data-active="false">
       
 <a class="block w-fit " onclick="toggleShopList()">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors white-on-active flex flex-row items-center justify-center gap-x-2.5" role="button">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors group-data-active/header:bg-white group-data-active/header:text-red-secondary group-data-always-active/header:bg-white group-data-always-active/header:text-red-secondary group-data-active-mobile-nav/header:hidden flex flex-row items-center justify-center gap-x-2.5" role="button">
 Shop now
       <svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.3535 6.35403L8.35354 11.354C8.3071 11.4005 8.25196 11.4374 8.19126 11.4626C8.13056 11.4877 8.0655 11.5007 7.99979 11.5007C7.93408 11.5007 7.86902 11.4877 7.80832 11.4626C7.74762 11.4374 7.69248 11.4005 7.64604 11.354L2.64604 6.35403C2.55222 6.26021 2.49951 6.13296 2.49951 6.00028C2.49951 5.8676 2.55222 5.74035 2.64604 5.64653C2.73986 5.55271 2.86711 5.5 2.99979 5.5C3.13247 5.5 3.25972 5.55271 3.35354 5.64653L7.99979 10.2934L12.646 5.64653C12.6925 5.60007 12.7476 5.56322 12.8083 5.53808C12.869 5.51294 12.9341 5.5 12.9998 5.5C13.0655 5.5 13.1305 5.51294 13.1912 5.53808C13.2519 5.56322 13.3071 5.60007 13.3535 5.64653C13.4 5.69298 13.4368 5.74813 13.462 5.80883C13.4871 5.86953 13.5001 5.93458 13.5001 6.00028C13.5001 6.06598 13.4871 6.13103 13.462 6.19173C13.4368 6.25242 13.4 6.30757 13.3535 6.35403Z" fill="currentColor"></path>
@@ -93,41 +94,30 @@ Shop now
               </div>
     </div>
 
-    <button class="border-none lg:hidden cursor-pointer text-white">
+    <button class="open-mobile-nav border-none lg:hidden size-8 flex flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:hidden" onclick="openMobileNav()">
       <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M28 16C28 16.2652 27.8946 16.5196 27.7071 16.7071C27.5196 16.8946 27.2652 17 27 17H5C4.73478 17 4.48043 16.8946 4.29289 16.7071C4.10536 16.5196 4 16.2652 4 16C4 15.7348 4.10536 15.4804 4.29289 15.2929C4.48043 15.1054 4.73478 15 5 15H27C27.2652 15 27.5196 15.1054 27.7071 15.2929C27.8946 15.4804 28 15.7348 28 16ZM5 9H27C27.2652 9 27.5196 8.89464 27.7071 8.70711C27.8946 8.51957 28 8.26522 28 8C28 7.73478 27.8946 7.48043 27.7071 7.29289C27.5196 7.10536 27.2652 7 27 7H5C4.73478 7 4.48043 7.10536 4.29289 7.29289C4.10536 7.48043 4 7.73478 4 8C4 8.26522 4.10536 8.51957 4.29289 8.70711C4.48043 8.89464 4.73478 9 5 9ZM27 23H5C4.73478 23 4.48043 23.1054 4.29289 23.2929C4.10536 23.4804 4 23.7348 4 24C4 24.2652 4.10536 24.5196 4.29289 24.7071C4.48043 24.8946 4.73478 25 5 25H27C27.2652 25 27.5196 24.8946 27.7071 24.7071C27.8946 24.5196 28 24.2652 28 24C28 23.7348 27.8946 23.4804 27.7071 23.2929C27.5196 23.1054 27.2652 23 27 23Z" fill="currentColor"></path>
+      </svg>
+    </button>
+
+    <button class="close-mobile-nav border-none hidden size-8 flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:flex" onclick="closeMobileNav()">
+      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.2807 18.2198C19.3504 18.2895 19.4056 18.3722 19.4433 18.4632C19.4811 18.5543 19.5005 18.6519 19.5005 18.7504C19.5005 18.849 19.4811 18.9465 19.4433 19.0376C19.4056 19.1286 19.3504 19.2114 19.2807 19.281C19.211 19.3507 19.1283 19.406 19.0372 19.4437C18.9462 19.4814 18.8486 19.5008 18.7501 19.5008C18.6515 19.5008 18.5539 19.4814 18.4629 19.4437C18.3718 19.406 18.2891 19.3507 18.2194 19.281L12.0001 13.0607L5.78068 19.281C5.63995 19.4218 5.44907 19.5008 5.25005 19.5008C5.05103 19.5008 4.86016 19.4218 4.71943 19.281C4.5787 19.1403 4.49963 18.9494 4.49963 18.7504C4.49963 18.5514 4.5787 18.3605 4.71943 18.2198L10.9397 12.0004L4.71943 5.78104C4.5787 5.64031 4.49963 5.44944 4.49963 5.25042C4.49963 5.05139 4.5787 4.86052 4.71943 4.71979C4.86016 4.57906 5.05103 4.5 5.25005 4.5C5.44907 4.5 5.63995 4.57906 5.78068 4.71979L12.0001 10.9401L18.2194 4.71979C18.3602 4.57906 18.551 4.5 18.7501 4.5C18.9491 4.5 19.1399 4.57906 19.2807 4.71979C19.4214 4.86052 19.5005 5.05139 19.5005 5.25042C19.5005 5.44944 19.4214 5.64031 19.2807 5.78104L13.0604 12.0004L19.2807 18.2198Z" fill="currentColor"></path>
       </svg>
     </button>
   </div>
 </header>
 
+<div class="group mobile-nav-wrapper hidden not-data-active:pointer-events-none fixed top-0 left-0 z-9 lg:p-4 w-full h-full bg-[#2103037A] opacity-0 data-active:flex flex-col items-center justify-start pointer-events-none data-active:pointer-events-auto" onclick="onMobileNavWrapperClick(event)">
+  <div class="mobile-nav px-6 pb-8 pt-26 w-full bg-white">
+    <div class="flex flex-col gap-y-8 items-center text-center"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Our Wines</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/our-purpose/" class="">Our Purpose</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/our-story/" class="">Our Story</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="text-lg font-bold">Contact Us</a>
+</div>  </div>
+</div>
 
-<script>
-function toggleShopList() {
-  const container = document.getElementById("shop-now-container");
-  const menu = document.getElementById("shop-now-menu");
-  container.dataset.active = container.dataset.active === "true" ? "false" : "true";
-
-  const isActive = container.dataset.active === "true";
-  if (isActive) {
-    Motion.animate(menu, {
-      display: ['none', 'flex'],
-      opacity: [0, 1],
-    }, {
-      duration: 0.3,
-      ease: 'linear',
-    });
-  } else {
-    Motion.animate(menu, {
-      display: ['flex', 'none'],
-      opacity: [1, 0],
-    }, {
-      duration: 0.3,
-      ease: 'linear',
-    });
-  }
-}
-</script>
     <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/break.jpg" class="h-[200px] lg:h-[400px] object-cover object-bottom">
   <main class="-mt-3 lg:mt-[-200px] mx-auto mb-6 lg:mb-16 rounded-t-xl lg:rounded-xl px-6 lg:px-0 w-full max-w-[900px] bg-white">
   <div class="form-header border-b border-[#ECEFF1] pb-6 flex flex-col items-center">

@@ -94,14 +94,6 @@
   }
 }
 
-@utility active-header {
-  @apply bg-red-secondary;
-
-  & button.white-on-active {
-    @apply bg-white text-red-secondary;
-  }
-}
-
 @utility no-scrollbar {
   &:not(input[type="number"]) {
     -ms-overflow-style: none;
