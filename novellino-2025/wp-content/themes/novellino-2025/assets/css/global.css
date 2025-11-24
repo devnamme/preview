@@ -114,3 +114,9 @@
     }
   }
 }
+
+@utility mobile-nav-wrapper {
+  a.text-lg.font-bold {
+    @apply text-base! text-red-primary!;
+  }
+}

@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function openMobileNav() {
   const header = document.querySelector("header");
   header.dataset.activeMobileNav = true;
-  const wrapper = document.querySelector(".group.mobile-nav-wrapper");
+  const wrapper = document.querySelector(".mobile-nav-wrapper");
   wrapper.dataset.active = true;
   const mobileNav = wrapper.querySelector(".mobile-nav");
 
@@ -94,7 +94,7 @@ function openMobileNav() {
 async function closeMobileNav() {
   const header = document.querySelector("header");
   delete header.dataset.activeMobileNav;
-  const wrapper = document.querySelector(".group.mobile-nav-wrapper");
+  const wrapper = document.querySelector(".mobile-nav-wrapper");
   const mobileNav = wrapper.querySelector(".mobile-nav");
 
   document
