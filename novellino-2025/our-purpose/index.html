@@ -54,7 +54,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <body class="flex flex-col min-h-screen bg-white ">
 <!-- <div id="main-body" class="h-full overflow-auto"> -->
 
-<header class="group/header z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors data-active:bg-red-secondary data-active-mobile-nav:bg-red-secondary data-always-active:bg-red-secondary data-always-active-mobile-nav:bg-red-secondary fixed ">
+<header class="group/header z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors data-active:bg-red-secondary data-active-mobile-nav:bg-red-secondary lg:data-active-mobile-nav:not-data-active:not-data-always-active:bg-transparent data-always-active:bg-red-secondary fixed active " data-always-active="true">
   <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 lg:justify-between items-center">
     <a href="https://preview.emmanevangelista.com/novellino-2025" class="shrink-0 grow-0 mr-auto lg:mr-0">
       <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18" alt="Novellino">
@@ -69,7 +69,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
     <div class="relative shrink-0 grow-0" id="shop-now-container" data-active="false">
       
 <a class="block w-fit " onclick="toggleShopList()">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors group-data-active/header:bg-white group-data-active/header:text-red-secondary group-data-always-active/header:bg-white group-data-always-active/header:text-red-secondary group-data-active-mobile-nav/header:hidden flex flex-row items-center justify-center gap-x-2.5" role="button">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors group-data-active/header:bg-white group-data-active/header:text-red-secondary group-data-always-active/header:bg-white group-data-always-active/header:text-red-secondary group-data-active-mobile-nav/header:hidden lg:group-data-active-mobile-nav/header:flex! lg:group-data-active-mobile-nav/header:group-not-data-active/header:group-not-data-always-active/header:bg-red-primary flex flex-row items-center justify-center gap-x-2.5" role="button">
 Shop now
       <svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.3535 6.35403L8.35354 11.354C8.3071 11.4005 8.25196 11.4374 8.19126 11.4626C8.13056 11.4877 8.0655 11.5007 7.99979 11.5007C7.93408 11.5007 7.86902 11.4877 7.80832 11.4626C7.74762 11.4374 7.69248 11.4005 7.64604 11.354L2.64604 6.35403C2.55222 6.26021 2.49951 6.13296 2.49951 6.00028C2.49951 5.8676 2.55222 5.74035 2.64604 5.64653C2.73986 5.55271 2.86711 5.5 2.99979 5.5C3.13247 5.5 3.25972 5.55271 3.35354 5.64653L7.99979 10.2934L12.646 5.64653C12.6925 5.60007 12.7476 5.56322 12.8083 5.53808C12.869 5.51294 12.9341 5.5 12.9998 5.5C13.0655 5.5 13.1305 5.51294 13.1912 5.53808C13.2519 5.56322 13.3071 5.60007 13.3535 5.64653C13.4 5.69298 13.4368 5.74813 13.462 5.80883C13.4871 5.86953 13.5001 5.93458 13.5001 6.00028C13.5001 6.06598 13.4871 6.13103 13.462 6.19173C13.4368 6.25242 13.4 6.30757 13.3535 6.35403Z" fill="currentColor"></path>
@@ -94,13 +94,13 @@ Shop now
               </div>
     </div>
 
-    <button class="open-mobile-nav border-none lg:hidden size-8 flex flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:hidden" onclick="openMobileNav()">
+    <button class="open-mobile-nav border-none lg:hidden! size-8 flex flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:hidden" onclick="openMobileNav()">
       <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M28 16C28 16.2652 27.8946 16.5196 27.7071 16.7071C27.5196 16.8946 27.2652 17 27 17H5C4.73478 17 4.48043 16.8946 4.29289 16.7071C4.10536 16.5196 4 16.2652 4 16C4 15.7348 4.10536 15.4804 4.29289 15.2929C4.48043 15.1054 4.73478 15 5 15H27C27.2652 15 27.5196 15.1054 27.7071 15.2929C27.8946 15.4804 28 15.7348 28 16ZM5 9H27C27.2652 9 27.5196 8.89464 27.7071 8.70711C27.8946 8.51957 28 8.26522 28 8C28 7.73478 27.8946 7.48043 27.7071 7.29289C27.5196 7.10536 27.2652 7 27 7H5C4.73478 7 4.48043 7.10536 4.29289 7.29289C4.10536 7.48043 4 7.73478 4 8C4 8.26522 4.10536 8.51957 4.29289 8.70711C4.48043 8.89464 4.73478 9 5 9ZM27 23H5C4.73478 23 4.48043 23.1054 4.29289 23.2929C4.10536 23.4804 4 23.7348 4 24C4 24.2652 4.10536 24.5196 4.29289 24.7071C4.48043 24.8946 4.73478 25 5 25H27C27.2652 25 27.5196 24.8946 27.7071 24.7071C27.8946 24.5196 28 24.2652 28 24C28 23.7348 27.8946 23.4804 27.7071 23.2929C27.5196 23.1054 27.2652 23 27 23Z" fill="currentColor"></path>
       </svg>
     </button>
 
-    <button class="close-mobile-nav border-none hidden size-8 flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:flex" onclick="closeMobileNav()">
+    <button class="close-mobile-nav border-none hidden lg:hidden! size-8 flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:flex" onclick="closeMobileNav()">
       <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.2807 18.2198C19.3504 18.2895 19.4056 18.3722 19.4433 18.4632C19.4811 18.5543 19.5005 18.6519 19.5005 18.7504C19.5005 18.849 19.4811 18.9465 19.4433 19.0376C19.4056 19.1286 19.3504 19.2114 19.2807 19.281C19.211 19.3507 19.1283 19.406 19.0372 19.4437C18.9462 19.4814 18.8486 19.5008 18.7501 19.5008C18.6515 19.5008 18.5539 19.4814 18.4629 19.4437C18.3718 19.406 18.2891 19.3507 18.2194 19.281L12.0001 13.0607L5.78068 19.281C5.63995 19.4218 5.44907 19.5008 5.25005 19.5008C5.05103 19.5008 4.86016 19.4218 4.71943 19.281C4.5787 19.1403 4.49963 18.9494 4.49963 18.7504C4.49963 18.5514 4.5787 18.3605 4.71943 18.2198L10.9397 12.0004L4.71943 5.78104C4.5787 5.64031 4.49963 5.44944 4.49963 5.25042C4.49963 5.05139 4.5787 4.86052 4.71943 4.71979C4.86016 4.57906 5.05103 4.5 5.25005 4.5C5.44907 4.5 5.63995 4.57906 5.78068 4.71979L12.0001 10.9401L18.2194 4.71979C18.3602 4.57906 18.551 4.5 18.7501 4.5C18.9491 4.5 19.1399 4.57906 19.2807 4.71979C19.4214 4.86052 19.5005 5.05139 19.5005 5.25042C19.5005 5.44944 19.4214 5.64031 19.2807 5.78104L13.0604 12.0004L19.2807 18.2198Z" fill="currentColor"></path>
       </svg>
@@ -108,7 +108,7 @@ Shop now
   </div>
 </header>
 
-<div class="group/mobilenav mobile-nav-wrapper hidden not-data-active:pointer-events-none fixed top-0 left-0 z-9 lg:p-4 w-full h-full bg-[#2103037A] opacity-0 data-active:flex flex-col items-center justify-start pointer-events-none data-active:pointer-events-auto" onclick="onMobileNavWrapperClick(event)">
+<div class="group/mobilenav mobile-nav-wrapper hidden lg:hidden! not-data-active:pointer-events-none fixed top-0 left-0 z-9 lg:p-4 w-full h-full bg-[#2103037A] opacity-0 data-active:flex flex-col items-center justify-start pointer-events-none data-active:pointer-events-auto" onclick="onMobileNavWrapperClick(event)">
   <div class="mobile-nav px-6 pb-8 pt-26 w-full bg-white">
     <div class="flex flex-col gap-y-8 items-center text-center"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Our Wines</a>
@@ -117,542 +117,251 @@ Shop now
 <a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="">Contact Us</a>
 </div>  </div>
 </div>
-<div class="relative w-full min-h-screen lg:px-24 lg:py-24 flex flex-col justify-end px-4 py-10">
-      <video id="" class="absolute z-0 top-0 left-0 w-full h-full object-cover" autoplay muted loop playsinline>
-      <source src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-hero-muted.mp4" type="video/mp4">
-    </source></video>
-  
-  <div class="relative z-1 mx-auto w-full max-w-[1240px] text-white">
-    <div class="max-w-[800px]">
-      <h1 class="mb-4 font-black">
-        Moments made more special with Novellino Wines      </h1>
-      <p class="mb-6 text-base font-light lg:text-lg">
-        For over 20 years, we've poured the perfect sweet, delightful taste into every Filipino gathering. Get the trusted, perfect wine for your next cherished moment.      </p>
+<section class="px-6 lg:px-20 pt-30 lg:pt-38 pb-10 lg:pb-20 lg:min-h-screen 2xl:min-h-[unset] bg-[#FFF4F4]">
+  <div class="mx-auto w-full max-w-[1280px] text-center">
+    <h3 class="text-red-tertiary mb-4">
+      Our Purpose    </h3>
+    <h1 class="text-red-tertiary mb-16">
+      What Makes Novellino Different    </h1>
 
-      
-<a class="block w-fit w-fit" href="https://preview.emmanevangelista.com/novellino-2025/todo">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-white text-red-secondary text-lg flex flex-row items-center justify-center gap-x-2.5" role="button">
-Shop now  </button>
-</a>
+    <div class="grid grid-cols-[auto_auto] lg:grid-cols-3 items-center justify-items-center gap-y-16 lg:gap-y-20 gap-x-4">
+      <div class="order-3 col-span-2 lg:col-span-1 relative z-1 w-full max-w-[380px] h-[480px]">
+        <svg width="91" height="56" viewbox="0 0 91 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 left-1/2 -translate-y-full -translate-x-full lg:hidden">
+          <path d="M0.35841 0C0.358403 12.1503 10.2081 22 22.3584 22L67.4136 22C80.0857 22 90.3584 32.2727 90.3584 44.9447L90.3584 56" stroke="#B0BEC5" stroke-width="0.717023"></path>
+        </svg>
+        <svg width="91" height="56" viewbox="0 0 91 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 left-1/2 -translate-y-full lg:hidden">
+          <path d="M90.3584 0C90.3584 12.1503 80.5087 22 68.3584 22L23.3032 22C10.6311 22 0.358411 32.2727 0.358414 44.9447L0.358417 56" stroke="#B0BEC5" stroke-width="0.717023"></path>
+        </svg>
+
+        <div class="rounded-full w-full h-full object-contain bg-[#78909C]"></div>      </div>
+
+      <div class="order-2 lg:order-1 lg:col-span-3 justify-self-start lg:justify-self-center relative border border-red-alternative rounded-xl px-6 lg:px-8 py-3 lg:py-4 w-fit bg-white">
+        <span class="text-h3 lg:text-h2 text-red-primary uppercase">
+          Culture        </span>
+
+        <svg width="36" height="129" viewbox="0 0 36 129" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden lg:block absolute top-[calc(100%+8px)] left-1/2 -translate-x-2">
+          <path d="M35.4443 0L35.4443 60.3407C35.4443 70.2092 21.9558 73.0526 17.9723 64.0238C13.9889 54.995 0.500327 57.8383 0.500327 67.7068L0.500326 128.995" stroke="#B0BEC5"></path>
+        </svg>
+      </div>
+
+      <div class="order-1 lg:order-2 justify-self-end lg:justify-self-start relative lg:top-10 border border-red-alternative rounded-xl px-6 lg:px-8 py-3 lg:py-4 w-fit bg-white">
+        <span class="text-h3 lg:text-h2 text-red-primary uppercase">
+          Craft        </span>
+
+        <svg width="257" height="36" viewbox="0 0 257 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden lg:block absolute top-1/2 right-0 translate-x-[calc(100%+8px)]">
+          <path d="M0 0.5L151.496 0.500525C161.512 0.500559 170.95 5.18991 176.999 13.1721L184.317 22.8284C190.367 30.8106 199.805 35.5 209.821 35.5L257 35.5" stroke="#B0BEC5"></path>
+        </svg>
+      </div>
+
+      <div class="order-4 col-span-2 lg:col-span-1 lg:justify-self-end relative lg:-top-10 border border-red-alternative rounded-xl px-6 lg:px-8 py-3 lg:py-4 w-fit bg-white">
+        <span class="text-h3 lg:text-h2 text-red-primary uppercase">
+          Conservation        </span>
+
+        <svg width="175" height="39" viewbox="0 0 175 39" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden lg:block absolute top-1/2 left-0 translate-x-[calc(-100%-8px)]">
+          <path d="M174.721 0.5L80.9551 0.500507C68.6988 0.500573 57.5193 7.50106 52.1674 18.527L49.4465 24.1325C45.4325 32.402 37.0478 37.6523 27.8556 37.6523L3.46796e-07 37.6523" stroke="#B0BEC5"></path>
+        </svg>
+
+        <svg width="38" height="71" viewbox="0 0 38 71" fill="none" xmlns="http://www.w3.org/2000/svg" class="lg:hidden absolute top-0 left-1/2 translate-y-[calc(-100%-8px)]">
+          <path d="M0.5 0L0.500328 24.6924C0.500494 37.2192 9.35487 47.9991 21.643 50.4329C30.8592 52.2583 37.5 60.3433 37.5 69.7385L37.5 71" stroke="#B0BEC5"></path>
+        </svg>
+      </div>
     </div>
-  </div>
-</div><section class="px-6 bg-red-custom-light">
-  <div class="mx-auto pt-8 pb-14 lg:pt-20 lg:pb-30 w-fit lg:w-auto max-w-[1200px] grid lg:grid-cols-3 lg:grid-rows-2 lg:grid-flow-col gap-x-10 text-center items-center grid-cols-[auto_1fr] grid-rows-3 grid-flow-row gap-y-2.5 lg:gap-y-0">
-    <p class="text-h2 lg:text-[56px] font-extrabold text-red-primary">
-      50M    </p>
-    <p class="text-h3 font-medium text-red-primary text-left lg:text-center">
-      Wines Bottled    </p>
-
-    <p class="text-h2 lg:text-[56px] font-extrabold text-red-primary">
-      20K    </p>
-    <p class="text-h3 font-medium text-red-primary text-left lg:text-center">
-      Partnered Branches    </p>
-
-    <p class="text-h2 lg:text-[56px] font-extrabold text-red-primary">
-      1.8M    </p>
-    <p class="text-h3 font-medium text-red-primary text-left lg:text-center">
-      Happy Followers    </p>
-  </div>
-</section><section class="px-4 lg:mb-20 relative">
-  <div class="lg:absolute top-0 left-0 right-0 mx-auto max-w-[1295px] grid lg:grid-cols-3 gap-y-4 gap-x-10 -translate-y-[32px] lg:-translate-y-1/2">
-          <div class="border border-[#0000001A] rounded-lg p-5 bg-white grid grid-cols-[min-content_1fr] gap-x-4">
-        <div class="text-green-primary opacity-30 self-start">
-          <svg width="16" height="15" viewbox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9298 2.68655C13.5439 3.90131 12.351 5.32863 12.351 6.96855C13.3679 7.09002 14.2088 7.52024 14.8738 8.25922C15.5387 8.9982 15.8712 9.85357 15.8712 10.8254C15.8712 11.8579 15.5485 12.7285 14.9031 13.4371C14.2577 14.1457 13.4461 14.5 12.4683 14.5C11.3731 14.5 10.4246 14.0394 9.62279 13.1182C8.82096 12.197 8.42005 11.0785 8.42005 9.76247C8.42005 5.81451 10.5517 2.72705 14.8151 0.5L15.9298 2.68655ZM7.50978 2.68655C5.10429 3.90131 3.90156 5.32863 3.90156 6.96855C4.93808 7.09002 5.78878 7.52024 6.45372 8.25922C7.11865 8.9982 7.45111 9.85357 7.45111 10.8254C7.45111 11.8579 7.12354 12.7285 6.46838 13.4371C5.81323 14.1457 4.99675 14.5 4.0189 14.5C2.92372 14.5 1.98012 14.0394 1.18807 13.1182C0.39602 12.197 0 11.0785 0 9.76247C0 5.81451 2.12188 2.72705 6.36571 0.5L7.50978 2.68655Z" fill="currentColor"></path>
-          </svg>
-        </div>
-
-        <div class="flex flex-col">
-          <p class="mb-4 grow text-sm">
-            You can tell they care about their quality. Whether I grab the Bianco Vivace for a party or just a casual bottle, the taste is consistently refreshing. It’s a premium sip without the expensive price.          </p>
-
-          <div class="flex flex-row gap-x-1 mb-2">
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                      </div>
-
-          <p class="text-sm">
-            Maricel D.          </p>
-        </div>
-      </div>
-          <div class="border border-[#0000001A] rounded-lg p-5 bg-white grid grid-cols-[min-content_1fr] gap-x-4">
-        <div class="text-green-primary opacity-30 self-start">
-          <svg width="16" height="15" viewbox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9298 2.68655C13.5439 3.90131 12.351 5.32863 12.351 6.96855C13.3679 7.09002 14.2088 7.52024 14.8738 8.25922C15.5387 8.9982 15.8712 9.85357 15.8712 10.8254C15.8712 11.8579 15.5485 12.7285 14.9031 13.4371C14.2577 14.1457 13.4461 14.5 12.4683 14.5C11.3731 14.5 10.4246 14.0394 9.62279 13.1182C8.82096 12.197 8.42005 11.0785 8.42005 9.76247C8.42005 5.81451 10.5517 2.72705 14.8151 0.5L15.9298 2.68655ZM7.50978 2.68655C5.10429 3.90131 3.90156 5.32863 3.90156 6.96855C4.93808 7.09002 5.78878 7.52024 6.45372 8.25922C7.11865 8.9982 7.45111 9.85357 7.45111 10.8254C7.45111 11.8579 7.12354 12.7285 6.46838 13.4371C5.81323 14.1457 4.99675 14.5 4.0189 14.5C2.92372 14.5 1.98012 14.0394 1.18807 13.1182C0.39602 12.197 0 11.0785 0 9.76247C0 5.81451 2.12188 2.72705 6.36571 0.5L7.50978 2.68655Z" fill="currentColor"></path>
-          </svg>
-        </div>
-
-        <div class="flex flex-col">
-          <p class="mb-4 grow text-sm">
-            What I love about this bottle is how versatile it is. I can serve it at a family dinner, open it up with friends during a casual night in, or even enjoy a glass by myself after work, and it always feels right.          </p>
-
-          <div class="flex flex-row gap-x-1 mb-2">
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                      </div>
-
-          <p class="text-sm">
-            Evan L.          </p>
-        </div>
-      </div>
-          <div class="border border-[#0000001A] rounded-lg p-5 bg-white grid grid-cols-[min-content_1fr] gap-x-4">
-        <div class="text-green-primary opacity-30 self-start">
-          <svg width="16" height="15" viewbox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9298 2.68655C13.5439 3.90131 12.351 5.32863 12.351 6.96855C13.3679 7.09002 14.2088 7.52024 14.8738 8.25922C15.5387 8.9982 15.8712 9.85357 15.8712 10.8254C15.8712 11.8579 15.5485 12.7285 14.9031 13.4371C14.2577 14.1457 13.4461 14.5 12.4683 14.5C11.3731 14.5 10.4246 14.0394 9.62279 13.1182C8.82096 12.197 8.42005 11.0785 8.42005 9.76247C8.42005 5.81451 10.5517 2.72705 14.8151 0.5L15.9298 2.68655ZM7.50978 2.68655C5.10429 3.90131 3.90156 5.32863 3.90156 6.96855C4.93808 7.09002 5.78878 7.52024 6.45372 8.25922C7.11865 8.9982 7.45111 9.85357 7.45111 10.8254C7.45111 11.8579 7.12354 12.7285 6.46838 13.4371C5.81323 14.1457 4.99675 14.5 4.0189 14.5C2.92372 14.5 1.98012 14.0394 1.18807 13.1182C0.39602 12.197 0 11.0785 0 9.76247C0 5.81451 2.12188 2.72705 6.36571 0.5L7.50978 2.68655Z" fill="currentColor"></path>
-          </svg>
-        </div>
-
-        <div class="flex flex-col">
-          <p class="mb-4 grow text-sm">
-            Every bottle I’ve opened has been consistent—smooth, flavorful, and refreshing without being overpowering. I appreciate that it feels premium without breaking the bank.          </p>
-
-          <div class="flex flex-row gap-x-1 mb-2">
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                          <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.44071 15.0436C9.16931 14.8792 8.829 14.8792 8.55761 15.0437L4.39532 17.5665C3.75017 17.9575 2.95263 17.3789 3.12406 16.6443L4.22755 11.9153C4.29924 11.6081 4.19529 11.2864 3.95739 11.0792L0.293637 7.88862C-0.273874 7.3944 0.031211 6.46092 0.781053 6.39724L5.60934 5.98723C5.92375 5.96053 6.19766 5.76223 6.3212 5.47188L8.21605 1.0184C8.51015 0.327199 9.48985 0.327199 9.78395 1.0184L11.6788 5.47188C11.8023 5.76224 12.0762 5.96053 12.3907 5.98723L17.2189 6.39724C17.9688 6.46092 18.2739 7.3944 17.7064 7.88862L14.0426 11.0792C13.8047 11.2864 13.7008 11.6081 13.7725 11.9153L14.876 16.6446C15.0474 17.3792 14.25 17.9578 13.6048 17.5668L9.44071 15.0436Z" fill="#FFC500"></path>
-              </svg>
-                      </div>
-
-          <p class="text-sm">
-            Katarina K.          </p>
-        </div>
-      </div>
-      </div>
-</section><section class="px-4 pb-8 lg:py-30 overflow-clip">
-  <div class="mx-auto max-w-[1240px]">
-    <div class="max-w-[780px] mb-14">
-      <h1 class="mb-8 text-red-primary">
-        The Philippines' #1 Family-owned Wine Brand since 1999      </h1>
-      <p class="text-lg">
-        Novellino is built on a bold vision: to offer uncompromising quality through absolute control. We are the only local maker who sources grapes directly, overseeing every step of the process to guarantee your favorite sweet sip.      </p>
-    </div>
-
-    
-    <div class="-mx-30 sm:-mx-20 md:-mx-30 xl:mx-0 relative overflow-visible flex flex-row gap-x-15 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-          <img id="wines-0" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-sparkling_red_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-1" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-sangria_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-2" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-rosso_classico_1_3_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-3" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-rosso_classico_1_2_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-4" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-rosso_classico_1_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-5" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-luscious_peach_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      <img id="wines-6" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/colored-imported_cabernet_sauvignon_1_3x.webp" class="absolute top-1/2 -translate-y-1/2 scale-100 rounded-lg max-h-full">
-      </div>
   </div>
 </section>
-
-<script>
-var wines_idx = 0;
-const wines_max = 7;
-
-function getIndex(index) {
-  return (index + wines_max) % wines_max;
-}
-
-const ANIMATE_OPTIONS = {
-  duration: 2.0,
-  ease: 'easeInOut',
-};
-const ANIMATE_REST_TIME = 1.5;
-
-function runAnimation() {
-  const { animate } = Motion;
-
-  const R2 = getIndex(wines_idx + 1);
-  const R = getIndex(wines_idx);
-  const C = getIndex(wines_idx - 1);
-  const L = getIndex(wines_idx - 2);
-
-  // right2 to right
-  animate(`#wines-${R2}`, {
-    left: ['100%', '100%'],
-    transform: [
-      'translateX(100vw) scale(90%)',
-      'translateX(-100%) scale(90%)',
-    ],
-    transformOrigin: ['right', 'right'],
-    opacity: [0, 1],
-    zIndex: [1, 1],
-  }, {
-    duration: ANIMATE_OPTIONS.duration / 3 * 2.7,
-    ease: 'easeOut'
-  });
-
-  // right to center
-  animate(`#wines-${R}`, {
-    left: ['100%', '50%'],
-    transform: [
-      'translateX(-100%) scale(90%)',
-      'translateX(-50%) scale(100%)',
-    ],
-    zIndex: [2, 2],
-    transformOrigin: ['right', 'right'],
-  }, ANIMATE_OPTIONS);
-
-  // center to left
-  animate(`#wines-${C}`, {
-    left: ['50%', '0%'],
-    transform: [
-      'translateX(-50%) scale(100%)',
-      'translateX(0%) scale(90%)',
-    ],
-    zIndex: [1, 1],
-    transformOrigin: ['left', 'left'],
-  }, ANIMATE_OPTIONS);
-
-  // left to left2
-  animate(`#wines-${L}`, {
-    transform: [
-      'translateX(0%) scale(90%)',
-      'translateX(-100vw) scale(90%)',
-    ],
-    zIndex: [0, 0],
-    transformOrigin: ['left', 'left'],
-    opacity: [1, 0],
-  }, ANIMATE_OPTIONS);
-
-  for (let i = 0; i < wines_max; i++) {
-    if (i != R2 && i != R && i != C && i != L) {
-      animate(`#wines-${i}`, {
-        opacity: [0, 0],
-        scale: ['90%', '90%'],
-        transformOrigin: ['center', 'center'],
-      }, {
-        duration: 0,
-      });
-    }
-  }
-}
-
-runAnimation();
-
-setInterval(() => {
-  wines_idx++;
-  if (wines_idx >= wines_max) {
-    wines_idx = 0;
-  }
-
-  runAnimation();
-}, parseInt((ANIMATE_OPTIONS.duration + ANIMATE_REST_TIME) * 1000));
-</script>
-<section class="bg-red-custom-light py-8 lg:py-24 px-4 rounded-t-3xl lg:rounded-none">
-  <div class="mx-auto max-w-[1160px]">
-    <div class="mx-auto mb-14 max-w-[760px] flex flex-col gap-y-6 items-center text-red-primary text-center">
-      <h1 class="">
-        The first local wine maker to create a distinct wine for Filipinos      </h1>
-
-      <div class="w-fit ">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary">
-    Discover our purpose    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-    </svg>
-  </a>
-</div>    </div>
-
-    <div class="flex flex-col gap-y-6 relative">
-              <div class="rounded-3xl grid grid-rows-[260px_auto] lg:grid-rows-1 lg:grid-cols-[380px_1fr] overflow-clip sticky top-[100px] bg-[#771935] text-white">
-              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-craft-scaled.jpg" class="size-full object-cover">
-  
-          <div class="px-4 py-6 lg:py-36 lg:px-16">
-            <p class="mb-4 rounded-xl py-2 px-4 w-fit font-extrabold text-center uppercase bg-white text-red-primary">
-              Craft            </p>
-            <h2 class="text-h2 lg:text-h2 mb-2.5 font-black">
-              The Process That Perfected Sweet            </h2>
-            <p class="text-lg">
-              Achieving this rich, sweet taste is difficult and costly—but your expectation is worth it. We invest in state-of-the-art Italian equipment to precisely control fermentation, securing the flawless, sweet flavor you love every time.            </p>
-          </div>
-        </div>
-              <div class="rounded-3xl grid grid-rows-[260px_auto] lg:grid-rows-1 lg:grid-cols-[380px_1fr] overflow-clip sticky top-[132px] bg-white text-red-primary">
-              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-culture-scaled.jpg" class="size-full object-cover">
-  
-          <div class="px-4 py-6 lg:py-36 lg:px-16">
-            <p class="mb-4 rounded-xl py-2 px-4 w-fit font-extrabold text-center uppercase bg-red-primary text-white">
-              Culture            </p>
-            <h2 class="text-h2 lg:text-h2 mb-2.5 font-black">
-              The People's Choice            </h2>
-            <p class="text-lg">
-              We've redefined how Filipinos enjoy wine. From Noche Buena to simple movie nights, Novellino is the sparkling joy that helps you focus on connecting with the people you love. We're building a shared movement together.            </p>
-          </div>
-        </div>
-              <div class="rounded-3xl grid grid-rows-[260px_auto] lg:grid-rows-1 lg:grid-cols-[380px_1fr] overflow-clip sticky top-[164px] bg-[#771935] text-white">
-              <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-conservation-scaled.jpg" class="size-full object-cover">
-  
-          <div class="px-4 py-6 lg:py-36 lg:px-16">
-            <p class="mb-4 rounded-xl py-2 px-4 w-fit font-extrabold text-center uppercase bg-white text-red-primary">
-              Conservation            </p>
-            <h2 class="text-h2 lg:text-h2 mb-2.5 font-black">
-              Honoring Our Environment            </h2>
-            <p class="text-lg">
-              Our commitment extends beyond the bottle. We utilize solar energy and have pioneered a revolutionary, Philippines-developed wastewater solution to ensure our growth is sustainable—protecting the environment for the next generation of Filipinos.            </p>
-          </div>
-        </div>
-          </div>
-  </div>
-</section><section class="">
-      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-break-scaled.jpg" class="w-full h-[564px] xl:h-dvh 2xl:h-[564px] object-cover">
-  
-  <div class="mx-auto max-w-[1240px] pt-8 lg:pb-8 grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8 items-center">
-    <div class="px-4 xl:px-0 flex flex-col gap-6 text-center lg:text-left">
-      <h1 class="text-red-primary">
-        Our Legacy of Quality      </h1>
-      <p class="text-lg">
-        For years, Filipinos felt wine was either too foreign, too expensive, or too confusing. Our founder saw that as an opportunity to create something truly ours. Since 1999, Novellino has been on a singular mission: to make delicious, approachable wine that makes everyone feel welcome. Discover the bold vision of our founder and how we built the Philippines' #1 wine brand from the ground up.      </p>
-      <div class="w-fit mx-auto lg:mx-0">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
-    Get to know our story    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-    </svg>
-  </a>
-</div>    </div>
-
-        <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/home-legacy.png" class="w-full lg:rounded-lg">
-    </div>
-</section><section class="p-4 overflow-clip">
-  <div class="lg:mx-auto rounded-2xl max-w-[1240px] bg-red-custom-light py-12 px-4 lg:px-20">
-    <div class="mb-8 grid lg:grid-cols-2 justify-items-center lg:items-start gap-y-6">
-      <div class="text-center lg:text-left">
-        <h1 class="mb-6 text-red-secondary">
-          Find Your Perfect Pour        </h1>
-        <p class="text-lg">
-          Whether you're craving something sweet and light for a simple meal or a lively sparkle for a grand toast, we have the ideal wine ready for your occasion.        </p>
+<section class="px-6 py-18 overflow-clip">
+  <div class="grid lg:grid-cols-3 items-center justify-items-center gap-y-4 lg:gap-16">
+    <div class="lg:order-1 lg:col-span-3 max-w-[330px] flex flex-col items-center gap-y-4">
+      <div class="border border-[#CFD8DC] rounded-xl px-4 py-2 w-fit text-center">
+        <span class="text-h2 text-red-primary uppercase">
+          Craft        </span>
       </div>
 
-      
-<a class="block w-fit lg:self-start lg:justify-self-end" href="https://preview.emmanevangelista.com/novellino-2025/todo">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" role="button">
-Shop now
-      <svg class="size-6" width="24" height="24" viewbox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 24C18.6 24 24 18.6 24 12C24 5.4 18.6 0 12 0C5.4 0 0 5.4 0 12C0 18.6 5.4 24 12 24ZM12 0.923077C18.0923 0.923077 23.0769 5.90769 23.0769 12C23.0769 18.0923 18.0923 23.0769 12 23.0769C5.90769 23.0769 0.923077 18.0923 0.923077 12C0.923077 5.90769 5.90769 0.923077 12 0.923077Z" fill="currentColor"></path>
-        <path d="M12.0037 15.8295L12.7484 16.5742L17.3229 11.9998L12.7484 7.42529L12.0037 8.16997L15.3016 11.4678H7.32288V12.5317H15.3016L12.0037 15.8295Z" fill="currentColor"></path>
-      </svg>
-
-        </button>
-</a>
+      <p class="text-center">
+        Achieving the rich, sweet taste Filipinos deserve is the most difficult and costly choice we make.      </p>
     </div>
 
-    <div id="perfect-pour-carousel" class="-mx-20 mb-6 flex flex-row justify-center">
-                <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-bianco_classico_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Everyday White                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-bianco_vivace_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Premium White                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-imported_cabernet_sauvignon_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Italian Collection                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-luscious_peach_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Everyday White                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-imported_merlot_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Italian Collection                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-rosso_classico_1__1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Everyday Red                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-rosso_classico_light_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Everyday Red                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-imported_dell_azienda_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Italian Collection                  </p>
-                </div>
-                          </div>
-          </div>
-                  <div class="shrink-0 mx-1 rounded-lg w-75 h-100 bg-center bg-cover overflow-clip" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/gray-rosso_tradizionale_1_5x.webp);">
-            <div class="flex flex-row flex-wrap p-4 items-start">
-                              <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                  <div class="rounded-full size-3" style="background-color: #4C1220">
-                  </div>
-                  <p class="text-sm font-extrabold" style="color: #4C1220">
-                    Everyday Red                  </p>
-                </div>
-                          </div>
-          </div>
-            </div>
+    <div class="lg:order-3 relative z-1 mb-4 lg:mb-0 rounded-full w-full max-w-[380px] aspect-square bg-[#78909C]"></div>      <div class="lg:order-2 flex flex-col items-center relative overflow-visible">
+                  <svg width="200" height="1" viewbox="0 -0.5 200 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-7 hidden lg:block text-[#CFD8DC] right-0 translate-x-[calc(100%-64px)]">
+            <path d="M0 0H200" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/craft-1-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            We Control the Source          </span>
+        </div>
 
-    <div class="flex flex-row gap-x-4 justify-center text-[#90A4AE]">
-      <button onclick="carouselMoveLeft()" class="cursor-pointer">
-        <svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 28C6.3 28 -1.90735e-06 21.7 -1.90735e-06 14C-1.90735e-06 6.3 6.3 0 14 0C21.7 0 28 6.3 28 14C28 21.7 21.7 28 14 28ZM14 1.07692C6.89231 1.07692 1.07692 6.89231 1.07692 14C1.07692 21.1077 6.89231 26.9231 14 26.9231C21.1077 26.9231 26.9231 21.1077 26.9231 14C26.9231 6.89231 21.1077 1.07692 14 1.07692Z" fill="currentColor"></path>
-          <path d="M14.3724 17.9715L13.5036 18.8403L8.16671 13.5034L13.5036 8.1665L14.3724 9.0353L10.5249 12.8828H19.8334V14.124H10.5249L14.3724 17.9715Z" fill="currentColor"></path>
-        </svg>
-      </button>
-      <button onclick="carouselMoveRight()" class="cursor-pointer">
-        <svg width="28" height="28" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 28C21.7 28 28 21.7 28 14C28 6.3 21.7 0 14 0C6.3 0 0 6.3 0 14C0 21.7 6.3 28 14 28ZM14 1.07692C21.1077 1.07692 26.9231 6.89231 26.9231 14C26.9231 21.1077 21.1077 26.9231 14 26.9231C6.89231 26.9231 1.07692 21.1077 1.07692 14C1.07692 6.89231 6.89231 1.07692 14 1.07692Z" fill="currentColor"></path>
-          <path d="M14.0043 18.4681L14.8731 19.3368L20.21 14L14.8731 8.66309L14.0043 9.53188L17.8518 13.3794H8.54333V14.6205H17.8518L14.0043 18.4681Z" fill="currentColor"></path>
-        </svg>
-      </button>
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We are the only local maker to source grapes directly from farmers across three continents, securing the highest quality material and ensuring our supply is never out of stock.          </p>
+        </div>
+      </div>
+          <div class="lg:order-4 flex flex-col items-center relative overflow-visible">
+                  <svg width="200" height="1" viewbox="0 -0.5 200 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-7 hidden lg:block text-[#CFD8DC] left-0 translate-x-[calc(-100%+64px)]">
+            <path d="M0 0H200" stroke="currentColor"></path>
+          </svg>
+                  <svg width="1" height="60" viewbox="-0.5 0 1 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="lg:hidden mb-4 text-[#CFD8DC]">
+            <path d="M0 0V60" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/craft-2-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            Global Quality          </span>
+        </div>
+
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We invest in state-of-the-art Italian equipment and a proprietary system that precisely arrests fermentation, locking in the consistent, delightful sweetness you love.          </p>
+        </div>
+      </div>
+          <div class="lg:order-5 lg:col-span-3 flex flex-col items-center relative overflow-visible">
+                  <svg width="250" height="150" viewbox="0 0 250 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 left-0 -translate-y-[100px] -translate-x-full hidden lg:block text-[#CFD8DC]">
+            <path d="M0 0L250 150" stroke="currentColor"></path>
+          </svg>
+          <svg width="250" height="150" viewbox="0 0 250 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 right-0 -translate-y-[100px] translate-x-full hidden lg:block text-[#CFD8DC]">
+            <path d="M0 150L250 0" stroke="currentColor"></path>
+          </svg>
+                  <svg width="1" height="60" viewbox="-0.5 0 1 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="lg:hidden mb-4 text-[#CFD8DC]">
+            <path d="M0 0V60" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/craft-3-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            We Invest for Growth          </span>
+        </div>
+
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We continue to expand our infrastructure and production capacity to meet growing demand, ensuring we consistently deliver fantastic Filipino wine in the Philippines and beyond.          </p>
+        </div>
+      </div>
+      </div>
+</section>
+<section class="px-6 py-18 overflow-clip">
+  <div class="grid lg:grid-cols-3 items-center justify-items-center gap-y-4 lg:gap-16">
+    <div class="lg:order-1 lg:col-span-3 max-w-[330px] flex flex-col items-center gap-y-4">
+      <div class="border border-[#CFD8DC] rounded-xl px-4 py-2 w-fit text-center">
+        <span class="text-h2 text-red-primary uppercase">
+          Culture        </span>
+      </div>
+
+      <p class="text-center">
+        Our purpose extends beyond the bottle; it is about building a richer life for our community. We believe in elevating shared moments and fueling the local economy.      </p>
     </div>
 
-    <script>
-      var carouselIsAnimating = false;
+    <div class="lg:order-3 relative z-1 mb-4 lg:mb-0 rounded-full w-full max-w-[380px] aspect-square bg-[#78909C]"></div>      <div class="lg:order-2 flex flex-col items-center relative overflow-visible">
+                  <svg width="200" height="1" viewbox="0 -0.5 200 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-7 hidden lg:block text-[#CFD8DC] right-0 translate-x-[calc(100%-64px)]">
+            <path d="M0 0H200" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/culture-1-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            We Redefine Tradition          </span>
+        </div>
 
-      function carouselMoveLeft() {
-        if (carouselIsAnimating) {
-          return;
-        }
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We redefine the way Filipinos consume wine. Christmas isn't complete without Novellino on the table, and we're here for every moment, from grand wedding receptions to impromptu movie nights.          </p>
+        </div>
+      </div>
+          <div class="lg:order-4 flex flex-col items-center relative overflow-visible">
+                  <svg width="200" height="1" viewbox="0 -0.5 200 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-7 hidden lg:block text-[#CFD8DC] left-0 translate-x-[calc(-100%+64px)]">
+            <path d="M0 0H200" stroke="currentColor"></path>
+          </svg>
+                  <svg width="1" height="60" viewbox="-0.5 0 1 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="lg:hidden mb-4 text-[#CFD8DC]">
+            <path d="M0 0V60" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/culture-2-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            We Fuel the Economy          </span>
+        </div>
 
-        const { animate } = Motion;
-        carouselIsAnimating = true;
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            By importing grape juice and controlling the entire production process, we are putting the value in the Philippines, providing meaningful work and economic stability to many Filipinos.          </p>
+        </div>
+      </div>
+          <div class="lg:order-5 lg:col-span-3 flex flex-col items-center relative overflow-visible">
+                  <svg width="250" height="150" viewbox="0 0 250 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 left-0 -translate-y-[100px] -translate-x-full hidden lg:block text-[#CFD8DC]">
+            <path d="M0 0L250 150" stroke="currentColor"></path>
+          </svg>
+          <svg width="250" height="150" viewbox="0 0 250 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 right-0 -translate-y-[100px] translate-x-full hidden lg:block text-[#CFD8DC]">
+            <path d="M0 150L250 0" stroke="currentColor"></path>
+          </svg>
+                  <svg width="1" height="60" viewbox="-0.5 0 1 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="lg:hidden mb-4 text-[#CFD8DC]">
+            <path d="M0 0V60" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/culture-3-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            We Deepen Connections          </span>
+        </div>
 
-        const carousel = document.getElementById("perfect-pour-carousel");
-        const last = carousel.lastElementChild;
-        const clone = last.cloneNode(true);
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We seek to build and deepen ties between friends and family, making it easier to share joy not just during holidays, but in the intimate, everyday moments that matter most.          </p>
+        </div>
+      </div>
+      </div>
+</section>
+<section class="px-6 py-18 overflow-clip">
+  <div class="grid lg:grid-cols-3 items-center justify-items-center gap-y-4 lg:gap-16">
+    <div class="lg:order-1 lg:col-span-3 max-w-[330px] flex flex-col items-center gap-y-4">
+      <div class="border border-[#CFD8DC] rounded-xl px-4 py-2 w-fit text-center">
+        <span class="text-h2 text-red-primary uppercase">
+          Conservation        </span>
+      </div>
 
-        animate(clone, {
-          width: [0, 300],
-          marginLeft: [0, 4],
-          marginRight: [0, 4],
-        }, {
-          duration: 0.8,
-          ease: 'easeInOut',
-        });
-        animate(last, {
-          width: [300, 0],
-          marginLeft: [4, 0],
-          marginRight: [4, 0],
-        }, {
-          duration: 0.8,
-          ease: 'easeInOut',
-        });
+      <p class="text-center">
+        It’s important we honor the environment from which we receive so much rich material. Our commitment to sustainability is driven by the desire to leave a better world for the next generation of Filipinos.      </p>
+    </div>
 
-        carousel.insertBefore(clone, carousel.firstElementChild);
+    <div class="lg:order-3 relative z-1 mb-4 lg:mb-0 rounded-full w-full max-w-[380px] aspect-square bg-[#78909C]"></div>      <div class="lg:order-2 flex flex-col items-center relative overflow-visible">
+        <svg width="200" height="1" viewbox="0 -0.5 200 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-7 hidden lg:block text-[#CFD8DC] right-0 translate-x-[calc(100%-64px)]">
+          <path d="M0 0H200" stroke="currentColor"></path>
+        </svg>
 
-        setTimeout(() => {
-          last.remove();
-          carouselIsAnimating = false;
-        }, 800);
-      }
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/conservation-1-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            Wastewater Solutions          </span>
+        </div>
 
-      function carouselMoveRight() {
-        if (carouselIsAnimating) {
-          return;
-        }
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We pioneered eco-safe wastewater solutions now shared with global partners. Winemaking creates difficult wastewater, and we’re the only winery with a sustainable system that treats it safely with zero environmental impact.          </p>
+        </div>
+      </div>
+          <div class="lg:order-4 flex flex-col items-center relative overflow-visible">
+        <svg width="200" height="1" viewbox="0 -0.5 200 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute top-7 hidden lg:block text-[#CFD8DC] left-0 translate-x-[calc(-100%+64px)]">
+          <path d="M0 0H200" stroke="currentColor"></path>
+        </svg>
 
-        const { animate } = Motion;
-        carouselIsAnimating = true;
+                  <svg width="1" height="60" viewbox="-0.5 0 1 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="lg:hidden mb-4 text-[#CFD8DC]">
+            <path d="M0 0V60" stroke="currentColor"></path>
+          </svg>
+            <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/conservation-2-icon.svg" class="relative z-1 mb-4 size-14 object-contain object-center">
+  
+        <div class="relative z-1 mb-3 rounded-xl px-4 py-2 w-fit bg-red-secondary">
+          <span class="text-center text-white text-lg font-extrabold">
+            Sustainable Power          </span>
+        </div>
 
-        const carousel = document.getElementById("perfect-pour-carousel");
-        const first = carousel.firstElementChild;
-        const clone = first.cloneNode(true);
-
-        animate(clone, {
-          width: [0, 300],
-          marginLeft: [0, 4],
-          marginRight: [0, 4],
-        }, {
-          duration: 1,
-          ease: 'easeInOut',
-        });
-        animate(first, {
-          width: [300, 0],
-          marginLeft: [4, 0],
-          marginRight: [4, 0],
-        }, {
-          duration: 1,
-          ease: 'easeInOut',
-        });
-
-        carousel.appendChild(clone);
-
-        setTimeout(() => {
-          first.remove();
-          carouselIsAnimating = false;
-        }, 1000);
-      }
-    </script>
-  </div>
-</section><section class="px-4 pt-4 pb-8 lg:pt-8 lg:pb-16 lg:px-0">
+        <div class="relative z-1 rounded-xl p-4 max-w-[330px] bg-[#FFF4F4] text-base font-medium">
+          <p>
+            We actively minimize our footprint by utilizing solar panels in our Calamba facility, ensuring our continued growth is power by clean and renewable resources.          </p>
+        </div>
+      </div>
+      </div>
+</section>
+<section class="px-4 pt-4 pb-8 lg:pt-8 lg:pb-16 lg:px-0">
   <div class="mx-auto max-w-[1240px] border-[1.5px] border-[#0000001A] rounded-2xl p-6 lg:py-12 lg:px-20 bg-white grid lg:grid-cols-[4fr_5fr] gap-x-32 gap-y-4">
     <div class="">
       <p class="text-h2 text-red-secondary font-extrabold mb-2">
@@ -660,7 +369,7 @@ Shop now
       <p class="text-lg font-extrabold text-[#00000080] mb-4 lg:mb-2">
         Let’s make your venture your next celebration.      </p>
       <div class="w-fit ">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/contact" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
     Send an inquiry    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
     </svg>
@@ -692,7 +401,7 @@ Shop on Lazada  </button>
       </div>
 
       <div class="w-fit mx-auto lg:mx-0">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/products" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
     Find us in-store    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
     </svg>

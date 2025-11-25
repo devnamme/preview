@@ -50,7 +50,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <body class="flex flex-col min-h-screen bg-white ">
 <!-- <div id="main-body" class="h-full overflow-auto"> -->
 
-<header class="group/header z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors data-active:bg-red-secondary data-active-mobile-nav:bg-red-secondary data-always-active:bg-red-secondary data-always-active-mobile-nav:bg-red-secondary fixed ">
+<header class="group/header z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors data-active:bg-red-secondary data-active-mobile-nav:bg-red-secondary lg:data-active-mobile-nav:not-data-active:not-data-always-active:bg-transparent data-always-active:bg-red-secondary fixed ">
   <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 lg:justify-between items-center">
     <a href="https://preview.emmanevangelista.com/novellino-2025" class="shrink-0 grow-0 mr-auto lg:mr-0">
       <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18" alt="Novellino">
@@ -65,7 +65,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
     <div class="relative shrink-0 grow-0" id="shop-now-container" data-active="false">
       
 <a class="block w-fit " onclick="toggleShopList()">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors group-data-active/header:bg-white group-data-active/header:text-red-secondary group-data-always-active/header:bg-white group-data-always-active/header:text-red-secondary group-data-active-mobile-nav/header:hidden flex flex-row items-center justify-center gap-x-2.5" role="button">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white lg:min-w-[175px] transition-colors group-data-active/header:bg-white group-data-active/header:text-red-secondary group-data-always-active/header:bg-white group-data-always-active/header:text-red-secondary group-data-active-mobile-nav/header:hidden lg:group-data-active-mobile-nav/header:flex! lg:group-data-active-mobile-nav/header:group-not-data-active/header:group-not-data-always-active/header:bg-red-primary flex flex-row items-center justify-center gap-x-2.5" role="button">
 Shop now
       <svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.3535 6.35403L8.35354 11.354C8.3071 11.4005 8.25196 11.4374 8.19126 11.4626C8.13056 11.4877 8.0655 11.5007 7.99979 11.5007C7.93408 11.5007 7.86902 11.4877 7.80832 11.4626C7.74762 11.4374 7.69248 11.4005 7.64604 11.354L2.64604 6.35403C2.55222 6.26021 2.49951 6.13296 2.49951 6.00028C2.49951 5.8676 2.55222 5.74035 2.64604 5.64653C2.73986 5.55271 2.86711 5.5 2.99979 5.5C3.13247 5.5 3.25972 5.55271 3.35354 5.64653L7.99979 10.2934L12.646 5.64653C12.6925 5.60007 12.7476 5.56322 12.8083 5.53808C12.869 5.51294 12.9341 5.5 12.9998 5.5C13.0655 5.5 13.1305 5.51294 13.1912 5.53808C13.2519 5.56322 13.3071 5.60007 13.3535 5.64653C13.4 5.69298 13.4368 5.74813 13.462 5.80883C13.4871 5.86953 13.5001 5.93458 13.5001 6.00028C13.5001 6.06598 13.4871 6.13103 13.462 6.19173C13.4368 6.25242 13.4 6.30757 13.3535 6.35403Z" fill="currentColor"></path>
@@ -90,13 +90,13 @@ Shop now
               </div>
     </div>
 
-    <button class="open-mobile-nav border-none lg:hidden size-8 flex flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:hidden" onclick="openMobileNav()">
+    <button class="open-mobile-nav border-none lg:hidden! size-8 flex flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:hidden" onclick="openMobileNav()">
       <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M28 16C28 16.2652 27.8946 16.5196 27.7071 16.7071C27.5196 16.8946 27.2652 17 27 17H5C4.73478 17 4.48043 16.8946 4.29289 16.7071C4.10536 16.5196 4 16.2652 4 16C4 15.7348 4.10536 15.4804 4.29289 15.2929C4.48043 15.1054 4.73478 15 5 15H27C27.2652 15 27.5196 15.1054 27.7071 15.2929C27.8946 15.4804 28 15.7348 28 16ZM5 9H27C27.2652 9 27.5196 8.89464 27.7071 8.70711C27.8946 8.51957 28 8.26522 28 8C28 7.73478 27.8946 7.48043 27.7071 7.29289C27.5196 7.10536 27.2652 7 27 7H5C4.73478 7 4.48043 7.10536 4.29289 7.29289C4.10536 7.48043 4 7.73478 4 8C4 8.26522 4.10536 8.51957 4.29289 8.70711C4.48043 8.89464 4.73478 9 5 9ZM27 23H5C4.73478 23 4.48043 23.1054 4.29289 23.2929C4.10536 23.4804 4 23.7348 4 24C4 24.2652 4.10536 24.5196 4.29289 24.7071C4.48043 24.8946 4.73478 25 5 25H27C27.2652 25 27.5196 24.8946 27.7071 24.7071C27.8946 24.5196 28 24.2652 28 24C28 23.7348 27.8946 23.4804 27.7071 23.2929C27.5196 23.1054 27.2652 23 27 23Z" fill="currentColor"></path>
       </svg>
     </button>
 
-    <button class="close-mobile-nav border-none hidden size-8 flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:flex" onclick="closeMobileNav()">
+    <button class="close-mobile-nav border-none hidden lg:hidden! size-8 flex-col items-center justify-center cursor-pointer text-white group-data-active-mobile-nav/header:flex" onclick="closeMobileNav()">
       <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.2807 18.2198C19.3504 18.2895 19.4056 18.3722 19.4433 18.4632C19.4811 18.5543 19.5005 18.6519 19.5005 18.7504C19.5005 18.849 19.4811 18.9465 19.4433 19.0376C19.4056 19.1286 19.3504 19.2114 19.2807 19.281C19.211 19.3507 19.1283 19.406 19.0372 19.4437C18.9462 19.4814 18.8486 19.5008 18.7501 19.5008C18.6515 19.5008 18.5539 19.4814 18.4629 19.4437C18.3718 19.406 18.2891 19.3507 18.2194 19.281L12.0001 13.0607L5.78068 19.281C5.63995 19.4218 5.44907 19.5008 5.25005 19.5008C5.05103 19.5008 4.86016 19.4218 4.71943 19.281C4.5787 19.1403 4.49963 18.9494 4.49963 18.7504C4.49963 18.5514 4.5787 18.3605 4.71943 18.2198L10.9397 12.0004L4.71943 5.78104C4.5787 5.64031 4.49963 5.44944 4.49963 5.25042C4.49963 5.05139 4.5787 4.86052 4.71943 4.71979C4.86016 4.57906 5.05103 4.5 5.25005 4.5C5.44907 4.5 5.63995 4.57906 5.78068 4.71979L12.0001 10.9401L18.2194 4.71979C18.3602 4.57906 18.551 4.5 18.7501 4.5C18.9491 4.5 19.1399 4.57906 19.2807 4.71979C19.4214 4.86052 19.5005 5.05139 19.5005 5.25042C19.5005 5.44944 19.4214 5.64031 19.2807 5.78104L13.0604 12.0004L19.2807 18.2198Z" fill="currentColor"></path>
       </svg>
@@ -104,7 +104,7 @@ Shop now
   </div>
 </header>
 
-<div class="group/mobilenav mobile-nav-wrapper hidden not-data-active:pointer-events-none fixed top-0 left-0 z-9 lg:p-4 w-full h-full bg-[#2103037A] opacity-0 data-active:flex flex-col items-center justify-start pointer-events-none data-active:pointer-events-auto" onclick="onMobileNavWrapperClick(event)">
+<div class="group/mobilenav mobile-nav-wrapper hidden lg:hidden! not-data-active:pointer-events-none fixed top-0 left-0 z-9 lg:p-4 w-full h-full bg-[#2103037A] opacity-0 data-active:flex flex-col items-center justify-start pointer-events-none data-active:pointer-events-auto" onclick="onMobileNavWrapperClick(event)">
   <div class="mobile-nav px-6 pb-8 pt-26 w-full bg-white">
     <div class="flex flex-col gap-y-8 items-center text-center"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="text-lg font-bold">Home</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Our Wines</a>
@@ -126,7 +126,7 @@ Shop now
         For over 20 years, we've poured the perfect sweet, delightful taste into every Filipino gathering. Get the trusted, perfect wine for your next cherished moment.      </p>
 
       
-<a class="block w-fit w-fit" href="https://preview.emmanevangelista.com/novellino-2025/todo">
+<a class="block w-fit w-fit" href="https://preview.emmanevangelista.com/novellino-2025/products">
   <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-white text-red-secondary text-lg flex flex-row items-center justify-center gap-x-2.5" role="button">
 Shop now  </button>
 </a>
@@ -374,7 +374,7 @@ setInterval(() => {
         The first local wine maker to create a distinct wine for Filipinos      </h1>
 
       <div class="w-fit ">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/our-purpose" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary">
     Discover our purpose    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
     </svg>
@@ -430,7 +430,7 @@ setInterval(() => {
       <p class="text-lg">
         For years, Filipinos felt wine was either too foreign, too expensive, or too confusing. Our founder saw that as an opportunity to create something truly ours. Since 1999, Novellino has been on a singular mission: to make delicious, approachable wine that makes everyone feel welcome. Discover the bold vision of our founder and how we built the Philippines' #1 wine brand from the ground up.      </p>
       <div class="w-fit mx-auto lg:mx-0">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/our-story" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
     Get to know our story    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
     </svg>
@@ -450,7 +450,7 @@ setInterval(() => {
       </div>
 
       
-<a class="block w-fit lg:self-start lg:justify-self-end" href="https://preview.emmanevangelista.com/novellino-2025/todo">
+<a class="block w-fit lg:self-start lg:justify-self-end" href="https://preview.emmanevangelista.com/novellino-2025/products">
   <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-red-primary text-white bg-red-secondary flex flex-row items-center justify-center gap-x-2.5" role="button">
 Shop now
       <svg class="size-6" width="24" height="24" viewbox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -656,7 +656,7 @@ Shop now
       <p class="text-lg font-extrabold text-[#00000080] mb-4 lg:mb-2">
         Let’s make your venture your next celebration.      </p>
       <div class="w-fit ">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/contact" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-red-primary text-red-primary">
     Send an inquiry    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
     </svg>
@@ -688,7 +688,7 @@ Shop on Lazada  </button>
       </div>
 
       <div class="w-fit mx-auto lg:mx-0">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/todo" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
+  <a href="https://preview.emmanevangelista.com/novellino-2025/products" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
     Find us in-store    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
     </svg>

@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header");
   const body = document.getElementById("main-body") ?? document.documentElement;
 
-  console.log(header.dataset.alwaysActive);
   if (!header.dataset.alwaysActive) {
     Motion.scroll(
       (y) => {
