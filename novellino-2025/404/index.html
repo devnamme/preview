@@ -43,6 +43,12 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 <link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=1.0.0" type="text/css" media="all">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=1.0.0" id="motion-js"></script>
 <script type="text/javascript" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/header.js?ver=1.0.0" id="nv-header-js"></script>
+<script type="text/javascript" id="nv-story-js-extra">
+/* <![CDATA[ */
+var storyData = {"logoUrl":"https:\/\/preview.emmanevangelista.com\/novellino-2025\/wp-content\/themes\/novellino-2025\/assets\/media\/logos\/white.png"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=1.0.0" id="nv-story-js"></script>
 <script type="text/javascript" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/contact.js?ver=1.0.0" id="nv-contact-js"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.8.3">
@@ -52,8 +58,8 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 
 <header class="group/header z-10 top-0 left-0 w-full px-4 lg:px-14 transition-colors data-active:bg-red-secondary data-active-mobile-nav:bg-red-secondary lg:data-active-mobile-nav:not-data-active:not-data-always-active:bg-transparent data-always-active:bg-red-secondary fixed active " data-always-active="true">
   <div class="mx-auto max-w-[1240px] flex flex-row gap-x-4 lg:justify-between items-center">
-    <a href="https://preview.emmanevangelista.com/novellino-2025" class="shrink-0 grow-0 mr-auto lg:mr-0">
-      <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18" alt="Novellino">
+    <a href="https://preview.emmanevangelista.com/novellino-2025" class="shrink grow-0 mr-auto lg:mr-0">
+      <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png" class="h-18 w-full object-contain" alt="Novellino">
     </a>
 
     <div class="hidden lg:flex flex-row gap-x-10 shrink-0 grow-1 items-center justify-center text-base text-white font-medium"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
@@ -75,16 +81,16 @@ Shop now
 </a>
 
       <div id="shop-now-menu" class="absolute top-[calc(100%+4px)] rounded-xl px-6 py-4 min-w-full bg-white hidden flex-col gap-y-2 shadow-[0px_1px_5px_0px_#00000026]">
-                  <a class="block" href="https://shopee.ph/novellinowines_officialstore">
+                  <a class="block" target="_blank" href="https://shopee.ph/novellinowines_officialstore">
             <div class="min-h-10 flex flex-row items-center gap-x-1 justify-between font-extrabold text-base text-red-secondary">
               <span>Shopee</span>
-                              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/shopee-colored-icon.png" alt="Shopee" class="size-10 object-contain">
+                              <img src="" alt="Shopee" class="size-10 object-contain">
                           </div>
           </a>
-                  <a class="block" href="https://www.lazada.com.ph/shop/novellino-wines-official-store">
+                  <a class="block" target="_blank" href="https://www.lazada.com.ph/shop/novellino-wines-official-store">
             <div class="min-h-10 flex flex-row items-center gap-x-1 justify-between font-extrabold text-base text-red-secondary">
               <span>Lazada</span>
-                              <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/lazada-colored-icon.svg" alt="Lazada" class="size-10 object-contain">
+                              <img src="" alt="Lazada" class="size-10 object-contain">
                           </div>
           </a>
               </div>
@@ -157,13 +163,13 @@ Return to Home  </button>
   </div>
 </section>
 
-<section class="rounded-t-3xl lg:min-h-dvh 2xl:min-h-[unset] bg-red-secondary flex flex-col-reverse lg:grid grid-cols-2 text-white overflow-clip">
-  <div class="flex flex-col justify-center px-4 py-10 2xl:py-30 lg:px-20">
+<section class="rounded-t-3xl lg:h-dvh 2xl:h-[750px] bg-red-secondary flex flex-col-reverse lg:grid grid-cols-2 text-white overflow-clip">
+  <div class="h-full flex flex-col justify-center px-4 py-10 2xl:py-30 lg:px-20">
     <div class="ml-auto lg:max-w-[560px] self-center">
       <p class="mb-6 lg:mb-10 text-h2 lg:text-[56px] font-bold leading-[120%] text-center lg:text-left">
         Whether it’s a party, a date night, or a meaningful gift, the right wine is here      </p>
 
-      <div class="flex flex-row flex-wrap gap-2.5 mb-6 justify-center lg:justify-start">
+      <div class="flex flex-row flex-wrap gap-2.5 justify-center lg:justify-start">
         
 <a class="block w-fit " href="https://shopee.ph/novellinowines_officialstore" target="_blank">
   <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5" role="button">
@@ -175,17 +181,10 @@ Shop on Shopee  </button>
 Shop on Lazada  </button>
 </a>
       </div>
-
-      <div class="w-fit mx-auto lg:mx-0">
-  <a href="https://preview.emmanevangelista.com/novellino-2025/products" class="flex flex-row items-center gap-x-1 border-b w-fit text-base font-extrabold border-b-white">
-    Find us in-store    <svg width="14" height="11" viewbox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13.0104 5.81586L8.41424 10.412C8.32047 10.5058 8.1933 10.5585 8.06069 10.5585C7.92808 10.5585 7.8009 10.5058 7.70714 10.412C7.61337 10.3183 7.56069 10.1911 7.56069 10.0585C7.56069 9.92589 7.61337 9.79871 7.70714 9.70494L11.4499 5.96214L1.34317 5.96258C1.21049 5.96258 1.08324 5.90987 0.989424 5.81605C0.895604 5.72223 0.842896 5.59498 0.842896 5.4623C0.842897 5.32962 0.895604 5.20237 0.989425 5.10855C1.08324 5.01473 1.21049 4.96202 1.34317 4.96202L11.4499 4.96247L7.70714 1.21966C7.61337 1.12589 7.56069 0.998716 7.56069 0.866108C7.56069 0.7335 7.61337 0.606323 7.70714 0.512555C7.8009 0.418786 7.92808 0.366108 8.06069 0.366108C8.1933 0.366108 8.32047 0.418786 8.41424 0.512555L13.0104 5.10875C13.1042 5.20252 13.1569 5.32969 13.1569 5.4623C13.1569 5.59491 13.1042 5.72209 13.0104 5.81586Z" fill="currentColor"></path>
-    </svg>
-  </a>
-</div>    </div>
+    </div>
   </div>
 
-      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/cta-scaled.jpg" class="h-full max-h-[240px] lg:max-h-[unset] w-full object-cover object-[70%_center]">
+      <img id="" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/cta-scaled.jpg" class="h-full max-h-[440px] lg:max-h-[unset] min-h-0 w-full object-cover object-[70%_center]">
   </section>
 <footer class="mt-auto border-t border-[#EFF0F6] p-4 bg-red-secondary text-white">
   <div class="max-w-[1280px] md:min-h-48 mx-auto grid gap-y-4 md:grid-cols-[1fr_max-content_1fr] items-center">
@@ -195,19 +194,19 @@ Shop on Lazada  </button>
 
     <div class="flex flex-row gap-x-10 md:gap-x-6 items-center text-white">
               <a href="https://www.facebook.com/novellinowines" target="_blank" class="size-6 flex items-center justify-center">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/facebook-icon-white.svg" alt="Facebook" class="size-6 object-contain">
+          <img src="" alt="Facebook" class="size-6 object-contain">
         </a>
               <a href="https://x.com/NovellinoWines" target="_blank" class="size-6 flex items-center justify-center">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/x-icon-white.svg" alt="X" class="size-6 object-contain">
+          <img src="" alt="X" class="size-6 object-contain">
         </a>
               <a href="https://www.instagram.com/novellinowines/" target="_blank" class="size-6 flex items-center justify-center">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/instagram-icon-white.svg" alt="Instagram" class="size-6 object-contain">
+          <img src="" alt="Instagram" class="size-6 object-contain">
         </a>
               <a href="https://shopee.ph/novellinowines_officialstore" target="_blank" class="size-6 flex items-center justify-center">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/shopee-icon-white.svg" alt="Shopee" class="size-6 object-contain">
+          <img src="" alt="Shopee" class="size-6 object-contain">
         </a>
               <a href="https://www.lazada.com.ph/shop/novellino-wines-official-store" target="_blank" class="size-6 flex items-center justify-center">
-          <img src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/lazada-icon-white.svg" alt="Lazada" class="size-6 object-contain">
+          <img src="" alt="Lazada" class="size-6 object-contain">
         </a>
           </div>
 
