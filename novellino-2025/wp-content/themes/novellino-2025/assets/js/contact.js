@@ -129,31 +129,11 @@ function reorderProductIds() {
       });
     }
   });
-
-  if (container.children.length > 1) {
-    container.querySelectorAll(".remove-row").forEach((el, idx) => {
-      el.classList.remove("hidden");
-      el.classList.add("flex");
-    });
-  } else {
-    container.querySelector(".remove-row").classList.remove("flex");
-    container.querySelector(".remove-row").classList.add("hidden");
-  }
 }
 
 function addProduct() {
-  const container = document.getElementById("requests-container");
-  const clone = container.lastElementChild.cloneNode(true);
-
-  clone.querySelector("[data-field-name^='quantity-'] input").value = 1;
-  clone.querySelectorAll("input:not([type=checkbox]), select").forEach((el) => {
-    el.addEventListener("change", onInputChangeListener);
-  });
-  clone.querySelectorAll("[data-has-error]").forEach((el) => {
-    delete el.dataset.hasError;
-  });
-
-  container.appendChild(clone);
+  const clone = productRow.cloneNode(true);
+  document.getElementById("requests-container").appendChild(clone);
   reorderProductIds();
 }
 
@@ -186,12 +166,6 @@ function setFieldGroupError(element) {
 function buildContactFormData() {
   const form = document.getElementById("contact-form");
   const formdata = new FormData(form);
-
-  console.group();
-  for ([key, value] of formdata.entries()) {
-    console.log(key, value);
-  }
-  console.groupEnd();
 
   return formdata;
 }
@@ -307,6 +281,11 @@ function startAnotherForm() {
     el.classList.add("hidden");
   });
 
+  // remove buy request rows
+  document.getElementById("requests-container").replaceChildren();
+  addProduct();
+  reorderProductIds();
+
   // display
   document.querySelector(".form-header").classList.remove("hidden!");
   form.classList.remove("hidden!");
@@ -321,6 +300,8 @@ function onInputChangeListener(event) {
   }
 }
 
+var productRow = null;
+
 document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll(
@@ -329,4 +310,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach((el) => {
       el.addEventListener("change", onInputChangeListener);
     });
+
+  productRow = document
+    .getElementById("requests-container")
+    .lastElementChild.cloneNode(true);
 });
