@@ -91,11 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function scrollToYearGroup(yearGroup) {
-  document
-    .querySelector(
-      `[data-year-group="${yearGroup}"]:not(nav > [data-year-group="${yearGroup}"])`
-    )
-    .scrollIntoView({
-      behavior: "smooth",
-    });
+  window.scrollTo({
+    top:
+      document
+        .querySelector(
+          `[data-year-group="${yearGroup}"]:not(nav > [data-year-group="${yearGroup}"])`
+        )
+        .getBoundingClientRect().top +
+      window.scrollY -
+      document.querySelector("header").getBoundingClientRect().height -
+      document.querySelector(".year-group-nav").getBoundingClientRect().height,
+    behavior: "smooth",
+  });
 }
