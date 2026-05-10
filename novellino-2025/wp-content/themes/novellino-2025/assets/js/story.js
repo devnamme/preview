@@ -27,6 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelectorAll("nav [data-year-group]").forEach((link) => {
             if (link.dataset.yearGroup === group.dataset.yearGroup) {
               link.dataset.active = true;
+
+              const bcr = link.getBoundingClientRect();
+
+              if (bcr.left < 0 || window.innerWidth - bcr.right < 0) {
+                const parent = link.closest("nav").parentElement;
+                parent.scrollTo({
+                  left:
+                    bcr.left -
+                    document
+                      .querySelector("nav [data-year-group]")
+                      .getBoundingClientRect().left,
+                  behavior: "smooth",
+                });
+              }
             } else {
               delete link.dataset.active;
             }

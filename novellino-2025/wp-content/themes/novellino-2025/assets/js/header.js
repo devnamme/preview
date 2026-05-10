@@ -32,6 +32,15 @@ function toggleShopList() {
   }
 }
 
+document.addEventListener("click", (event) => {
+  if (
+    !event.target.closest("#shop-now-container") &&
+    document.getElementById("shop-now-container").dataset.active === "true"
+  ) {
+    toggleShopList();
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header");
   const body = document.getElementById("main-body") ?? document.documentElement;

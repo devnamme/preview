@@ -22,7 +22,7 @@ function setActiveFormTab(event) {
 
     form
       .querySelectorAll(
-        "[data-field-name='company'] .required-text, [data-field-name='position'] .required-text"
+        "[data-field-name='company'] .required-text, [data-field-name='position'] .required-text",
       )
       .forEach((el) => {
         el.classList.add("hidden");
@@ -46,7 +46,7 @@ function setActiveFormTab(event) {
 
     form
       .querySelectorAll(
-        "[data-field-name='company'] .required-text, [data-field-name='position'] .required-text"
+        "[data-field-name='company'] .required-text, [data-field-name='position'] .required-text",
       )
       .forEach((el) => {
         el.classList.remove("hidden");
@@ -62,7 +62,7 @@ function onBusinessTypeChange(event) {
   const value = event.target.value;
 
   const specifyGroup = document.querySelector(
-    "[data-field-name='business-type-others']"
+    "[data-field-name='business-type-others']",
   );
   if (value === "others") {
     specifyGroup.classList.remove("hidden");
@@ -102,10 +102,10 @@ function reorderProductIds() {
   const container = document.getElementById("requests-container");
 
   Array.from(container.children).forEach((group, idx) => {
-    const names = ["quantity", "units", "product"];
+    const names = ["quantity", "product"];
     for (let i = 0; i < names.length; i++) {
       const dataEls = group.querySelectorAll(
-        `[data-field-name^="${names[i]}-"`
+        `[data-field-name^="${names[i]}-"`,
       );
       const idEls = group.querySelectorAll(`[id^="${names[i]}-"]`);
       const nameEls = group.querySelectorAll(`[name^="${names[i]}-"]`);
@@ -116,10 +116,6 @@ function reorderProductIds() {
       });
       idEls.forEach((el) => {
         el.setAttribute("id", `${names[i]}-${idx}`);
-
-        if (i === 0 && el.tagName === "INPUT") {
-          el.value = 1;
-        }
       });
       nameEls.forEach((el) => {
         el.setAttribute("name", `${names[i]}-${idx}`);
@@ -170,7 +166,7 @@ function buildContactFormData() {
   return formdata;
 }
 
-function validateContactForm() {
+function validateContactForm(event) {
   const form = document.getElementById("contact-form");
   const formdata = buildContactFormData();
   const mode = formdata.get("mode");
@@ -226,7 +222,7 @@ function validateContactForm() {
     const container = document.getElementById("requests-container");
     const count = container.children.length;
 
-    const fields = ["quantity", "units", "product"];
+    const fields = ["quantity", "product"];
     for (let i = 0; i < count; i++) {
       for (let j = 0; j < fields.length; j++) {
         if (!formdata.get(`${fields[j]}-${i}`)) {
@@ -238,7 +234,7 @@ function validateContactForm() {
   }
 
   if (isValid) {
-    submitContactForm(formdata);
+    submitContactForm(event, formdata);
   } else {
     window.scrollTo({
       top:
@@ -250,19 +246,48 @@ function validateContactForm() {
   }
 }
 
-function submitContactForm(formdata) {
-  // TODO AJAX
+function submitContactForm(event, formdata) {
+  event.target.disabled = true;
+  event.target.innerText = "Submitting...";
 
-  // on success
-  document.querySelector(".form-header").classList.add("hidden!");
-  document.querySelector("#contact-form").classList.add("hidden!");
-  const successContainer = document.querySelector(".form-success-container");
-  successContainer.classList.remove("hidden!");
+  formdata.append("action", "contact_form_submission");
+  formdata.append("nonce", ContactPage.nonce);
 
-  window.scrollTo({
-    top: successContainer.getBoundingClientRect().top + window.scrollY - 120,
-    behavior: "smooth",
-  });
+  fetch(ContactPage.ajax_url, {
+    method: "POST",
+    body: formdata,
+    credentials: "same-origin",
+  })
+    .then((response) => {
+      if (response.ok && response.status === 200) {
+        // on success
+        document.querySelector(".form-header").classList.add("hidden!");
+        document.querySelector("#contact-form").classList.add("hidden!");
+        const successContainer = document.querySelector(
+          ".form-success-container",
+        );
+        successContainer.classList.remove("hidden!");
+
+        window.scrollTo({
+          top:
+            successContainer.getBoundingClientRect().top + window.scrollY - 120,
+          behavior: "smooth",
+        });
+
+        event.target.innerText = "Submit";
+      } else {
+        alert("An error occurred. Please try again later.");
+        event.target.innerText = "Submit";
+      }
+    })
+    .catch((error) => {
+      alert("An error occurred. Please try again later.");
+      console.error(error);
+      event.target.innerText = "Submit";
+    })
+    .finally(() => {
+      event.target.disabled = false;
+    });
 }
 
 function startAnotherForm() {
@@ -305,7 +330,7 @@ var productRow = null;
 document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll(
-      "#contact-form input:not([type=checkbox]), #contact-form select"
+      "#contact-form input:not([type=checkbox]), #contact-form select",
     )
     .forEach((el) => {
       el.addEventListener("change", onInputChangeListener);
