@@ -1,46 +1,3 @@
-function toggleShopList() {
-  const container = document.getElementById("shop-now-container");
-  const menu = document.getElementById("shop-now-menu");
-  container.dataset.active =
-    container.dataset.active === "true" ? "false" : "true";
-
-  const isActive = container.dataset.active === "true";
-  if (isActive) {
-    Motion.animate(
-      menu,
-      {
-        display: ["none", "flex"],
-        opacity: [0, 1],
-      },
-      {
-        duration: 0.3,
-        ease: "linear",
-      }
-    );
-  } else {
-    Motion.animate(
-      menu,
-      {
-        display: ["flex", "none"],
-        opacity: [1, 0],
-      },
-      {
-        duration: 0.3,
-        ease: "linear",
-      }
-    );
-  }
-}
-
-document.addEventListener("click", (event) => {
-  if (
-    !event.target.closest("#shop-now-container") &&
-    document.getElementById("shop-now-container").dataset.active === "true"
-  ) {
-    toggleShopList();
-  }
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header");
   const body = document.getElementById("main-body") ?? document.documentElement;
@@ -60,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         source: body,
         target: body,
-      }
+      },
     );
   }
 });
@@ -79,7 +36,7 @@ function openMobileNav() {
     },
     {
       duration: 0.3,
-    }
+    },
   );
 
   Motion.animate(
@@ -89,7 +46,7 @@ function openMobileNav() {
     },
     {
       duration: 0.3,
-    }
+    },
   );
 
   document
@@ -118,7 +75,7 @@ async function closeMobileNav() {
     },
     {
       duration: 0.3,
-    }
+    },
   );
 
   await Motion.animate(
@@ -128,7 +85,7 @@ async function closeMobileNav() {
     },
     {
       duration: 0.3,
-    }
+    },
   ).finished.then(() => {
     delete wrapper.dataset.active;
   });
@@ -137,5 +94,74 @@ async function closeMobileNav() {
 function onMobileNavWrapperClick(event) {
   if (!event.target.closest(".mobile-nav")) {
     closeMobileNav();
+  }
+}
+
+function openSearch() {
+  const header = document.querySelector("header");
+  const wrapper = document.querySelector(".search-wrapper");
+
+  if (wrapper.dataset.active) {
+    return;
+  }
+
+  header.dataset.activeSearch = true;
+  wrapper.dataset.active = true;
+
+  Motion.animate(
+    wrapper,
+    {
+      opacity: [0, 1],
+    },
+    {
+      duration: 0.3,
+    },
+  );
+
+  const container = wrapper.querySelector(".search-container");
+  Motion.animate(
+    container,
+    {
+      translateY: ["-300%", "0%"],
+    },
+    {
+      duration: 0.3,
+    },
+  );
+}
+
+function closeSearch() {
+  const header = document.querySelector("header");
+  delete header.dataset.activeSearch;
+
+  const wrapper = document.querySelector(".search-wrapper");
+  const container = wrapper.querySelector(".search-container");
+
+  Motion.animate(
+    container,
+    {
+      translateY: ["0%", "-300%"],
+    },
+    {
+      duration: 0.3,
+    },
+  );
+
+  Motion.animate(
+    wrapper,
+    {
+      opacity: [1, 0],
+    },
+    {
+      duration: 0.3,
+    },
+  ).finished.then(() => {
+    delete wrapper.dataset.active;
+  });
+}
+
+function onSearchWrapperClick(event) {
+  if (!event.target.closest(".search-container")) {
+    closeSearch();
   }
 }

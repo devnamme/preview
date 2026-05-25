@@ -13,9 +13,11 @@ function setActiveFormTab(event) {
   document.getElementById("mode").value = tab;
 
   if (tab === "BUY") {
-    form.querySelectorAll("[data-sell-only]").forEach((el) => {
-      el.classList.add("hidden");
-    });
+    form
+      .querySelectorAll("[data-buy-only], [data-sell-only], [data-supply-only]")
+      .forEach((el) => {
+        el.classList.add("hidden");
+      });
     form.querySelectorAll("[data-buy-only]").forEach((el) => {
       el.classList.remove("hidden");
     });
@@ -27,22 +29,41 @@ function setActiveFormTab(event) {
       .forEach((el) => {
         el.classList.add("hidden");
       });
-  } else {
-    form.querySelectorAll("[data-buy-only]").forEach((el) => {
-      el.classList.add("hidden");
-    });
-    form.querySelectorAll("[data-sell-only]").forEach((el) => {
-      if (el.dataset.fieldName !== "business-type-others") {
-        el.classList.remove("hidden");
-      } else {
-        if (
-          form.querySelector("[data-field-name='business-type'] select")
-            .value === "others"
-        ) {
+  } else if (tab === "SELL" || tab === "SUPPLY") {
+    form
+      .querySelectorAll("[data-buy-only], [data-sell-only], [data-supply-only]")
+      .forEach((el) => {
+        el.classList.add("hidden");
+      });
+
+    if (tab === "SELL") {
+      form.querySelectorAll("[data-sell-only]").forEach((el) => {
+        if (el.dataset.fieldName !== "business-type-others") {
           el.classList.remove("hidden");
+        } else {
+          if (
+            form.querySelector("[data-field-name='business-type-sell'] select")
+              .value === "others"
+          ) {
+            el.classList.remove("hidden");
+          }
         }
-      }
-    });
+      });
+    } else if (tab === "SUPPLY") {
+      form.querySelectorAll("[data-supply-only]").forEach((el) => {
+        if (el.dataset.fieldName !== "business-type-others") {
+          el.classList.remove("hidden");
+        } else {
+          if (
+            form.querySelector(
+              "[data-field-name='business-type-supply'] select",
+            ).value === "others"
+          ) {
+            el.classList.remove("hidden");
+          }
+        }
+      });
+    }
 
     form
       .querySelectorAll(
@@ -176,8 +197,22 @@ function validateContactForm(event) {
   let singleFields = [];
   if (mode === "BUY") {
     singleFields = ["name", "address"];
-  } else {
-    singleFields = ["name", "company", "position", "business-type", "address"];
+  } else if (mode === "SELL") {
+    singleFields = [
+      "name",
+      "company",
+      "position",
+      "business-type-sell",
+      "address",
+    ];
+  } else if (mode === "SUPPLY") {
+    singleFields = [
+      "name",
+      "company",
+      "position",
+      "business-type-supply",
+      "address",
+    ];
   }
 
   singleFields.forEach((name) => {
@@ -190,7 +225,17 @@ function validateContactForm(event) {
   // sell > business type > others
   if (
     mode === "SELL" &&
-    formdata.get("business-type") === "others" &&
+    formdata.get("business-type-sell") === "others" &&
+    !formdata.get("business-type-others")
+  ) {
+    setFieldGroupError(form.elements["business-type-others"]);
+    isValid = false;
+  }
+
+  // supply > business type > others
+  if (
+    mode === "SUPPLY" &&
+    formdata.get("business-type-supply") === "others" &&
     !formdata.get("business-type-others")
   ) {
     setFieldGroupError(form.elements["business-type-others"]);
@@ -295,7 +340,10 @@ function startAnotherForm() {
   form.reset();
 
   // hide business type
-  if (form.elements.mode.value === "SELL") {
+  if (
+    form.elements.mode.value === "SELL" ||
+    form.elements.mode.value === "SUPPLY"
+  ) {
     form.elements["business-type-others"]
       .closest(".group[data-field-name]")
       .classList.add("hidden");
