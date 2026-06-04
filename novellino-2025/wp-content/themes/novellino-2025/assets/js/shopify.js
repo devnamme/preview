@@ -32,90 +32,19 @@ window.ShopifyBuyManager = (function () {
     }
   }
 
-  function generateAddToCartButton(productId, targetElementId, els = {}) {
+  function generateCart() {
     ensureReady(async function () {
-      const node = document.getElementById(targetElementId);
-      if (!node) return;
-
       try {
-        const product = await client.product.fetch(
-          `gid://shopify/Product/${productId}`,
-        );
+        const container = document.querySelector(".global-cart-container");
+        if (!container) return;
 
-        ui.createComponent("product", {
-          id: productId,
-          node: node,
+        ui.createComponent("cart", {
+          node: container,
           moneyFormat: "%E2%82%B1%7B%7Bamount%7D%7D",
 
           options: {
-            product: {
-              styles: {
-                product: {
-                  "@media (min-width: 601px)": {
-                    "max-width": "calc(25% - 20px)",
-                    "margin-left": "20px",
-                    "margin-bottom": "50px",
-                  },
-                },
-                button: {
-                  ":hover": {
-                    "background-color": "#832036",
-                  },
-                  "background-color": "#4d1320",
-                  ":focus": {
-                    "background-color": "#832036",
-                  },
-                },
-              },
-              contents: {
-                img: false,
-                title: false,
-                price: false,
-              },
-              text: {
-                button: "Add to cart",
-              },
-            },
-            productSet: {
-              styles: {
-                products: {
-                  "@media (min-width: 601px)": {
-                    "margin-left": "-20px",
-                  },
-                },
-              },
-            },
-            modalProduct: {
-              contents: {
-                img: false,
-                imgWithCarousel: true,
-                button: false,
-                buttonWithQuantity: true,
-              },
-              styles: {
-                product: {
-                  "@media (min-width: 601px)": {
-                    "max-width": "100%",
-                    "margin-left": "0px",
-                    "margin-bottom": "0px",
-                  },
-                },
-                button: {
-                  ":hover": {
-                    "background-color": "#832036",
-                  },
-                  "background-color": "#4d1320",
-                  ":focus": {
-                    "background-color": "#832036",
-                  },
-                },
-              },
-              text: {
-                button: "Add to cart",
-              },
-            },
-            option: {},
             cart: {
+              // iframe: false,
               styles: {
                 button: {
                   ":hover": {
@@ -226,34 +155,78 @@ window.ShopifyBuyManager = (function () {
             },
           },
         });
-
-        // if (els.addToCartButton && els.outOfStockButton) {
-        //   if (product.availableForSale) {
-        //     els.outOfStockButton.remove();
-        //     els.addToCartButton.classList.remove("hidden");
-
-        //     els.addToCartButton.onclick = null;
-        //     els.addToCartButton.addEventListener("click", async () => {
-        //       // THIS is the correct Buy Button-safe way:
-        //       // ui.components.cart.addVariantToCart(variantId, 1);
-        //       // const foo = document.querySelector(".shopify-buy__btn");
-        //       // console.log(foo);
-        //       // console.log(node.querySelector(".shopify-buy__btn"));
-        //     });
-        //   } else {
-        //     els.addToCartButton?.remove();
-        //     els.outOfStockButton?.classList.remove("hidden");
-        //   }
-        // }
       } catch (error) {
         console.error(error);
-      } finally {
-        els.loader?.remove();
+        container.remove();
+      }
+    });
+  }
+
+  function generateAddToCartButton(productId, wineSlug) {
+    ensureReady(async function () {
+      const container = document.querySelector(
+        `.add-to-cart-container[data-wine="${wineSlug}"]`,
+      );
+      if (!container) return;
+
+      try {
+        const product = await client.product.fetch(
+          `gid://shopify/Product/${productId}`,
+        );
+
+        ui.createComponent("product", {
+          id: productId,
+          node: container,
+          moneyFormat: "%E2%82%B1%7B%7Bamount%7D%7D",
+
+          options: {
+            product: {
+              iframe: false,
+              styles: {
+                product: {
+                  "@media (min-width: 601px)": {
+                    "max-width": "calc(25% - 20px)",
+                    "margin-left": "20px",
+                    "margin-bottom": "50px",
+                  },
+                },
+                button: {
+                  ":hover": {
+                    "background-color": "#832036",
+                  },
+                  "background-color": "#4d1320",
+                  ":focus": {
+                    "background-color": "#832036",
+                  },
+                },
+              },
+              contents: {
+                img: false,
+                title: false,
+                price: false,
+              },
+              text: {
+                button: "Add to cart",
+              },
+            },
+          },
+        });
+
+        document
+          .querySelector(`.add-to-cart-custom-button[data-wine="${wineSlug}"]`)
+          ?.addEventListener("click", (event) => {
+            event.preventDefault();
+            container.querySelector("button.shopify-buy__btn")?.click();
+          });
+      } catch (error) {
+        console.error(error);
+        container.remove();
       }
     });
   }
 
   return {
+    generateCart,
     generateAddToCartButton,
   };
 })();

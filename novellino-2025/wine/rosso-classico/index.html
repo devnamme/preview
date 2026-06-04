@@ -52,7 +52,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
 </script>
 <script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0"></script>
 <script id="nv-contact-js-extra">
-var ContactPage = {"ajax_url":"https://preview.emmanevangelista.com/novellino-2025/wp-admin/admin-ajax.php","nonce":"8e8e5a7d7e"};
+var ContactPage = {"ajax_url":"https://preview.emmanevangelista.com/novellino-2025/wp-admin/admin-ajax.php","nonce":"6ff3438b73"};
 //# sourceURL=nv-contact-js-extra
 </script>
 <script id="nv-contact-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/contact.js?ver=2.0.0"></script>
@@ -184,12 +184,8 @@ Shop now  </button>
                       </div>
         
         <div class="mt-8 flex flex-row gap-x-6 items-center">
-          <svg class="shrink-0 grow-0 text-red-primary animate-spin loader" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
-            <path d="M232,128a104,104,0,0,1-208,0c0-41,23.81-78.36,60.66-95.27a8,8,0,0,1,6.68,14.54C60.15,61.59,40,93.27,40,128a88,88,0,0,0,176,0c0-34.73-20.15-66.41-51.34-80.73a8,8,0,0,1,6.68-14.54C208.19,49.64,232,87,232,128Z"></path>
-          </svg>
-
           
-<a class="block w-fit hidden add-to-cart-button">
+<a class="block w-fit add-to-cart-custom-button" data-wine="rosso-classico">
   <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-red-primary text-white bg-red-secondary flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" id="custom-shopify-add-to-cart" role="button">
 
           <svg class="size-6 shrink-0 grow-0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
@@ -201,12 +197,7 @@ Shop now  </button>
 
           Add to Cart  </button>
 </a>
-
-<a class="block w-fit hidden out-of-stock-button">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-red-primary text-white bg-red-secondary flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" disabled role="button">
-Out of stock  </button>
-</a>
-          <div id="testing-button"></div>
+            <div class="!hidden add-to-cart-container" data-wine="rosso-classico"></div>
 
             <div class="flex flex-row items-center gap-x-3">
                                 <a href="https://shopee.ph/Novellino-Rosso-Classico-Red-Wine-i.287446135.4144081135" target="_blank" class="block text-red-secondary">
@@ -222,13 +213,8 @@ Out of stock  </button>
 
 <script>
   ShopifyBuyManager.generateAddToCartButton(
-    "8534280437952",
-    'testing-button',
-    {
-      loader: document.querySelector('#rosso-classico .loader'),
-      // addToCartButton: document.querySelector('#rosso-classico .add-to-cart-button'),
-      // outOfStockButton: document.querySelector('#rosso-classico .out-of-stock-button'),
-    }
+    '8534280437952',
+    'rosso-classico',
   );
 </script>
 
@@ -309,6 +295,12 @@ Shop now  </button>
       Copyright © 2025 Novellino    </p>
   </div>
 </footer>
+
+<div class="global-cart-container"></div>
+
+<script>
+ShopifyBuyManager.generateCart();
+</script>
 
 <!-- </div> -->
 </body>
