@@ -51,11 +51,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
 //# sourceURL=nv-story-js-extra
 </script>
 <script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0"></script>
-<script id="nv-contact-js-extra">
-var ContactPage = {"ajax_url":"https://preview.emmanevangelista.com/novellino-2025/wp-admin/admin-ajax.php","nonce":"6ff3438b73"};
-//# sourceURL=nv-contact-js-extra
-</script>
-<script id="nv-contact-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/contact.js?ver=2.0.0"></script>
+<script id="nv-wine-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/wine.js?ver=2.0.0"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 7.0">
 <link rel="canonical" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-classico/">
@@ -83,7 +79,7 @@ var ContactPage = {"ajax_url":"https://preview.emmanevangelista.com/novellino-20
     </a>
 
     <div class="hidden lg:flex flex-row gap-x-10 shrink-0 grow-1 items-center justify-center text-base text-white font-medium"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
-<a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Our Wines</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Shop Wines</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-purpose/" class="">Our Purpose</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-story/" class="">Our Story</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="">Contact Us</a>
@@ -142,15 +138,15 @@ Shop now  </button>
 <div class="group/mobilenav mobile-nav-wrapper hidden lg:hidden! not-data-active:pointer-events-none fixed top-0 left-0 z-9 lg:p-4 w-full h-full bg-[#2103037A] opacity-0 data-active:flex flex-col items-center justify-start pointer-events-none data-active:pointer-events-auto" onclick="onMobileNavWrapperClick(event)">
   <div class="mobile-nav px-6 pb-8 pt-26 w-full bg-white">
     <div class="flex flex-col gap-y-8 items-center text-center"><a href="https://preview.emmanevangelista.com/novellino-2025/" class="">Home</a>
-<a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Our Wines</a>
+<a href="https://preview.emmanevangelista.com/novellino-2025/products/" class="">Shop Wines</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-purpose/" class="">Our Purpose</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/our-story/" class="">Our Story</a>
 <a href="https://preview.emmanevangelista.com/novellino-2025/contact/" class="">Contact Us</a>
 </div>  </div>
 </div>
 
-<div class="lg:px-14 lg:py-12" id="rosso-classico">
-  <div class="mx-auto w-full h-full lg:h-[unset] max-w-[1000px]">
+<div class="lg:px-14 lg:py-12">
+  <div class="mx-auto pb-4 lg:pb-0 w-full h-full lg:h-[unset] max-w-[1000px] flex flex-col items-stretch gap-y-12" data-wine="rosso-classico">
     <div class="grid lg:grid-cols-[auto_1fr] gap-x-8 items-center">
       <div class="w-full lg:w-[425px] h-[400px] lg:h-[550px] relative">
         <div class="absolute top-0 left-0 z-1 w-full h-[calc(100%-80px)] lg:h-full rounded-b-2xl lg:rounded-2xl overflow-clip bg-red-custom-light">
@@ -166,6 +162,7 @@ Shop now  </button>
                       </div>
         
         <h2 class="mb-3 name">Rosso Classico</h2>
+        <h3 class="mb-3 hidden price-text" data-wine="rosso-classico"></h3>
         <p class="mb-4 text-lg description">Classic sweet red wine</p>
 
                   <div class="flex flex-row flex-wrap gap-x-3 gap-y-2">
@@ -183,40 +180,51 @@ Shop now  </button>
               </div>
                       </div>
         
-        <div class="mt-8 flex flex-row gap-x-6 items-center">
-          
-<a class="block w-fit add-to-cart-custom-button" data-wine="rosso-classico">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-red-primary text-white bg-red-secondary flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" id="custom-shopify-add-to-cart" role="button">
+        <div class="mt-8 flex lg:flex-col gap-y-8 gap-x-3">
+          <div class="flex flex-row gap-x-4 items-center">
+            <div class="border border-[#CFD8DC] rounded-xl overflow-clip w-fit min-h-9 grid grid-cols-[36px_auto_36px] quantity-input-container lg:max-w-30 lg:h-9" data-wine="rosso-classico">
+  <button class="bg-[#F2F4F6] flex flex-col items-center justify-center enabled:cursor-pointer" onclick="onQuantityIncrementClick(event, -1)">
+    <svg class="text-[#37474F] size-3.5" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
+      <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z"></path>
+    </svg>
+  </button>
 
-          <svg class="size-6 shrink-0 grow-0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
-            <rect width="256" height="256" fill="none"></rect>
-            <circle cx="88" cy="216" r="16" fill="currentColor"></circle>
-            <circle cx="192" cy="216" r="16" fill="currentColor"></circle>
-            <path d="M16,32H40L76.75,164.28A16,16,0,0,0,92.16,176H191a16,16,0,0,0,15.42-11.72L232,72H51.11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-          </svg>
+  <input class="w-9 text-center text-[#112D4E] no-scrollbar min-w-0" type="number" step="1" value="1" min="1" name="quantity">
 
-          Add to Cart  </button>
+  <button class="bg-[#F2F4F6] flex flex-col items-center justify-center enabled:cursor-pointer" onclick="onQuantityIncrementClick(event, 1)">
+    <svg class="text-[#37474F] size-3.5" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
+      <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+    </svg>
+  </button>
+</div>
+
+            <p class="font-md text-red-primary hidden out-of-stock-text" data-wine="rosso-classico">
+              Out of Stock            </p>
+          </div>
+
+          <div class="grow flex flex-row gap-x-2 lg:gap-x-6 items-center">
+            
+<a class="block w-fit grow lg:grow-0 add-to-cart-button" data-wine="rosso-classico" data-product-id="8534280437952">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-red-primary bg-transparent text-red-primary w-full lg:min-w-[160px] bg-red-secondary flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Add to cart  </button>
 </a>
-            <div class="!hidden add-to-cart-container" data-wine="rosso-classico"></div>
 
-            <div class="flex flex-row items-center gap-x-3">
-                                <a href="https://shopee.ph/Novellino-Rosso-Classico-Red-Wine-i.287446135.4144081135" target="_blank" class="block text-red-secondary">
-                    <svg width="24" height="25" viewbox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_1056_2931)"> <path d="M16.0194 18.4659C15.8834 19.6358 15.1742 20.5829 14.0758 21.0512C13.4604 21.3107 12.6385 21.4529 11.9792 21.4106C10.9649 21.3683 10.0141 21.117 9.12666 20.6709C8.81965 20.5019 8.34656 20.185 7.98566 19.8892C7.89666 19.8047 7.88175 19.7624 7.94629 19.6749C7.97466 19.6237 8.03802 19.5299 8.16793 19.3399C8.36602 19.0598 8.3872 19.0228 8.40829 18.9869C8.47165 18.8959 8.5682 18.8877 8.66911 18.9595C8.68293 18.9736 8.68293 18.9736 8.69056 18.9804C8.70402 18.9951 8.70402 18.9951 8.7402 19.0227C8.77756 19.0513 8.80466 19.0649 8.81129 19.0811C9.76229 19.8256 10.8693 20.2482 11.9868 20.2905C13.538 20.2696 14.6527 19.5721 14.8581 18.4943C15.0696 17.3213 14.1451 16.2973 12.3373 15.7263C11.7677 15.5573 10.3345 14.9849 10.0698 14.8256C8.83084 14.0999 8.24929 13.1473 8.33384 11.966C8.46066 10.3335 9.97729 9.1184 11.8941 9.10777C12.7449 9.10777 13.6026 9.28513 14.4162 9.6274C14.7097 9.75222 15.2334 10.0359 15.4076 10.1716C15.5121 10.249 15.5344 10.3335 15.4699 10.4281C15.4485 10.4859 15.3854 10.5719 15.2765 10.7562C15.1177 10.9984 15.1117 11.0085 15.0829 11.0618C15.0264 11.1507 14.9456 11.1578 14.8379 11.0941C13.9683 10.5027 12.9874 10.2067 11.9157 10.1856C10.5845 10.2067 9.58356 11.0001 9.51911 12.0873C9.50584 13.0639 10.2352 13.7754 11.8147 14.3111C15.0274 15.3461 16.2528 16.5553 16.0194 18.4659ZM12.0579 1.61277C14.1452 1.61277 15.8504 3.59322 15.9348 6.07595H8.18602C8.26056 3.59322 9.97075 1.61277 12.0579 1.61277ZM22.8762 6.54631C22.8762 6.28722 22.6757 6.07595 22.4197 6.07595H22.403H17.3938C17.2671 2.80031 14.924 0.182129 12.0579 0.182129C9.19011 0.182129 6.85311 2.80031 6.72811 6.07595H1.69793C1.44566 6.08167 1.24547 6.28831 1.24547 6.54631C1.24547 6.56122 1.24547 6.56777 1.24547 6.58267H1.23975L1.9542 22.3825C1.9542 22.4252 1.96256 22.4683 1.96256 22.5197C1.96256 22.5297 1.96393 22.5328 1.96393 22.5516V22.5758L1.9692 22.5841C2.07675 23.6857 2.87256 24.5639 3.9602 24.6069V24.6152H19.9156C19.9239 24.6152 19.9288 24.6152 19.9371 24.6152C19.9495 24.6152 19.9495 24.6152 19.9586 24.6152H19.9917V24.6069C21.0947 24.58 21.9979 23.6857 22.084 22.572L22.0888 22.5516C22.0888 22.5411 22.0888 22.5298 22.0888 22.5197C22.0888 22.4875 22.0972 22.467 22.0972 22.4336L22.8762 6.56777C22.8762 6.56195 22.8762 6.55295 22.8762 6.54631Z" fill="currentColor"></path> </g> <defs> <clippath id="clip0_1056_2931"> <rect width="24" height="24.6364" fill="currentColor"></rect> </clippath> </defs> </svg>                  </a>
-                                  <a href="https://www.lazada.com.ph/products/pdp-i1186060134.html" target="_blank" class="block text-red-secondary">
-                    <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"> <defs> <mask id="icon-mask"> <rect width="32" height="32" fill="white"></rect> <path d="M8.98975 11.876H10.2971V18.1678H12.5516V19.4096H8.99535L8.98975 11.876Z" fill="black"></path> <path d="M15.5804 13.7643C16.2729 13.7555 16.9302 14.0718 17.3561 14.6178V13.8764H18.5762V19.4221H17.3561V18.6808C16.9302 19.2276 16.2729 19.543 15.5804 19.5342C14.0592 19.5342 12.9048 18.2349 12.9048 16.6481C12.9048 15.0605 14.0592 13.7643 15.5804 13.7643ZM15.8021 14.8748C14.8142 14.8748 14.1601 15.6521 14.1601 16.6473C14.1601 17.6432 14.8246 18.423 15.8021 18.423C16.7789 18.423 17.4434 17.6464 17.4434 16.6473C17.4434 15.6489 16.7893 14.8748 15.8021 14.8748Z" fill="black"></path> <path d="M19.5247 18.4581L22.4325 14.9835H19.568V13.8755H24.0081V14.8522L21.1107 18.3132H24.0737V19.4212H19.5239V18.4581" fill="black"></path> </mask> </defs> <path d="M16.0058 27.6911C15.8012 27.6926 15.6001 27.6402 15.422 27.5394C13.8986 26.658 2.6161 19.5838 2.19007 19.3678C1.86575 19.2164 1.64431 18.9066 1.60624 18.5506V8.62788C1.59781 8.25765 1.78089 7.90892 2.09068 7.70579L2.17234 7.659C3.26386 6.98188 6.91766 4.75235 7.49539 4.43123C7.6279 4.35248 7.77902 4.31034 7.93333 4.30859C8.07776 4.31034 8.21987 4.34637 8.34774 4.4135C8.34774 4.4135 13.4607 7.74647 14.243 8.04405C14.7916 8.2963 15.3903 8.42184 15.9939 8.41167C16.6783 8.42591 17.3542 8.26085 17.9549 7.93304C18.7195 7.53026 23.6049 4.43094 23.6575 4.43094C23.7807 4.35654 23.9222 4.31818 24.0661 4.31993C24.2204 4.3208 24.3715 4.36294 24.5037 4.44256C25.1692 4.81018 29.6986 7.58286 29.891 7.70521C30.2095 7.8973 30.4028 8.2437 30.399 8.61568V18.5384C30.3632 18.8953 30.1412 19.2063 29.8154 19.3556C29.3894 19.589 18.1418 26.6632 16.5891 27.5272C16.4127 27.6327 16.2113 27.6891 16.0058 27.6911Z" fill="currentColor" mask="url(#icon-mask)"></path> </svg>                  </a>
-                            </div>
-                  </div>
+<a class="block w-fit grow lg:grow-0 buy-now-button" data-wine="rosso-classico">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-red-primary text-white w-full lg:min-w-[160px] bg-red-secondary flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Buy now  </button>
+</a>
+              <div class="hidden lg:flex flex-row items-center gap-x-3">
+                                    <a href="https://shopee.ph/Novellino-Rosso-Classico-Red-Wine-i.287446135.4144081135" target="_blank" class="block text-red-secondary">
+                      <svg width="24" height="25" viewbox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_1056_2931)"> <path d="M16.0194 18.4659C15.8834 19.6358 15.1742 20.5829 14.0758 21.0512C13.4604 21.3107 12.6385 21.4529 11.9792 21.4106C10.9649 21.3683 10.0141 21.117 9.12666 20.6709C8.81965 20.5019 8.34656 20.185 7.98566 19.8892C7.89666 19.8047 7.88175 19.7624 7.94629 19.6749C7.97466 19.6237 8.03802 19.5299 8.16793 19.3399C8.36602 19.0598 8.3872 19.0228 8.40829 18.9869C8.47165 18.8959 8.5682 18.8877 8.66911 18.9595C8.68293 18.9736 8.68293 18.9736 8.69056 18.9804C8.70402 18.9951 8.70402 18.9951 8.7402 19.0227C8.77756 19.0513 8.80466 19.0649 8.81129 19.0811C9.76229 19.8256 10.8693 20.2482 11.9868 20.2905C13.538 20.2696 14.6527 19.5721 14.8581 18.4943C15.0696 17.3213 14.1451 16.2973 12.3373 15.7263C11.7677 15.5573 10.3345 14.9849 10.0698 14.8256C8.83084 14.0999 8.24929 13.1473 8.33384 11.966C8.46066 10.3335 9.97729 9.1184 11.8941 9.10777C12.7449 9.10777 13.6026 9.28513 14.4162 9.6274C14.7097 9.75222 15.2334 10.0359 15.4076 10.1716C15.5121 10.249 15.5344 10.3335 15.4699 10.4281C15.4485 10.4859 15.3854 10.5719 15.2765 10.7562C15.1177 10.9984 15.1117 11.0085 15.0829 11.0618C15.0264 11.1507 14.9456 11.1578 14.8379 11.0941C13.9683 10.5027 12.9874 10.2067 11.9157 10.1856C10.5845 10.2067 9.58356 11.0001 9.51911 12.0873C9.50584 13.0639 10.2352 13.7754 11.8147 14.3111C15.0274 15.3461 16.2528 16.5553 16.0194 18.4659ZM12.0579 1.61277C14.1452 1.61277 15.8504 3.59322 15.9348 6.07595H8.18602C8.26056 3.59322 9.97075 1.61277 12.0579 1.61277ZM22.8762 6.54631C22.8762 6.28722 22.6757 6.07595 22.4197 6.07595H22.403H17.3938C17.2671 2.80031 14.924 0.182129 12.0579 0.182129C9.19011 0.182129 6.85311 2.80031 6.72811 6.07595H1.69793C1.44566 6.08167 1.24547 6.28831 1.24547 6.54631C1.24547 6.56122 1.24547 6.56777 1.24547 6.58267H1.23975L1.9542 22.3825C1.9542 22.4252 1.96256 22.4683 1.96256 22.5197C1.96256 22.5297 1.96393 22.5328 1.96393 22.5516V22.5758L1.9692 22.5841C2.07675 23.6857 2.87256 24.5639 3.9602 24.6069V24.6152H19.9156C19.9239 24.6152 19.9288 24.6152 19.9371 24.6152C19.9495 24.6152 19.9495 24.6152 19.9586 24.6152H19.9917V24.6069C21.0947 24.58 21.9979 23.6857 22.084 22.572L22.0888 22.5516C22.0888 22.5411 22.0888 22.5298 22.0888 22.5197C22.0888 22.4875 22.0972 22.467 22.0972 22.4336L22.8762 6.56777C22.8762 6.56195 22.8762 6.55295 22.8762 6.54631Z" fill="currentColor"></path> </g> <defs> <clippath id="clip0_1056_2931"> <rect width="24" height="24.6364" fill="currentColor"></rect> </clippath> </defs> </svg>                    </a>
+                                      <a href="https://www.lazada.com.ph/products/pdp-i1186060134.html" target="_blank" class="block text-red-secondary">
+                      <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"> <defs> <mask id="icon-mask"> <rect width="32" height="32" fill="white"></rect> <path d="M8.98975 11.876H10.2971V18.1678H12.5516V19.4096H8.99535L8.98975 11.876Z" fill="black"></path> <path d="M15.5804 13.7643C16.2729 13.7555 16.9302 14.0718 17.3561 14.6178V13.8764H18.5762V19.4221H17.3561V18.6808C16.9302 19.2276 16.2729 19.543 15.5804 19.5342C14.0592 19.5342 12.9048 18.2349 12.9048 16.6481C12.9048 15.0605 14.0592 13.7643 15.5804 13.7643ZM15.8021 14.8748C14.8142 14.8748 14.1601 15.6521 14.1601 16.6473C14.1601 17.6432 14.8246 18.423 15.8021 18.423C16.7789 18.423 17.4434 17.6464 17.4434 16.6473C17.4434 15.6489 16.7893 14.8748 15.8021 14.8748Z" fill="black"></path> <path d="M19.5247 18.4581L22.4325 14.9835H19.568V13.8755H24.0081V14.8522L21.1107 18.3132H24.0737V19.4212H19.5239V18.4581" fill="black"></path> </mask> </defs> <path d="M16.0058 27.6911C15.8012 27.6926 15.6001 27.6402 15.422 27.5394C13.8986 26.658 2.6161 19.5838 2.19007 19.3678C1.86575 19.2164 1.64431 18.9066 1.60624 18.5506V8.62788C1.59781 8.25765 1.78089 7.90892 2.09068 7.70579L2.17234 7.659C3.26386 6.98188 6.91766 4.75235 7.49539 4.43123C7.6279 4.35248 7.77902 4.31034 7.93333 4.30859C8.07776 4.31034 8.21987 4.34637 8.34774 4.4135C8.34774 4.4135 13.4607 7.74647 14.243 8.04405C14.7916 8.2963 15.3903 8.42184 15.9939 8.41167C16.6783 8.42591 17.3542 8.26085 17.9549 7.93304C18.7195 7.53026 23.6049 4.43094 23.6575 4.43094C23.7807 4.35654 23.9222 4.31818 24.0661 4.31993C24.2204 4.3208 24.3715 4.36294 24.5037 4.44256C25.1692 4.81018 29.6986 7.58286 29.891 7.70521C30.2095 7.8973 30.4028 8.2437 30.399 8.61568V18.5384C30.3632 18.8953 30.1412 19.2063 29.8154 19.3556C29.3894 19.589 18.1418 26.6632 16.5891 27.5272C16.4127 27.6327 16.2113 27.6891 16.0058 27.6911Z" fill="currentColor" mask="url(#icon-mask)"></path> </svg>                    </a>
+                                </div>
+                      </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  ShopifyBuyManager.generateAddToCartButton(
-    '8534280437952',
-    'rosso-classico',
-  );
-</script>
 
 <section class="px-4 pt-4 pb-8 lg:pt-8 lg:pb-16 lg:px-0">
   <div class="mx-auto max-w-[1240px] border-[1.5px] border-[#0000001A] rounded-2xl p-6 lg:py-12 lg:px-20 bg-white grid lg:grid-cols-[4fr_5fr] gap-x-32 gap-y-4">

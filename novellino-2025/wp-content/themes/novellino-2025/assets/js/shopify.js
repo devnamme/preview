@@ -4,6 +4,9 @@ window.ShopifyBuyManager = (function () {
   let isReady = false;
   let readyQueue = [];
 
+  let cart = null;
+  let variantIds = {};
+
   function initClient() {
     try {
       client = ShopifyBuy.buildClient({
@@ -36,7 +39,10 @@ window.ShopifyBuyManager = (function () {
     ensureReady(async function () {
       try {
         const container = document.querySelector(".global-cart-container");
-        if (!container) return;
+        if (!container) {
+          console.error("container not found");
+          return;
+        }
 
         ui.createComponent("cart", {
           node: container,
@@ -102,6 +108,11 @@ window.ShopifyBuyManager = (function () {
                 total: "Subtotal",
                 button: "Checkout",
               },
+              events: {
+                afterInit: (component) => {
+                  cart = component;
+                },
+              },
             },
             toggle: {
               styles: {
@@ -162,71 +173,133 @@ window.ShopifyBuyManager = (function () {
     });
   }
 
-  function generateAddToCartButton(productId, wineSlug) {
+  function loadVariant(node) {
     ensureReady(async function () {
-      const container = document.querySelector(
-        `.add-to-cart-container[data-wine="${wineSlug}"]`,
-      );
-      if (!container) return;
-
       try {
-        const product = await client.product.fetch(
-          `gid://shopify/Product/${productId}`,
+        const variant = (
+          await client.product.fetch(
+            `gid://shopify/Product/${node.dataset.productId}`,
+          )
+        ).variants[0];
+
+        const available = variant.available;
+        const quantityAvailable = variant.quantityAvailable;
+
+        if (!available) {
+          const wineSelector = `[data-wine="${node.dataset.wine}"]`;
+          // Out of stock text
+          const outOfStockText = document.querySelector(
+            `.out-of-stock-text${wineSelector}`,
+          );
+
+          if (outOfStockText != null) {
+            outOfStockText.classList.remove("hidden");
+          }
+
+          // Add to cart button
+          const addToCartButton = document.querySelector(
+            `.add-to-cart-button${wineSelector}`,
+          );
+
+          if (addToCartButton != null) {
+            addToCartButton
+              .querySelectorAll("button")
+              .forEach((button) => (button.disabled = true));
+            addToCartButton.disabled = true;
+          }
+
+          // Buy now button
+          const buyNowButton = document.querySelector(
+            `.buy-now-button${wineSelector}`,
+          );
+
+          if (buyNowButton != null) {
+            buyNowButton
+              .querySelectorAll("button")
+              .forEach((button) => (button.disabled = true));
+            buyNowButton.disabled = true;
+          }
+
+          // Quantity input
+          const quantityContainer = document.querySelector(
+            `.quantity-input-container${wineSelector}`,
+          );
+
+          if (quantityContainer != null) {
+            quantityContainer.classList.add("opacity-50");
+
+            quantityContainer
+              .querySelectorAll(`input, button`)
+              .forEach((node) => {
+                node.disabled = true;
+              });
+          }
+        }
+
+        const priceText = document.querySelector(
+          `.price-text[data-wine="${node.dataset.wine}"]`,
         );
 
-        ui.createComponent("product", {
-          id: productId,
-          node: container,
-          moneyFormat: "%E2%82%B1%7B%7Bamount%7D%7D",
+        if (priceText != null) {
+          const { amount, currencyCode } = variant.priceV2;
 
-          options: {
-            product: {
-              iframe: false,
-              styles: {
-                product: {
-                  "@media (min-width: 601px)": {
-                    "max-width": "calc(25% - 20px)",
-                    "margin-left": "20px",
-                    "margin-bottom": "50px",
-                  },
-                },
-                button: {
-                  ":hover": {
-                    "background-color": "#832036",
-                  },
-                  "background-color": "#4d1320",
-                  ":focus": {
-                    "background-color": "#832036",
-                  },
-                },
-              },
-              contents: {
-                img: false,
-                title: false,
-                price: false,
-              },
-              text: {
-                button: "Add to cart",
-              },
-            },
-          },
-        });
+          priceText.textContent = new Intl.NumberFormat("en-PH", {
+            style: "currency",
+            currency: currencyCode,
+          }).format(amount);
 
-        document
-          .querySelector(`.add-to-cart-custom-button[data-wine="${wineSlug}"]`)
-          ?.addEventListener("click", (event) => {
-            event.preventDefault();
-            container.querySelector("button.shopify-buy__btn")?.click();
-          });
+          priceText.classList.remove("hidden");
+        }
+
+        variantIds[node.dataset.productId] = variant;
       } catch (error) {
         console.error(error);
-        container.remove();
       }
     });
   }
 
+  async function onAddToCartClick(node) {
+    const productId = node.dataset.productId;
+    if (!productId) {
+      console.error("product not found");
+      return;
+    }
+
+    const variantId = variantIds[productId];
+    if (!variantId) {
+      console.error("variant not found");
+      return;
+    }
+
+    let quantity = 1;
+    const input = document.querySelector(
+      `.quantity-input-container[data-wine="${node.dataset.wine}"] input[name="quantity"]`,
+    );
+
+    if (input != null && input.value.trim() !== "") {
+      quantity = parseInt(input.value);
+    }
+
+    await cart.addVariantToCart(variantId, quantity);
+  }
+
   return {
+    loadVariant,
+    onAddToCartClick,
     generateCart,
-    generateAddToCartButton,
   };
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll(".add-to-cart-button[data-wine][data-product-id]")
+    .forEach((node) => {
+      window.ShopifyBuyManager.loadVariant(node);
+
+      node.addEventListener("click", async (event) => {
+        window.ShopifyBuyManager.onAddToCartClick(
+          event.target.closest("[data-wine][data-product-id]"),
+        );
+      });
+    });
+});
