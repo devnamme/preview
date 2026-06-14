@@ -321,12 +321,16 @@ function submitContactForm(event, formdata) {
 
         event.target.innerText = "Submit";
       } else {
-        alert("An error occurred. Please try again later.");
+        NotificationService.showNotification(
+          NotificationService.TYPE.GENERIC_ERROR,
+        );
         event.target.innerText = "Submit";
       }
     })
     .catch((error) => {
-      alert("An error occurred. Please try again later.");
+      NotificationService.showNotification(
+        NotificationService.TYPE.GENERIC_ERROR,
+      );
       console.error(error);
       event.target.innerText = "Submit";
     })

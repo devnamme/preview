@@ -41,16 +41,17 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </style>
 
 
-<link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=2.0.0-beta-1" media="all">
-<script id="motion-js" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=2.0.0-beta-1"></script>
-<script id="nv-shopify-storefront-js" src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js?ver=2.0.0-beta-1"></script>
-<script id="nv-shopify-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/shopify.js?ver=2.0.0-beta-1"></script>
-<script id="nv-header-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/header.js?ver=2.0.0-beta-1"></script>
+<link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=2.0.0-beta-2" media="all">
+<script id="motion-js" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=2.0.0-beta-2"></script>
+<script id="nv-shopify-storefront-js" src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js?ver=2.0.0-beta-2"></script>
+<script id="nv-notification-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/notification.js?ver=2.0.0-beta-2"></script>
+<script id="nv-shopify-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/shopify.js?ver=2.0.0-beta-2"></script>
+<script id="nv-header-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/header.js?ver=2.0.0-beta-2"></script>
 <script id="nv-story-js-extra">
 var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png"};
 //# sourceURL=nv-story-js-extra
 </script>
-<script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-1"></script>
+<script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-2"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/wp/v2/pages/13"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 7.0">
 <link rel="canonical" href="https://preview.emmanevangelista.com/novellino-2025/our-story/">
@@ -91,22 +92,23 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
           </svg>
         </div>
 
-        <div class="relative size-6 cursor-pointer cart-container" onclick="alert('todo');">
+        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart()">
           <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
             <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
           </svg>
 
-          <div class="absolute top-0 right-0 size-4 bg-white rounded-full translate-x-1/3 -translate-y-1/8 count-container flex flex-row items-end justify-center">
-            <span class="text-xs text-center text-red-primary font-extrabold leading-none h-fit">3</span>
+          <div class="hidden absolute top-0 right-0 size-4 bg-white rounded-full translate-x-1/3 -translate-y-1/8 count-container flex flex-row items-end justify-center cart-count-container">
+            <span class="text-xs text-center text-red-primary font-extrabold leading-none h-fit cart-count-text">0</span>
           </div>
         </div>
       </div>
 
       
-<a class="block w-fit hidden lg:block" href="https://preview.emmanevangelista.com/novellino-2025/products">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
-Shop now  </button>
-</a>
+  <a class="block w-fit hidden lg:block" href="https://preview.emmanevangelista.com/novellino-2025/products">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-white bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Shop now</button>
+
+  </a>
     </div>
   </div>
 </header>
@@ -602,10 +604,11 @@ Bel Mondo Italia introduced casual fruit-blended wines in Peach, Strawberry and 
 
       <div class="flex flex-col lg:flex-row flex-wrap gap-x-8 gap-y-6 items-center justify-center lg:justify-start">
         
-<a class="block w-fit " href="https://preview.emmanevangelista.com/novellino-2025/products">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
-Shop now  </button>
-</a>
+  <a class="block w-fit " href="https://preview.emmanevangelista.com/novellino-2025/products">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-white bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Shop now</button>
+
+  </a>
 
         <div class="flex flex-row gap-x-5 items-center">
                       <a href="https://shopee.ph/novellinowines_officialstore" target="_blank" class="size-6">
@@ -648,6 +651,52 @@ Shop now  </button>
       Copyright © 2025 Novellino    </p>
   </div>
 </footer>
+
+<div class="fixed z-8 bottom-18 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
+  <!-- <div class="opacity-100 transition-opacity rounded-xl px-6 py-3 w-full md:w-90 bg-white shadow-[0_8px_24px_0_#959DA533] notification">
+    <div class="mb-3 flex flex-row items-center gap-x-2 justify-between">
+      <svg
+        class="size-4.5 text-[#212121]"
+        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor"
+        viewBox="0 0 256 256"
+      >
+        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z" />
+      </svg>
+
+      <p class="grow text-[#212121]">Added to cart</p>
+
+      <svg
+        class="grow-0 shrink-0 size-4.5 text-[#78909C] cursor-pointer"
+        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor"
+        viewBox="0 0 256 256"
+        onclick="NotificationService.clearNotifications();"
+      >
+        <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" />
+      </svg>
+    </div>
+
+    <div class="flex flex-row items-center gap-x-6">
+      <div class="grow-0 shrink-0 rounded-xl size-20 bg-red-custom-light">
+        <img
+          class="size-full object-contain object-center"
+          src=""
+          alt=""
+        />
+      </div>
+
+      <div class="grow shrink">
+        <p class="mb-1 text-lg font-extrabold">Wine</p>
+        <p class="font-medium">P000</p>
+      </div>
+
+      <p class="grow-0 shrink-0 text-lg font-medium text-[#546E7A] text-right">
+        x1
+      </p>
+    </div>
+  </div> -->
+</div>
 
 <div class="global-cart-container"></div>
 

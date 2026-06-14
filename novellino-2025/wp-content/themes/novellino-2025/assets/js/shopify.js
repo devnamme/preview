@@ -5,7 +5,7 @@ window.ShopifyBuyManager = (function () {
   let readyQueue = [];
 
   let cart = null;
-  let variantIds = {};
+  let variants = {};
 
   function initClient() {
     try {
@@ -14,6 +14,9 @@ window.ShopifyBuyManager = (function () {
         storefrontAccessToken: "b0f54e6e38dae272135d36bbeb7b7a24",
       });
     } catch (error) {
+      NotificationService.showNotification(
+        NotificationService.TYPE.GENERIC_ERROR,
+      );
       console.error(error);
     }
 
@@ -37,11 +40,11 @@ window.ShopifyBuyManager = (function () {
 
   function generateCart() {
     ensureReady(async function () {
+      let container = null;
       try {
-        const container = document.querySelector(".global-cart-container");
+        container = document.querySelector(".global-cart-container");
         if (!container) {
-          console.error("container not found");
-          return;
+          throw "container not found";
         }
 
         ui.createComponent("cart", {
@@ -112,6 +115,15 @@ window.ShopifyBuyManager = (function () {
                 afterInit: (component) => {
                   cart = component;
                 },
+
+                afterRender: (component) => {
+                  const count = component.model.lineItems.reduce(
+                    (total, item) => total + item.quantity,
+                    0,
+                  );
+
+                  updateCartCount(count);
+                },
               },
             },
             toggle: {
@@ -167,6 +179,9 @@ window.ShopifyBuyManager = (function () {
           },
         });
       } catch (error) {
+        NotificationService.showNotification(
+          NotificationService.TYPE.GENERIC_ERROR,
+        );
         console.error(error);
         container.remove();
       }
@@ -251,42 +266,168 @@ window.ShopifyBuyManager = (function () {
           priceText.classList.remove("hidden");
         }
 
-        variantIds[node.dataset.productId] = variant;
+        variants[node.dataset.productId] = variant;
       } catch (error) {
+        NotificationService.showNotification(
+          NotificationService.TYPE.GENERIC_ERROR,
+        );
         console.error(error);
       }
     });
   }
 
   async function onAddToCartClick(node) {
-    const productId = node.dataset.productId;
-    if (!productId) {
-      console.error("product not found");
-      return;
+    const wineSelector = `[data-wine="${node.dataset.wine}"]`;
+
+    try {
+      const productId = node.dataset.productId;
+      if (!productId) {
+        throw "product not found";
+      }
+
+      const variant = variants[productId];
+      if (!variant) {
+        throw "variant not found";
+        return;
+      }
+
+      let quantity = 1;
+      const input = document.querySelector(
+        `.quantity-input-container${wineSelector} input[name="quantity"]`,
+      );
+
+      if (input != null && input.value.trim() !== "") {
+        quantity = parseInt(input.value);
+      }
+
+      document
+        .querySelectorAll(
+          `.quantity-input-container${wineSelector} button, .quantity-input-container${wineSelector} input, .add-to-cart-button${wineSelector}`,
+        )
+        .forEach((el) => {
+          el.dataset.adding = true;
+          el.disabled = true;
+        });
+
+      await cart.addVariantToCart(variant, quantity).then(() => {
+        NotificationService.showNotification(
+          NotificationService.TYPE.ADDED_TO_CART,
+          {
+            name: document.querySelector(`.name-text${wineSelector}`)
+              ?.innerText,
+            quantity,
+            price: new Intl.NumberFormat("en-PH", {
+              style: "currency",
+              currency: variant.priceV2.currencyCode,
+            }).format(variant.priceV2.amount),
+            thumbnailUrl: variant?.image?.src,
+            premium: (
+              document.querySelector(`.thumbnail${wineSelector}`)?.classList ??
+              []
+            ).contains("premium"),
+          },
+        );
+      });
+    } catch (error) {
+      NotificationService.showNotification(
+        NotificationService.TYPE.GENERIC_ERROR,
+      );
+      console.error(error);
+    } finally {
+      document
+        .querySelectorAll(
+          `.quantity-input-container${wineSelector} button, .quantity-input-container${wineSelector} input, .add-to-cart-button${wineSelector}`,
+        )
+        .forEach((el) => {
+          delete el.dataset.adding;
+          el.disabled = false;
+        });
     }
+  }
 
-    const variantId = variantIds[productId];
-    if (!variantId) {
-      console.error("variant not found");
-      return;
+  async function onBuyNowClick(node) {
+    try {
+      const productId = node.dataset.productId;
+      if (!productId) {
+        throw "product not found";
+        return;
+      }
+
+      const variant = variants[productId];
+      if (!variant) {
+        throw "variant not found";
+        return;
+      }
+
+      const checkout = await client.checkout.create();
+
+      const lineItems = [
+        {
+          variantId: variant.id,
+          quantity: 1,
+        },
+      ];
+
+      const updatedCheckout = await client.checkout.addLineItems(
+        checkout.id,
+        lineItems,
+      );
+
+      window.open(updatedCheckout.webUrl);
+    } catch (error) {
+      NotificationService.showNotification(
+        NotificationService.TYPE.GENERIC_ERROR,
+      );
+      console.error(error);
     }
+  }
 
-    let quantity = 1;
-    const input = document.querySelector(
-      `.quantity-input-container[data-wine="${node.dataset.wine}"] input[name="quantity"]`,
-    );
+  function openCart() {
+    setTimeout(() => {
+      cart.open();
+    }, 0);
+  }
 
-    if (input != null && input.value.trim() !== "") {
-      quantity = parseInt(input.value);
+  function updateCartCount(count) {
+    try {
+      const cartContainer = document.querySelector(".cart-container");
+      if (!cartContainer) {
+        throw "cart container not found";
+      }
+
+      const countContainer = cartContainer.querySelector(
+        ".cart-count-container",
+      );
+      if (!countContainer) {
+        throw "cart count container not found";
+      }
+
+      const countText = cartContainer.querySelector(".cart-count-text");
+      if (!countText) {
+        throw "count text not found";
+      }
+
+      if (count > 0) {
+        countContainer.classList.remove("hidden");
+      } else {
+        countContainer.classList.add("hidden");
+      }
+
+      countText.innerText = count;
+    } catch (error) {
+      NotificationService.showNotification(
+        NotificationService.TYPE.GENERIC_ERROR,
+      );
+      console.error(error);
     }
-
-    await cart.addVariantToCart(variantId, quantity);
   }
 
   return {
     loadVariant,
     onAddToCartClick,
+    onBuyNowClick,
     generateCart,
+    openCart,
   };
 })();
 
@@ -294,12 +435,27 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll(".add-to-cart-button[data-wine][data-product-id]")
     .forEach((node) => {
-      window.ShopifyBuyManager.loadVariant(node);
+      try {
+        window.ShopifyBuyManager.loadVariant(node);
 
-      node.addEventListener("click", async (event) => {
-        window.ShopifyBuyManager.onAddToCartClick(
-          event.target.closest("[data-wine][data-product-id]"),
+        node.addEventListener("click", async (event) => {
+          window.ShopifyBuyManager.onAddToCartClick(
+            event.target.closest("[data-wine][data-product-id]"),
+          );
+        });
+      } catch (error) {
+        NotificationService.showNotification(
+          NotificationService.TYPE.GENERIC_ERROR,
         );
+        console.error(error);
+      }
+    });
+
+  document
+    .querySelectorAll(".buy-now-button[data-wine][data-product-id]")
+    .forEach((node) => {
+      node.addEventListener("click", (event) => {
+        window.ShopifyBuyManager.onBuyNowClick(event.target);
       });
     });
 });

@@ -41,16 +41,17 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </style>
 
 
-<link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=2.0.0-beta-1" media="all">
-<script id="motion-js" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=2.0.0-beta-1"></script>
-<script id="nv-shopify-storefront-js" src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js?ver=2.0.0-beta-1"></script>
-<script id="nv-shopify-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/shopify.js?ver=2.0.0-beta-1"></script>
-<script id="nv-header-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/header.js?ver=2.0.0-beta-1"></script>
+<link rel="stylesheet" id="tailwind-css" href="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/css/tailwind.css?ver=2.0.0-beta-2" media="all">
+<script id="motion-js" src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js?ver=2.0.0-beta-2"></script>
+<script id="nv-shopify-storefront-js" src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js?ver=2.0.0-beta-2"></script>
+<script id="nv-notification-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/notification.js?ver=2.0.0-beta-2"></script>
+<script id="nv-shopify-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/shopify.js?ver=2.0.0-beta-2"></script>
+<script id="nv-header-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/header.js?ver=2.0.0-beta-2"></script>
 <script id="nv-story-js-extra">
 var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/media/logos/white.png"};
 //# sourceURL=nv-story-js-extra
 </script>
-<script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-1"></script>
+<script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-2"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/wp/v2/pages/9"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 7.0">
 <link rel="canonical" href="https://preview.emmanevangelista.com/novellino-2025/products/">
@@ -91,22 +92,23 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
           </svg>
         </div>
 
-        <div class="relative size-6 cursor-pointer cart-container" onclick="alert('todo');">
+        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart()">
           <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
             <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
           </svg>
 
-          <div class="absolute top-0 right-0 size-4 bg-white rounded-full translate-x-1/3 -translate-y-1/8 count-container flex flex-row items-end justify-center">
-            <span class="text-xs text-center text-red-primary font-extrabold leading-none h-fit">3</span>
+          <div class="hidden absolute top-0 right-0 size-4 bg-white rounded-full translate-x-1/3 -translate-y-1/8 count-container flex flex-row items-end justify-center cart-count-container">
+            <span class="text-xs text-center text-red-primary font-extrabold leading-none h-fit cart-count-text">0</span>
           </div>
         </div>
       </div>
 
       
-<a class="block w-fit hidden lg:block" href="https://preview.emmanevangelista.com/novellino-2025/products">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
-Shop now  </button>
-</a>
+  <a class="block w-fit hidden lg:block" href="https://preview.emmanevangelista.com/novellino-2025/products">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-white bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Shop now</button>
+
+  </a>
     </div>
   </div>
 </header>
@@ -304,7 +306,7 @@ Shop now  </button>
             <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-classico/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Classico-transparent-scaled.png" alt="Rosso Classico">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Classico-transparent-scaled.png" alt="Rosso Classico" data-wine="rosso-classico">
     </div>
 
     <div class="relative">
@@ -319,7 +321,7 @@ Shop now  </button>
   Bestseller!</div>
           </div>
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="rosso-classico">
           Rosso Classico        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="rosso-classico"></h4>
@@ -354,14 +356,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-classico-light/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Classico-Light-transparent-scaled.png" alt="Rosso Classico Light">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Classico-Light-transparent-scaled.png" alt="Rosso Classico Light" data-wine="rosso-classico-light">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="rosso-classico-light">
           Rosso Classico Light        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="rosso-classico-light"></h4>
@@ -396,14 +398,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-tradizionale/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Tradizionale-transparent-scaled.png" alt="Rosso Tradizionale">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Tradizionale-transparent-scaled.png" alt="Rosso Tradizionale" data-wine="rosso-tradizionale">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="rosso-tradizionale">
           Rosso Tradizionale        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="rosso-tradizionale"></h4>
@@ -438,14 +440,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sangria/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Sangria-transparent-scaled.png" alt="Sangria">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Sangria-transparent-scaled.png" alt="Sangria" data-wine="sangria">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="sangria">
           Sangria        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="sangria"></h4>
@@ -480,7 +482,7 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/strawberry-passion/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Strawberry-Passion-transparent-scaled.png" alt="Strawberry Passion">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Strawberry-Passion-transparent-scaled.png" alt="Strawberry Passion" data-wine="strawberry-passion">
     </div>
 
     <div class="relative">
@@ -495,7 +497,7 @@ Shop now  </button>
   Bestseller!</div>
           </div>
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="strawberry-passion">
           Strawberry Passion        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="strawberry-passion"></h4>
@@ -530,14 +532,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/strawberry-passion-light/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Strawberry-Passion-Light-transparent-scaled.png" alt="Strawberry Passion Light">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Strawberry-Passion-Light-transparent-scaled.png" alt="Strawberry Passion Light" data-wine="strawberry-passion-light">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="strawberry-passion-light">
           Strawberry Passion Light        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="strawberry-passion-light"></h4>
@@ -572,7 +574,7 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/wild-blackberry/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Wild-Blackberry-transparent-scaled.png" alt="Wild Blackberry">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Wild-Blackberry-transparent-scaled.png" alt="Wild Blackberry" data-wine="wild-blackberry">
     </div>
 
     <div class="relative">
@@ -587,7 +589,7 @@ Shop now  </button>
   Bestseller!</div>
           </div>
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="wild-blackberry">
           Wild Blackberry        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="wild-blackberry"></h4>
@@ -642,14 +644,14 @@ Shop now  </button>
             <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/bianco-classico/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Classico-transparent-scaled.png" alt="Bianco Classico">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Classico-transparent-scaled.png" alt="Bianco Classico" data-wine="bianco-classico">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="bianco-classico">
           Bianco Classico        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="bianco-classico"></h4>
@@ -684,14 +686,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/luscious-peach/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Luscious-Peach-transparent-scaled.png" alt="Luscious Peach">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Luscious-Peach-transparent-scaled.png" alt="Luscious Peach" data-wine="luscious-peach">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="luscious-peach">
           Luscious Peach        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="luscious-peach"></h4>
@@ -746,14 +748,14 @@ Shop now  </button>
             <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-secondary text-white relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-vivace/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Vivace-transparent-scaled.png" alt="Rosso Vivace">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain premium thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Vivace-transparent-scaled.png" alt="Rosso Vivace" data-wine="rosso-vivace">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="rosso-vivace">
           Rosso Vivace        </h3>
 
         <h4 class="hidden text-white font-extrabold price-text" data-wine="rosso-vivace"></h4>
@@ -788,14 +790,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-secondary text-white relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-vivace-light/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Vivace-Light-transparent-scaled.png" alt="Rosso Vivace Light">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain premium thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Vivace-Light-transparent-scaled.png" alt="Rosso Vivace Light" data-wine="rosso-vivace-light">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="rosso-vivace-light">
           Rosso Vivace Light        </h3>
 
         <h4 class="hidden text-white font-extrabold price-text" data-wine="rosso-vivace-light"></h4>
@@ -850,14 +852,14 @@ Shop now  </button>
             <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-secondary text-white relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/bianco-vivace/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Vivace-transparent-scaled.png" alt="Bianco Vivace">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain premium thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Vivace-transparent-scaled.png" alt="Bianco Vivace" data-wine="bianco-vivace">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="bianco-vivace">
           Bianco Vivace        </h3>
 
         <h4 class="hidden text-white font-extrabold price-text" data-wine="bianco-vivace"></h4>
@@ -912,7 +914,7 @@ Shop now  </button>
             <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sparkling-red/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Sparkling-Red-transparent-scaled.png" alt="Sparkling Red">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Sparkling-Red-transparent-scaled.png" alt="Sparkling Red" data-wine="sparkling-red">
     </div>
 
     <div class="relative">
@@ -927,7 +929,7 @@ Shop now  </button>
   Bestseller!</div>
           </div>
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="sparkling-red">
           Sparkling Red        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="sparkling-red"></h4>
@@ -958,7 +960,7 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sparkling-strawberry/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/12/Sparkling-Strawberry-transparent-scaled.png" alt="Sparkling Strawberry">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain  thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/12/Sparkling-Strawberry-transparent-scaled.png" alt="Sparkling Strawberry" data-wine="sparkling-strawberry">
     </div>
 
     <div class="relative">
@@ -973,7 +975,7 @@ Shop now  </button>
   Bestseller!</div>
           </div>
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="sparkling-strawberry">
           Sparkling Strawberry        </h3>
 
         <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="sparkling-strawberry"></h4>
@@ -1025,14 +1027,14 @@ Shop now  </button>
             <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-secondary text-white relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/cabernet-sauvignon/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Cabernet-Sauvignon-transparent-scaled.png" alt="Cabernet Sauvignon">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain premium thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Cabernet-Sauvignon-transparent-scaled.png" alt="Cabernet Sauvignon" data-wine="cabernet-sauvignon">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="cabernet-sauvignon">
           Cabernet Sauvignon        </h3>
 
         <h4 class="hidden text-white font-extrabold price-text" data-wine="cabernet-sauvignon"></h4>
@@ -1067,14 +1069,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-secondary text-white relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/merlot/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Merlot-transparent-scaled.png" alt="Merlot">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain premium thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Merlot-transparent-scaled.png" alt="Merlot" data-wine="merlot">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="merlot">
           Merlot        </h3>
 
         <h4 class="hidden text-white font-extrabold price-text" data-wine="merlot"></h4>
@@ -1109,14 +1111,14 @@ Shop now  </button>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-secondary text-white relative">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-dell-azienda/">
     <div class="self-stretch shrink-0 grow-0">
-      <img class="w-25 lg:w-full lg:h-[300px] object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Dell-Azienda-transparent-scaled.png" alt="Rosso Dell Azienda">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain premium thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Dell-Azienda-transparent-scaled.png" alt="Rosso Dell Azienda" data-wine="rosso-dell-azienda">
     </div>
 
     <div class="relative">
       
       <div class="flex flex-col gap-y-2">
         
-        <h3 class="">
+        <h3 class=" name-text" data-wine="rosso-dell-azienda">
           Rosso Dell Azienda        </h3>
 
         <h4 class="hidden text-white font-extrabold price-text" data-wine="rosso-dell-azienda"></h4>
@@ -1233,10 +1235,11 @@ function scrollToWineGroup(group) {
 
       <div class="flex flex-col lg:flex-row flex-wrap gap-x-8 gap-y-6 items-center justify-center lg:justify-start">
         
-<a class="block w-fit " href="https://preview.emmanevangelista.com/novellino-2025/products">
-  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
-Shop now  </button>
-</a>
+  <a class="block w-fit " href="https://preview.emmanevangelista.com/novellino-2025/products">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-white bg-white text-red-secondary  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Shop now</button>
+
+  </a>
 
         <div class="flex flex-row gap-x-5 items-center">
                       <a href="https://shopee.ph/novellinowines_officialstore" target="_blank" class="size-6">
@@ -1279,6 +1282,52 @@ Shop now  </button>
       Copyright © 2025 Novellino    </p>
   </div>
 </footer>
+
+<div class="fixed z-8 bottom-18 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
+  <!-- <div class="opacity-100 transition-opacity rounded-xl px-6 py-3 w-full md:w-90 bg-white shadow-[0_8px_24px_0_#959DA533] notification">
+    <div class="mb-3 flex flex-row items-center gap-x-2 justify-between">
+      <svg
+        class="size-4.5 text-[#212121]"
+        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor"
+        viewBox="0 0 256 256"
+      >
+        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z" />
+      </svg>
+
+      <p class="grow text-[#212121]">Added to cart</p>
+
+      <svg
+        class="grow-0 shrink-0 size-4.5 text-[#78909C] cursor-pointer"
+        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor"
+        viewBox="0 0 256 256"
+        onclick="NotificationService.clearNotifications();"
+      >
+        <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" />
+      </svg>
+    </div>
+
+    <div class="flex flex-row items-center gap-x-6">
+      <div class="grow-0 shrink-0 rounded-xl size-20 bg-red-custom-light">
+        <img
+          class="size-full object-contain object-center"
+          src=""
+          alt=""
+        />
+      </div>
+
+      <div class="grow shrink">
+        <p class="mb-1 text-lg font-extrabold">Wine</p>
+        <p class="font-medium">P000</p>
+      </div>
+
+      <p class="grow-0 shrink-0 text-lg font-medium text-[#546E7A] text-right">
+        x1
+      </p>
+    </div>
+  </div> -->
+</div>
 
 <div class="global-cart-container"></div>
 
