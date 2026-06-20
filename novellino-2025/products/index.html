@@ -1329,10 +1329,64 @@ Shop now</button>
   </div> -->
 </div>
 
-<div class="global-cart-container"></div>
+<!-- Cart drawer -->
+<div class="cart-drawer-backdrop fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300" onclick="ShopifyBuyManager.closeCart()"></div>
+
+<div class="cart-drawer fixed z-50 top-0 right-0 h-full w-full max-w-[430px] bg-white flex flex-col translate-x-full transition-transform duration-300 shadow-[0_8px_24px_0_#959DA533]">
+  <div class="shrink-0 px-6 py-5 flex flex-row items-center justify-between border-b border-[#EFF0F6]">
+    <h3 class="text-red-primary">
+      Your Cart <span class="text-[#90A4AE] cart-drawer-count"></span>
+    </h3>
+
+    <button class="size-6 text-red-secondary cursor-pointer flex items-center justify-center" onclick="ShopifyBuyManager.closeCart()" aria-label="Close cart">
+      <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
+        <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Items (shown when cart has items) -->
+  <div class="grow overflow-y-auto px-6 cart-drawer-items hidden"></div>
+
+  <!-- Empty state (shown when cart is empty) -->
+  <div class="grow flex flex-col items-center justify-center text-center px-10 cart-drawer-empty">
+    <svg class="size-9 text-red-primary" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
+      <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
+    </svg>
+
+    <h3 class="mt-4 text-red-primary">Your cart is empty</h3>
+    <p class="mt-2 text-red-secondary">
+      Start with something you love. Explore our wines made for every occasion.
+    </p>
+
+    
+  <a class="block w-fit mt-6" href="https://preview.emmanevangelista.com/novellino-2025/products">
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-red-primary bg-red-primary text-white  flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" role="button">
+Shop now</button>
+
+  </a>
+  </div>
+
+  <div class="shrink-0 px-6 py-5 border-t border-[#EFF0F6]">
+    <div class="mb-2 flex flex-row items-center justify-between">
+      <p class="text-red-secondary">Subtotal</p>
+      <p class="text-lg font-extrabold text-red-primary cart-drawer-subtotal">₱0</p>
+    </div>
+
+    <div class="mb-4 flex flex-row items-center justify-between">
+      <p class="text-red-secondary">Delivery</p>
+      <p class="text-[#90A4AE]">Computed at checkout</p>
+    </div>
+
+    
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-red-primary bg-red-primary text-white w-full cart-checkout-button flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" disabled onclick="ShopifyBuyManager.proceedToCheckout()" role="button">
+Proceed to Checkout</button>
+
+  </div>
+</div>
 
 <script>
-ShopifyBuyManager.generateCart();
+ShopifyBuyManager.init();
 </script>
 
 <!-- </div> -->

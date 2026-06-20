@@ -1,285 +1,324 @@
 window.ShopifyBuyManager = (function () {
-  let client = null;
-  let ui = null;
-  let isReady = false;
-  let readyQueue = [];
+  const CHECKOUT_STORAGE_KEY = "nv_checkout_id";
 
-  let cart = null;
+  let client = null;
+  let readyPromise = null;
+  let checkout = null;
   let variants = {};
+  let isMutating = false;
+
+  // ---------------------------------------------------------------------------
+  // Init / checkout lifecycle
+  // ---------------------------------------------------------------------------
 
   function initClient() {
-    try {
-      client = ShopifyBuy.buildClient({
-        domain: "81zwvz-ki.myshopify.com",
-        storefrontAccessToken: "b0f54e6e38dae272135d36bbeb7b7a24",
+    client = ShopifyBuy.buildClient({
+      domain: "81zwvz-ki.myshopify.com",
+      storefrontAccessToken: "b0f54e6e38dae272135d36bbeb7b7a24",
+    });
+
+    return initCheckout();
+  }
+
+  async function initCheckout() {
+    const savedId = localStorage.getItem(CHECKOUT_STORAGE_KEY);
+
+    if (savedId) {
+      try {
+        const existing = await client.checkout.fetch(savedId);
+        if (existing && !existing.completedAt) {
+          checkout = existing;
+        }
+      } catch (error) {
+        // Stale / invalid checkout id — fall through and create a new one.
+      }
+    }
+
+    if (!checkout) {
+      checkout = await client.checkout.create();
+      localStorage.setItem(CHECKOUT_STORAGE_KEY, checkout.id);
+    }
+
+    renderCart();
+    return checkout;
+  }
+
+  function ensureReady() {
+    if (!readyPromise) {
+      readyPromise = initClient().catch((error) => {
+        readyPromise = null;
+        throw error;
       });
+    }
+    return readyPromise;
+  }
+
+  function init() {
+    ensureReady().catch((error) => {
+      NotificationService.showNotification(
+        NotificationService.TYPE.GENERIC_ERROR,
+      );
+      console.error(error);
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Helpers
+  // ---------------------------------------------------------------------------
+
+  function formatPrice(amount, currencyCode) {
+    const num = Number(amount);
+    return new Intl.NumberFormat("en-PH", {
+      style: "currency",
+      currency: currencyCode || "PHP",
+      minimumFractionDigits: Number.isInteger(num) ? 0 : 2,
+    }).format(num);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(
+      /[&<>"']/g,
+      (char) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[char],
+    );
+  }
+
+  function setDrawerBusy(busy) {
+    const items = document.querySelector(".cart-drawer-items");
+    if (!items) return;
+    items.classList.toggle("opacity-50", busy);
+    items.classList.toggle("pointer-events-none", busy);
+  }
+
+  async function mutate(fn) {
+    if (isMutating) return;
+    isMutating = true;
+    setDrawerBusy(true);
+
+    try {
+      checkout = await fn();
+      renderCart();
     } catch (error) {
       NotificationService.showNotification(
         NotificationService.TYPE.GENERIC_ERROR,
       );
       console.error(error);
-    }
-
-    return ShopifyBuy.UI.onReady(client).then(function (uiInstance) {
-      ui = uiInstance;
-      isReady = true;
-
-      readyQueue.forEach((fn) => fn());
-      readyQueue = [];
-    });
-  }
-
-  function ensureReady(callback) {
-    if (isReady) return callback();
-    readyQueue.push(callback);
-
-    if (!client) {
-      initClient();
+    } finally {
+      isMutating = false;
+      setDrawerBusy(false);
     }
   }
 
-  function generateCart() {
-    ensureReady(async function () {
-      let container = null;
-      try {
-        container = document.querySelector(".global-cart-container");
-        if (!container) {
-          throw "container not found";
-        }
+  // ---------------------------------------------------------------------------
+  // Rendering
+  // ---------------------------------------------------------------------------
 
-        ui.createComponent("cart", {
-          node: container,
-          moneyFormat: "%E2%82%B1%7B%7Bamount%7D%7D",
+  function quantityStepperHTML(lineId, quantity) {
+    return `
+<div class="border border-[#CFD8DC] rounded-xl overflow-clip min-h-9 grid grid-cols-[36px_auto_36px] items-stretch">
+  <button
+    class="bg-[#F2F4F6] flex items-center justify-center cursor-pointer"
+    onclick="ShopifyBuyManager.changeLineQuantity('${lineId}', -1)"
+    aria-label="Decrease quantity"
+  >
+    <svg class="text-[#37474F] size-3.5" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z" />
+    </svg>
+  </button>
 
-          options: {
-            cart: {
-              // iframe: false,
-              styles: {
-                button: {
-                  ":hover": {
-                    "background-color": "#832036",
-                  },
-                  "background-color": "#4d1320",
-                  ":focus": {
-                    "background-color": "#832036",
-                  },
-                },
-                title: {
-                  color: "#4d1320",
-                },
-                header: {
-                  color: "#4d1320",
-                },
-                lineItems: {
-                  color: "#4d1320",
-                },
-                subtotalText: {
-                  color: "#4d1320",
-                },
-                subtotal: {
-                  color: "#4d1320",
-                },
-                notice: {
-                  color: "#4d1320",
-                },
-                currency: {
-                  color: "#4d1320",
-                },
-                close: {
-                  color: "#4d1320",
-                  ":hover": {
-                    color: "#4d1320",
-                  },
-                },
-                empty: {
-                  color: "#4d1320",
-                },
-                noteDescription: {
-                  color: "#4d1320",
-                },
-                discountText: {
-                  color: "#4d1320",
-                },
-                discountIcon: {
-                  fill: "#4d1320",
-                },
-                discountAmount: {
-                  color: "#4d1320",
-                },
-              },
-              text: {
-                total: "Subtotal",
-                button: "Checkout",
-              },
-              events: {
-                afterInit: (component) => {
-                  cart = component;
-                },
+  <div class="min-w-9 px-2 flex items-center justify-center text-center text-[#112D4E] font-extrabold">${quantity}</div>
 
-                afterRender: (component) => {
-                  const count = component.model.lineItems.reduce(
-                    (total, item) => total + item.quantity,
-                    0,
-                  );
+  <button
+    class="bg-[#F2F4F6] flex items-center justify-center cursor-pointer"
+    onclick="ShopifyBuyManager.changeLineQuantity('${lineId}', 1)"
+    aria-label="Increase quantity"
+  >
+    <svg class="text-[#37474F] size-3.5" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z" />
+    </svg>
+  </button>
+</div>`;
+  }
 
-                  updateCartCount(count);
-                },
-              },
-            },
-            toggle: {
-              styles: {
-                toggle: {
-                  "background-color": "#4d1320",
-                  ":hover": {
-                    "background-color": "#832036",
-                  },
-                  ":focus": {
-                    "background-color": "#832036",
-                  },
-                },
-              },
-            },
-            lineItem: {
-              styles: {
-                variantTitle: {
-                  color: "#4d1320",
-                },
-                title: {
-                  color: "#4d1320",
-                },
-                price: {
-                  color: "#4d1320",
-                },
-                fullPrice: {
-                  color: "#4d1320",
-                },
-                discount: {
-                  color: "#4d1320",
-                },
-                discountIcon: {
-                  fill: "#4d1320",
-                },
-                quantity: {
-                  color: "#4d1320",
-                },
-                quantityIncrement: {
-                  color: "#4d1320",
-                  "border-color": "#4d1320",
-                },
-                quantityDecrement: {
-                  color: "#4d1320",
-                  "border-color": "#4d1320",
-                },
-                quantityInput: {
-                  color: "#4d1320",
-                  "border-color": "#4d1320",
-                },
-              },
-            },
-          },
-        });
-      } catch (error) {
-        NotificationService.showNotification(
-          NotificationService.TYPE.GENERIC_ERROR,
-        );
-        console.error(error);
-        container.remove();
+  function lineItemHTML(item) {
+    const variantTitle =
+      item.variant?.title && item.variant.title !== "Default Title"
+        ? item.variant.title
+        : "";
+    const price = formatPrice(
+      item.variant?.priceV2?.amount,
+      item.variant?.priceV2?.currencyCode,
+    );
+    const imageSrc = item.variant?.image?.src || "";
+
+    return `
+<div class="flex flex-row gap-x-4 py-6 not-last:border-b border-[#EFF0F6]" data-line-id="${item.id}">
+  <div class="shrink-0 size-22 rounded-xl bg-red-custom-light p-2.5 flex items-center justify-center">
+    <img class="size-full object-contain object-center" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(item.title)}" />
+  </div>
+
+  <div class="grow flex flex-row justify-between gap-x-3">
+    <div class="flex flex-col items-start">
+      <p class="text-lg font-extrabold text-red-secondary">${escapeHtml(item.title)}</p>
+      ${variantTitle ? `<p class="text-[#90A4AE]">${escapeHtml(variantTitle)}</p>` : ""}
+      <button
+        class="mt-auto text-red-light font-medium underline cursor-pointer"
+        onclick="ShopifyBuyManager.removeLine('${item.id}')"
+      >Remove</button>
+    </div>
+
+    <div class="shrink-0 flex flex-col items-end justify-between gap-y-3">
+      <p class="text-lg font-extrabold text-red-primary whitespace-nowrap">${price}</p>
+      ${quantityStepperHTML(item.id, item.quantity)}
+    </div>
+  </div>
+</div>`;
+  }
+
+  function renderCart() {
+    const items = checkout?.lineItems || [];
+    const count = items.reduce((total, item) => total + item.quantity, 0);
+
+    updateCartCount(count);
+
+    const countEl = document.querySelector(".cart-drawer-count");
+    if (countEl) {
+      countEl.textContent = count > 0 ? `(${count})` : "";
+    }
+
+    const currencyCode = items[0]?.variant?.priceV2?.currencyCode || "PHP";
+    const subtotal = items.reduce(
+      (total, item) =>
+        total + Number(item.variant?.priceV2?.amount || 0) * item.quantity,
+      0,
+    );
+
+    const subtotalEl = document.querySelector(".cart-drawer-subtotal");
+    if (subtotalEl) {
+      subtotalEl.textContent = formatPrice(subtotal, currencyCode);
+    }
+
+    const itemsEl = document.querySelector(".cart-drawer-items");
+    const emptyEl = document.querySelector(".cart-drawer-empty");
+    const checkoutButton = document.querySelector(".cart-checkout-button");
+
+    if (items.length > 0) {
+      if (itemsEl) {
+        itemsEl.innerHTML = items.map(lineItemHTML).join("");
+        itemsEl.classList.remove("hidden");
       }
-    });
+      if (emptyEl) emptyEl.classList.add("hidden");
+      if (checkoutButton) checkoutButton.disabled = false;
+    } else {
+      if (itemsEl) {
+        itemsEl.innerHTML = "";
+        itemsEl.classList.add("hidden");
+      }
+      if (emptyEl) emptyEl.classList.remove("hidden");
+      if (checkoutButton) checkoutButton.disabled = true;
+    }
   }
+
+  // ---------------------------------------------------------------------------
+  // Product page: variant loading / price + stock display
+  // ---------------------------------------------------------------------------
 
   function loadVariant(node) {
-    ensureReady(async function () {
-      try {
-        const variant = (
-          await client.product.fetch(
-            `gid://shopify/Product/${node.dataset.productId}`,
-          )
-        ).variants[0];
+    ensureReady()
+      .then(async function () {
+        try {
+          const variant = (
+            await client.product.fetch(
+              `gid://shopify/Product/${node.dataset.productId}`,
+            )
+          ).variants[0];
 
-        const available = variant.available;
-        const quantityAvailable = variant.quantityAvailable;
+          const available = variant.available;
 
-        if (!available) {
-          const wineSelector = `[data-wine="${node.dataset.wine}"]`;
-          // Out of stock text
-          const outOfStockText = document.querySelector(
-            `.out-of-stock-text${wineSelector}`,
-          );
+          if (!available) {
+            const wineSelector = `[data-wine="${node.dataset.wine}"]`;
 
-          if (outOfStockText != null) {
-            outOfStockText.classList.remove("hidden");
+            const outOfStockText = document.querySelector(
+              `.out-of-stock-text${wineSelector}`,
+            );
+            if (outOfStockText != null) {
+              outOfStockText.classList.remove("hidden");
+            }
+
+            const addToCartButton = document.querySelector(
+              `.add-to-cart-button${wineSelector}`,
+            );
+            if (addToCartButton != null) {
+              addToCartButton
+                .querySelectorAll("button")
+                .forEach((button) => (button.disabled = true));
+              addToCartButton.disabled = true;
+            }
+
+            const buyNowButton = document.querySelector(
+              `.buy-now-button${wineSelector}`,
+            );
+            if (buyNowButton != null) {
+              buyNowButton
+                .querySelectorAll("button")
+                .forEach((button) => (button.disabled = true));
+              buyNowButton.disabled = true;
+            }
+
+            const quantityContainer = document.querySelector(
+              `.quantity-input-container${wineSelector}`,
+            );
+            if (quantityContainer != null) {
+              quantityContainer.classList.add("opacity-50");
+              quantityContainer
+                .querySelectorAll(`input, button`)
+                .forEach((node) => {
+                  node.disabled = true;
+                });
+            }
           }
 
-          // Add to cart button
-          const addToCartButton = document.querySelector(
-            `.add-to-cart-button${wineSelector}`,
+          const priceText = document.querySelector(
+            `.price-text[data-wine="${node.dataset.wine}"]`,
           );
-
-          if (addToCartButton != null) {
-            addToCartButton
-              .querySelectorAll("button")
-              .forEach((button) => (button.disabled = true));
-            addToCartButton.disabled = true;
+          if (priceText != null) {
+            const { amount, currencyCode } = variant.priceV2;
+            priceText.textContent = formatPrice(amount, currencyCode);
+            priceText.classList.remove("hidden");
           }
 
-          // Buy now button
-          const buyNowButton = document.querySelector(
-            `.buy-now-button${wineSelector}`,
+          variants[node.dataset.productId] = variant;
+        } catch (error) {
+          NotificationService.showNotification(
+            NotificationService.TYPE.GENERIC_ERROR,
           );
-
-          if (buyNowButton != null) {
-            buyNowButton
-              .querySelectorAll("button")
-              .forEach((button) => (button.disabled = true));
-            buyNowButton.disabled = true;
-          }
-
-          // Quantity input
-          const quantityContainer = document.querySelector(
-            `.quantity-input-container${wineSelector}`,
-          );
-
-          if (quantityContainer != null) {
-            quantityContainer.classList.add("opacity-50");
-
-            quantityContainer
-              .querySelectorAll(`input, button`)
-              .forEach((node) => {
-                node.disabled = true;
-              });
-          }
+          console.error(error);
         }
-
-        const priceText = document.querySelector(
-          `.price-text[data-wine="${node.dataset.wine}"]`,
-        );
-
-        if (priceText != null) {
-          const { amount, currencyCode } = variant.priceV2;
-
-          priceText.textContent = new Intl.NumberFormat("en-PH", {
-            style: "currency",
-            currency: currencyCode,
-          }).format(amount);
-
-          priceText.classList.remove("hidden");
-        }
-
-        variants[node.dataset.productId] = variant;
-      } catch (error) {
+      })
+      .catch((error) => {
         NotificationService.showNotification(
           NotificationService.TYPE.GENERIC_ERROR,
         );
         console.error(error);
-      }
-    });
+      });
   }
+
+  // ---------------------------------------------------------------------------
+  // Cart actions
+  // ---------------------------------------------------------------------------
 
   async function onAddToCartClick(node) {
     const wineSelector = `[data-wine="${node.dataset.wine}"]`;
 
     try {
+      await ensureReady();
+
       const productId = node.dataset.productId;
       if (!productId) {
         throw "product not found";
@@ -288,38 +327,40 @@ window.ShopifyBuyManager = (function () {
       const variant = variants[productId];
       if (!variant) {
         throw "variant not found";
-        return;
       }
 
       let quantity = 1;
       const input = document.querySelector(
         `.quantity-input-container${wineSelector} input[name="quantity"]`,
       );
-
       if (input != null && input.value.trim() !== "") {
         quantity = parseInt(input.value);
       }
 
-      document
-        .querySelectorAll(
-          `.quantity-input-container${wineSelector} button, .quantity-input-container${wineSelector} input, .add-to-cart-button${wineSelector}`,
-        )
-        .forEach((el) => {
-          el.dataset.adding = true;
-          el.disabled = true;
-        });
+      const controls = document.querySelectorAll(
+        `.quantity-input-container${wineSelector} button, .quantity-input-container${wineSelector} input, .add-to-cart-button${wineSelector}`,
+      );
+      controls.forEach((el) => {
+        el.dataset.adding = true;
+        el.disabled = true;
+      });
 
-      await cart.addVariantToCart(variant, quantity).then(() => {
+      try {
+        checkout = await client.checkout.addLineItems(checkout.id, [
+          { variantId: variant.id, quantity },
+        ]);
+        renderCart();
+
         NotificationService.showNotification(
           NotificationService.TYPE.ADDED_TO_CART,
           {
             name: document.querySelector(`.name-text${wineSelector}`)
               ?.innerText,
             quantity,
-            price: new Intl.NumberFormat("en-PH", {
-              style: "currency",
-              currency: variant.priceV2.currencyCode,
-            }).format(variant.priceV2.amount),
+            price: formatPrice(
+              variant.priceV2.amount,
+              variant.priceV2.currencyCode,
+            ),
             thumbnailUrl: variant?.image?.src,
             premium: (
               document.querySelector(`.thumbnail${wineSelector}`)?.classList ??
@@ -327,50 +368,38 @@ window.ShopifyBuyManager = (function () {
             ).contains("premium"),
           },
         );
-      });
+      } finally {
+        controls.forEach((el) => {
+          delete el.dataset.adding;
+          el.disabled = false;
+        });
+      }
     } catch (error) {
       NotificationService.showNotification(
         NotificationService.TYPE.GENERIC_ERROR,
       );
       console.error(error);
-    } finally {
-      document
-        .querySelectorAll(
-          `.quantity-input-container${wineSelector} button, .quantity-input-container${wineSelector} input, .add-to-cart-button${wineSelector}`,
-        )
-        .forEach((el) => {
-          delete el.dataset.adding;
-          el.disabled = false;
-        });
     }
   }
 
   async function onBuyNowClick(node) {
     try {
+      await ensureReady();
+
       const productId = node.dataset.productId;
       if (!productId) {
         throw "product not found";
-        return;
       }
 
       const variant = variants[productId];
       if (!variant) {
         throw "variant not found";
-        return;
       }
 
-      const checkout = await client.checkout.create();
-
-      const lineItems = [
-        {
-          variantId: variant.id,
-          quantity: 1,
-        },
-      ];
-
+      const newCheckout = await client.checkout.create();
       const updatedCheckout = await client.checkout.addLineItems(
-        checkout.id,
-        lineItems,
+        newCheckout.id,
+        [{ variantId: variant.id, quantity: 1 }],
       );
 
       window.open(updatedCheckout.webUrl);
@@ -382,10 +411,54 @@ window.ShopifyBuyManager = (function () {
     }
   }
 
+  function changeLineQuantity(lineId, delta) {
+    const item = (checkout?.lineItems || []).find((li) => li.id === lineId);
+    if (!item) return;
+
+    const nextQuantity = Math.max(1, item.quantity + delta);
+    if (nextQuantity === item.quantity) return;
+
+    mutate(() =>
+      client.checkout.updateLineItems(checkout.id, [
+        { id: lineId, quantity: nextQuantity },
+      ]),
+    );
+  }
+
+  function removeLine(lineId) {
+    mutate(() => client.checkout.removeLineItems(checkout.id, [lineId]));
+  }
+
+  function proceedToCheckout() {
+    if (checkout?.webUrl) {
+      window.location.href = checkout.webUrl;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Drawer open / close
+  // ---------------------------------------------------------------------------
+
   function openCart() {
-    setTimeout(() => {
-      cart.open();
-    }, 0);
+    ensureReady().finally(() => {
+      const drawer = document.querySelector(".cart-drawer");
+      const backdrop = document.querySelector(".cart-drawer-backdrop");
+
+      if (drawer) drawer.classList.remove("translate-x-full");
+      if (backdrop) {
+        backdrop.classList.remove("opacity-0", "pointer-events-none");
+      }
+      document.body.classList.add("overflow-hidden");
+    });
+  }
+
+  function closeCart() {
+    const drawer = document.querySelector(".cart-drawer");
+    const backdrop = document.querySelector(".cart-drawer-backdrop");
+
+    if (drawer) drawer.classList.add("translate-x-full");
+    if (backdrop) backdrop.classList.add("opacity-0", "pointer-events-none");
+    document.body.classList.remove("overflow-hidden");
   }
 
   function updateCartCount(count) {
@@ -415,19 +488,20 @@ window.ShopifyBuyManager = (function () {
 
       countText.innerText = count;
     } catch (error) {
-      NotificationService.showNotification(
-        NotificationService.TYPE.GENERIC_ERROR,
-      );
       console.error(error);
     }
   }
 
   return {
+    init,
     loadVariant,
     onAddToCartClick,
     onBuyNowClick,
-    generateCart,
+    changeLineQuantity,
+    removeLine,
+    proceedToCheckout,
     openCart,
+    closeCart,
   };
 })();
 
@@ -439,9 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.ShopifyBuyManager.loadVariant(node);
 
         node.addEventListener("click", async (event) => {
-          window.ShopifyBuyManager.onAddToCartClick(
-            event.target.closest("[data-wine][data-product-id]"),
-          );
+          window.ShopifyBuyManager.onAddToCartClick(event.currentTarget);
         });
       } catch (error) {
         NotificationService.showNotification(
@@ -454,8 +526,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll(".buy-now-button[data-wine][data-product-id]")
     .forEach((node) => {
+      window.ShopifyBuyManager.loadVariant(node);
       node.addEventListener("click", (event) => {
-        window.ShopifyBuyManager.onBuyNowClick(event.target);
+        window.ShopifyBuyManager.onBuyNowClick(event.currentTarget);
       });
     });
 });
