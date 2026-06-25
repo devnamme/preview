@@ -128,3 +128,15 @@
     color: inherit;
   }
 }
+
+/* While the cart drawer is open, center the toast container (desktop) so cart
+   notifications don't overlap the drawer. Toggled by setNotificationsCentered()
+   in shopify.js. Unlayered + compound selector so it overrides the default
+   top-right positioning utilities on .notification-container. */
+@media (min-width: 48rem) {
+  .notification-container.is-centered {
+    right: unset;
+    left: 50%;
+    translate: -50%;
+  }
+}

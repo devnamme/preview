@@ -6,6 +6,17 @@ window.ShopifyBuyManager = (function () {
   let checkout = null;
   let variants = {};
   let isMutating = false;
+  let lineQuantityDebounce = null;
+
+  const SHOPIFY_DOMAIN = "81zwvz-ki.myshopify.com";
+  const STOREFRONT_TOKEN = "fa72c12ec4f08ee0236fe9619fffd150";
+  const STOREFRONT_API_VERSION = "2024-04";
+  // Show the "X stocks left" hint on the product page only at/under this count.
+  const LOW_STOCK_THRESHOLD = 10;
+
+  // Cache of variant gid -> quantityAvailable (number, or null when inventory
+  // is untracked / unknown). Populated lazily by ensureVariantStock().
+  let variantStock = {};
 
   // ---------------------------------------------------------------------------
   // Init / checkout lifecycle
@@ -13,8 +24,8 @@ window.ShopifyBuyManager = (function () {
 
   function initClient() {
     client = ShopifyBuy.buildClient({
-      domain: "81zwvz-ki.myshopify.com",
-      storefrontAccessToken: "b0f54e6e38dae272135d36bbeb7b7a24",
+      domain: SHOPIFY_DOMAIN,
+      storefrontAccessToken: STOREFRONT_TOKEN,
     });
 
     return initCheckout();
@@ -96,19 +107,26 @@ window.ShopifyBuyManager = (function () {
     items.classList.toggle("pointer-events-none", busy);
   }
 
+  // Wrapper for any mutation to the checkout (adding, removing, changing items) that
+  // sets a shared "is mutating" flag to prevent concurrent modifications, and a
+  // "drawer busy" state to disable interactions and show a loading state in the
+  // cart drawer while the mutation is in-flight. Also centralizes error handling
+  // and re-rendering after mutations.
   async function mutate(fn) {
-    if (isMutating) return;
+    if (isMutating) return false;
     isMutating = true;
     setDrawerBusy(true);
 
     try {
       checkout = await fn();
       renderCart();
+      return true;
     } catch (error) {
       NotificationService.showNotification(
         NotificationService.TYPE.GENERIC_ERROR,
       );
       console.error(error);
+      return false;
     } finally {
       isMutating = false;
       setDrawerBusy(false);
@@ -119,7 +137,58 @@ window.ShopifyBuyManager = (function () {
   // Rendering
   // ---------------------------------------------------------------------------
 
-  function quantityStepperHTML(lineId, quantity) {
+  // Cart line / variant ids may carry a "?cart=..." suffix; strip it to get
+  // the canonical gid used for inventory lookups and caching.
+  function canonicalVariantId(id) {
+    return typeof id === "string" ? id.split("?")[0] : id;
+  }
+
+  // Look up quantityAvailable for any variant gids not already cached, via the
+  // Storefront API (needs the unauthenticated_read_product_inventory scope).
+  // Returns true when the cache gained new entries (so the caller can re-render).
+  async function ensureVariantStock(variantIds) {
+    const missing = [
+      ...new Set(
+        variantIds
+          .map(canonicalVariantId)
+          .filter((id) => id && !(id in variantStock)),
+      ),
+    ];
+    if (!missing.length) return false;
+
+    try {
+      // GraphQL query to fetch quantityAvailable for multiple variants by gid. The
+      // response is an array of nodes with id + quantityAvailable, which we map
+      // into the cache.
+      const query = `{ nodes(ids: ${JSON.stringify(missing)}) { ... on ProductVariant { id quantityAvailable } } }`;
+      const response = await fetch(
+        `https://${SHOPIFY_DOMAIN}/api/${STOREFRONT_API_VERSION}/graphql.json`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Shopify-Storefront-Access-Token": STOREFRONT_TOKEN,
+          },
+          body: JSON.stringify({ query }),
+        },
+      );
+      const json = await response.json();
+      (json?.data?.nodes || []).forEach((node) => {
+        if (node && node.id) variantStock[node.id] = node.quantityAvailable;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    // Record anything still unresolved as null so we don't refetch it in a loop.
+    missing.forEach((id) => {
+      if (!(id in variantStock)) variantStock[id] = null;
+    });
+    return true;
+  }
+
+  function quantityStepperHTML(lineId, quantity, available) {
+    const atMax = available != null && quantity >= available;
     return `
 <div class="border border-[#CFD8DC] rounded-xl overflow-clip min-h-9 grid grid-cols-[36px_auto_36px] items-stretch">
   <button
@@ -132,12 +201,24 @@ window.ShopifyBuyManager = (function () {
     </svg>
   </button>
 
-  <div class="min-w-9 px-2 flex items-center justify-center text-center text-[#112D4E] font-extrabold">${quantity}</div>
+  <input
+    class="min-w-9 w-9 px-2 text-center text-[#112D4E] font-extrabold no-scrollbar min-w-0 bg-transparent outline-none"
+    type="number"
+    step="1"
+    min="1"
+    value="${quantity}"
+    data-line-id="${lineId}"
+    oninput="ShopifyBuyManager.onLineQuantityInput(event, '${lineId}')"
+    onchange="ShopifyBuyManager.commitLineQuantity(event, '${lineId}')"
+    onblur="ShopifyBuyManager.commitLineQuantity(event, '${lineId}')"
+    aria-label="Quantity"
+  />
 
   <button
-    class="bg-[#F2F4F6] flex items-center justify-center cursor-pointer"
+    class="bg-[#F2F4F6] flex items-center justify-center ${atMax ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}"
     onclick="ShopifyBuyManager.changeLineQuantity('${lineId}', 1)"
     aria-label="Increase quantity"
+    ${atMax ? "disabled" : ""}
   >
     <svg class="text-[#37474F] size-3.5" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
       <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z" />
@@ -157,6 +238,9 @@ window.ShopifyBuyManager = (function () {
     );
     const imageSrc = item.variant?.image?.src || "";
 
+    const available = variantStock[canonicalVariantId(item.variant?.id)];
+    const atMax = available != null && item.quantity >= available;
+
     return `
 <div class="flex flex-row gap-x-4 py-6 not-last:border-b border-[#EFF0F6]" data-line-id="${item.id}">
   <div class="shrink-0 size-22 rounded-xl bg-red-custom-light p-2.5 flex items-center justify-center">
@@ -175,7 +259,10 @@ window.ShopifyBuyManager = (function () {
 
     <div class="shrink-0 flex flex-col items-end justify-between gap-y-3">
       <p class="text-lg font-extrabold text-red-primary whitespace-nowrap">${price}</p>
-      ${quantityStepperHTML(item.id, item.quantity)}
+      <div class="flex flex-col items-end gap-y-1">
+        ${quantityStepperHTML(item.id, item.quantity, available)}
+        ${atMax ? `<p class="text-yellow-primary text-sm whitespace-nowrap">Only ${available} left in stock</p>` : ""}
+      </div>
     </div>
   </div>
 </div>`;
@@ -215,6 +302,15 @@ window.ShopifyBuyManager = (function () {
       }
       if (emptyEl) emptyEl.classList.add("hidden");
       if (checkoutButton) checkoutButton.disabled = false;
+
+      // Lazily load each line's available stock, then re-render once so the
+      // "+" button and "Only X in stock" note reflect inventory. Already-cached
+      // variants return false, so this does not loop.
+      ensureVariantStock(items.map((item) => item.variant?.id)).then(
+        (updated) => {
+          if (updated) renderCart();
+        },
+      );
     } else {
       if (itemsEl) {
         itemsEl.innerHTML = "";
@@ -240,10 +336,9 @@ window.ShopifyBuyManager = (function () {
           ).variants[0];
 
           const available = variant.available;
+          const wineSelector = `[data-wine="${node.dataset.wine}"]`;
 
           if (!available) {
-            const wineSelector = `[data-wine="${node.dataset.wine}"]`;
-
             const outOfStockText = document.querySelector(
               `.out-of-stock-text${wineSelector}`,
             );
@@ -255,10 +350,14 @@ window.ShopifyBuyManager = (function () {
               `.add-to-cart-button${wineSelector}`,
             );
             if (addToCartButton != null) {
-              addToCartButton
-                .querySelectorAll("button")
-                .forEach((button) => (button.disabled = true));
-              addToCartButton.disabled = true;
+              if (addToCartButton.classList.contains("hide-when-unavailable")) {
+                addToCartButton.classList.add("hidden");
+              } else {
+                addToCartButton
+                  .querySelectorAll("button")
+                  .forEach((button) => (button.disabled = true));
+                addToCartButton.disabled = true;
+              }
             }
 
             const buyNowButton = document.querySelector(
@@ -281,6 +380,36 @@ window.ShopifyBuyManager = (function () {
                 .forEach((node) => {
                   node.disabled = true;
                 });
+              const qtyInput = quantityContainer.querySelector(
+                `input[name="quantity"]`,
+              );
+              if (qtyInput != null) qtyInput.value = "0";
+            }
+          } else {
+            // In stock: cap the quantity input at the available stock and show
+            // a low-stock hint when only a few remain.
+            await ensureVariantStock([variant.id]);
+            const remaining = variantStock[canonicalVariantId(variant.id)];
+            if (remaining != null) {
+              const qtyInput = document.querySelector(
+                `.quantity-input-container${wineSelector} input[name="quantity"]`,
+              );
+              if (qtyInput != null) {
+                qtyInput.max = remaining;
+                if (parseInt(qtyInput.value, 10) > remaining) {
+                  qtyInput.value = remaining;
+                }
+              }
+
+              if (remaining <= LOW_STOCK_THRESHOLD) {
+                const stocksLeftText = document.querySelector(
+                  `.stocks-left-text${wineSelector}`,
+                );
+                if (stocksLeftText != null) {
+                  stocksLeftText.textContent = `${remaining} stocks left`;
+                  stocksLeftText.classList.remove("hidden");
+                }
+              }
             }
           }
 
@@ -411,18 +540,74 @@ window.ShopifyBuyManager = (function () {
     }
   }
 
-  function changeLineQuantity(lineId, delta) {
-    const item = (checkout?.lineItems || []).find((li) => li.id === lineId);
+  function findLine(lineId) {
+    return (checkout?.lineItems || []).find((li) => li.id === lineId);
+  }
+
+  // Shared logic for both the +/- buttons and the editable input. Parses the
+  // requested quantity, treats empty/<=0 as a removal (matching the default
+  // Shopify cart UX), and routes everything through the same mutate pipeline.
+  async function setLineQuantity(lineId, rawValue) {
+    const item = findLine(lineId);
     if (!item) return;
 
-    const nextQuantity = Math.max(1, item.quantity + delta);
-    if (nextQuantity === item.quantity) return;
+    const parsed = parseInt(rawValue, 10);
 
-    mutate(() =>
+    if (!Number.isFinite(parsed) || parsed <= 0) {
+      removeLine(lineId);
+      return;
+    }
+
+    if (parsed === item.quantity) {
+      renderCart(); // revert any stray typed text back to the canonical value
+      return;
+    }
+
+    const ok = await mutate(() =>
       client.checkout.updateLineItems(checkout.id, [
-        { id: lineId, quantity: nextQuantity },
+        { id: lineId, quantity: parsed },
       ]),
     );
+    if (!ok) return;
+
+    // Shopify clamps the line to the available stock and returns the applied
+    // quantity. If it came back lower than requested, the user exceeded stock,
+    // so the applied quantity is the maximum — surface it.
+    const updated = findLine(lineId);
+    if (updated && updated.quantity < parsed) {
+      NotificationService.showNotification(NotificationService.TYPE.TEXT, {
+        text: `Only ${updated.quantity} in stock. The maximum quantity is ${updated.quantity}.`,
+      });
+    }
+  }
+
+  function changeLineQuantity(lineId, delta) {
+    const item = findLine(lineId);
+    if (!item) return;
+    // Pass the raw target quantity; setLineQuantity removes the line when it
+    // drops to 0, so clicking "-" at quantity 1 removes the item.
+    setLineQuantity(lineId, item.quantity + delta);
+  }
+
+  // Debounced commit while the user is typing in the quantity input, so a run
+  // of keystrokes results in a single Shopify update rather than one per key.
+  function onLineQuantityInput(event, lineId) {
+    const value = event.target.value;
+    if (lineQuantityDebounce) clearTimeout(lineQuantityDebounce);
+    lineQuantityDebounce = setTimeout(() => {
+      lineQuantityDebounce = null;
+      setLineQuantity(lineId, value);
+    }, 600);
+  }
+
+  // Immediate commit on blur / Enter (change). Cancels any pending debounce so
+  // we never fire the same update twice.
+  function commitLineQuantity(event, lineId) {
+    if (lineQuantityDebounce) {
+      clearTimeout(lineQuantityDebounce);
+      lineQuantityDebounce = null;
+    }
+    setLineQuantity(lineId, event.target.value);
   }
 
   function removeLine(lineId) {
@@ -449,6 +634,7 @@ window.ShopifyBuyManager = (function () {
         backdrop.classList.remove("opacity-0", "pointer-events-none");
       }
       document.body.classList.add("overflow-hidden");
+      setNotificationsCentered(true);
     });
   }
 
@@ -459,6 +645,17 @@ window.ShopifyBuyManager = (function () {
     if (drawer) drawer.classList.add("translate-x-full");
     if (backdrop) backdrop.classList.add("opacity-0", "pointer-events-none");
     document.body.classList.remove("overflow-hidden");
+    setNotificationsCentered(false);
+  }
+
+  // The shared notification container sits top-right by default. While the cart
+  // drawer is open, center it (desktop) so cart notifications don't overlap the
+  // drawer; other pages/notifications keep the default position. The positioning
+  // lives in global.css (.notification-container.is-centered).
+  function setNotificationsCentered(centered) {
+    const notif = document.querySelector(".notification-container");
+    if (!notif) return;
+    notif.classList.toggle("is-centered", centered);
   }
 
   function updateCartCount(count) {
@@ -498,6 +695,8 @@ window.ShopifyBuyManager = (function () {
     onAddToCartClick,
     onBuyNowClick,
     changeLineQuantity,
+    onLineQuantityInput,
+    commitLineQuantity,
     removeLine,
     proceedToCheckout,
     openCart,
@@ -512,9 +711,11 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         window.ShopifyBuyManager.loadVariant(node);
 
-        node.addEventListener("click", async (event) => {
-          window.ShopifyBuyManager.onAddToCartClick(event.currentTarget);
-        });
+        if (!node.hasAttribute("onclick")) {
+          node.addEventListener("click", async (event) => {
+            window.ShopifyBuyManager.onAddToCartClick(event.currentTarget);
+          });
+        }
       } catch (error) {
         NotificationService.showNotification(
           NotificationService.TYPE.GENERIC_ERROR,
