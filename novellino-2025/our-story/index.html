@@ -92,7 +92,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
           </svg>
         </div>
 
-        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart()">
+        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart(); NotificationService.clearNotifications();">
           <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
             <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
           </svg>
@@ -652,7 +652,7 @@ Shop now</button>
   </div>
 </footer>
 
-<div class="fixed z-60 bottom-18 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
+<div class="fixed z-60 bottom-4 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
   <!-- <div class="opacity-100 transition-opacity rounded-xl px-6 py-3 w-full md:w-90 bg-white shadow-[0_8px_24px_0_#959DA533] notification">
     <div class="mb-3 flex flex-row items-center gap-x-2 justify-between">
       <svg

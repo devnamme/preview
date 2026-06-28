@@ -157,10 +157,11 @@ window.ShopifyBuyManager = (function () {
     if (!missing.length) return false;
 
     try {
-      // GraphQL query to fetch quantityAvailable for multiple variants by gid. The
-      // response is an array of nodes with id + quantityAvailable, which we map
-      // into the cache.
-      const query = `{ nodes(ids: ${JSON.stringify(missing)}) { ... on ProductVariant { id quantityAvailable } } }`;
+      // GraphQL query to fetch stock for multiple variants by gid. We also pull
+      // availableForSale so we can tell apart "really out of stock" from
+      // "inventory not tracked" — both report quantityAvailable 0, but the
+      // latter is still availableForSale and should be treated as unlimited.
+      const query = `{ nodes(ids: ${JSON.stringify(missing)}) { ... on ProductVariant { id quantityAvailable availableForSale } } }`;
       const response = await fetch(
         `https://${SHOPIFY_DOMAIN}/api/${STOREFRONT_API_VERSION}/graphql.json`,
         {
@@ -174,7 +175,12 @@ window.ShopifyBuyManager = (function () {
       );
       const json = await response.json();
       (json?.data?.nodes || []).forEach((node) => {
-        if (node && node.id) variantStock[node.id] = node.quantityAvailable;
+        if (!node || !node.id) return;
+        // A variant that is sellable but reports 0 available has untracked /
+        // oversellable inventory on Shopify. Cache it as null (unlimited) so we
+        // don't cap the quantity or show a misleading "0 left in stock".
+        const untracked = node.availableForSale && !node.quantityAvailable;
+        variantStock[node.id] = untracked ? null : node.quantityAvailable;
       });
     } catch (error) {
       console.error(error);
@@ -319,11 +325,112 @@ window.ShopifyBuyManager = (function () {
       if (emptyEl) emptyEl.classList.remove("hidden");
       if (checkoutButton) checkoutButton.disabled = true;
     }
+
+    // Keep any product cards on the page in sync with the new cart contents.
+    refreshProductStockUI();
   }
 
   // ---------------------------------------------------------------------------
   // Product page: variant loading / price + stock display
   // ---------------------------------------------------------------------------
+
+  // Total quantity of a given variant already sitting in the cart.
+  function cartQuantityForVariant(variantId) {
+    const canonical = canonicalVariantId(variantId);
+    return (checkout?.lineItems || [])
+      .filter((li) => canonicalVariantId(li.variant?.id) === canonical)
+      .reduce((total, li) => total + li.quantity, 0);
+  }
+
+  // Enable/disable all of a product's purchase controls (quantity stepper,
+  // add-to-cart, buy-now) for the given wine selector.
+  function setPurchaseDisabled(wineSelector, disabled) {
+    const quantityContainer = document.querySelector(
+      `.quantity-input-container${wineSelector}`,
+    );
+    if (quantityContainer != null) {
+      quantityContainer.classList.toggle("opacity-50", disabled);
+      quantityContainer.querySelectorAll("input, button").forEach((el) => {
+        el.disabled = disabled;
+      });
+    }
+
+    [
+      `.add-to-cart-button${wineSelector}`,
+      `.buy-now-button${wineSelector}`,
+    ].forEach((selector) => {
+      const button = document.querySelector(selector);
+      if (button == null) return;
+      button.disabled = disabled;
+      button.querySelectorAll("button").forEach((b) => (b.disabled = disabled));
+    });
+  }
+
+  // Cap a product page's quantity input at the stock still available *after*
+  // accounting for what the cart already holds, and disable purchasing entirely
+  // once nothing more can be added. Variants with null stock (untracked /
+  // unknown) are left uncapped.
+  function applyProductStockLimits(wineSelector, variantId) {
+    const remaining = variantStock[canonicalVariantId(variantId)];
+    if (remaining == null) return;
+
+    const selectable = Math.max(
+      0,
+      remaining - cartQuantityForVariant(variantId),
+    );
+
+    const qtyInput = document.querySelector(
+      `.quantity-input-container${wineSelector} input[name="quantity"]`,
+    );
+    if (qtyInput != null) {
+      qtyInput.max = selectable;
+      if (parseInt(qtyInput.value, 10) > selectable) {
+        qtyInput.value = selectable > 0 ? selectable : 1;
+      }
+    }
+
+    setPurchaseDisabled(wineSelector, selectable <= 0);
+
+    // Low-stock hint. There are two copies of the element — a mobile one
+    // ("Only X left in stock") and a desktop one ("X stock(s) left") — so set
+    // each accordingly. Clear the text (rather than toggling a class, which the
+    // important display utilities would fight) when there's nothing to show.
+    const show = selectable > 0 && selectable <= LOW_STOCK_THRESHOLD;
+    document
+      .querySelectorAll(`.stocks-left-text${wineSelector}`)
+      .forEach((node) => {
+        if (!show) {
+          node.textContent = "";
+          return;
+        }
+        node.textContent = node.classList.contains("stocks-left-text-mobile")
+          ? `Only ${selectable} left in stock`
+          : `${selectable} ${selectable === 1 ? "stock" : "stocks"} left`;
+        node.classList.remove("hidden");
+      });
+  }
+
+  // Re-sync every loaded product card on the page with the current cart, so the
+  // quantity caps and disabled states stay correct after cart changes (add from
+  // the page, remove or edit in the drawer). Skips cards mid-add (their controls
+  // are intentionally disabled) and out-of-stock cards (no cached stock).
+  function refreshProductStockUI() {
+    const seen = new Set();
+    document
+      .querySelectorAll(
+        ".add-to-cart-button[data-wine][data-product-id], .buy-now-button[data-wine][data-product-id]",
+      )
+      .forEach((node) => {
+        const variant = variants[node.dataset.productId];
+        if (!variant || seen.has(node.dataset.wine)) return;
+        if (node.dataset.adding) return;
+        seen.add(node.dataset.wine);
+        applyProductStockLimits(
+          `[data-wine="${node.dataset.wine}"]`,
+          variant.id,
+        );
+      });
+  }
 
   function loadVariant(node) {
     ensureReady()
@@ -339,12 +446,21 @@ window.ShopifyBuyManager = (function () {
           const wineSelector = `[data-wine="${node.dataset.wine}"]`;
 
           if (!available) {
-            const outOfStockText = document.querySelector(
+            const outOfStockText = document.querySelectorAll(
               `.out-of-stock-text${wineSelector}`,
             );
-            if (outOfStockText != null) {
-              outOfStockText.classList.remove("hidden");
+            if (outOfStockText.length > 0) {
+              outOfStockText.forEach((node) => {
+                node.classList.remove("hidden");
+                node.classList.remove("lg:hidden");
+              });
             }
+
+            document
+              .querySelectorAll(`.stocks-left-text${wineSelector}`)
+              .forEach((node) => {
+                node.classList.add("hidden");
+              });
 
             const addToCartButton = document.querySelector(
               `.add-to-cart-button${wineSelector}`,
@@ -386,31 +502,11 @@ window.ShopifyBuyManager = (function () {
               if (qtyInput != null) qtyInput.value = "0";
             }
           } else {
-            // In stock: cap the quantity input at the available stock and show
-            // a low-stock hint when only a few remain.
+            // In stock: cap the quantity input at the stock still available
+            // after what the cart already holds, and show a low-stock hint when
+            // only a few remain.
             await ensureVariantStock([variant.id]);
-            const remaining = variantStock[canonicalVariantId(variant.id)];
-            if (remaining != null) {
-              const qtyInput = document.querySelector(
-                `.quantity-input-container${wineSelector} input[name="quantity"]`,
-              );
-              if (qtyInput != null) {
-                qtyInput.max = remaining;
-                if (parseInt(qtyInput.value, 10) > remaining) {
-                  qtyInput.value = remaining;
-                }
-              }
-
-              if (remaining <= LOW_STOCK_THRESHOLD) {
-                const stocksLeftText = document.querySelector(
-                  `.stocks-left-text${wineSelector}`,
-                );
-                if (stocksLeftText != null) {
-                  stocksLeftText.textContent = `${remaining} stocks left`;
-                  stocksLeftText.classList.remove("hidden");
-                }
-              }
-            }
+            applyProductStockLimits(wineSelector, variant.id);
           }
 
           const priceText = document.querySelector(
@@ -503,6 +599,10 @@ window.ShopifyBuyManager = (function () {
           el.disabled = false;
         });
       }
+
+      // The cart just grew, so re-cap this card (and disable it if the cart now
+      // holds all available stock).
+      applyProductStockLimits(wineSelector, variant.id);
     } catch (error) {
       NotificationService.showNotification(
         NotificationService.TYPE.GENERIC_ERROR,

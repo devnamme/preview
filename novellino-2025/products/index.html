@@ -92,7 +92,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
           </svg>
         </div>
 
-        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart()">
+        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart(); NotificationService.clearNotifications();">
           <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
             <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
           </svg>
@@ -164,8 +164,11 @@ Shop now</button>
     </div>
   </div>
 
-  <div class="lg:col-span-2 pb-4 lg:p-0 lg:mb-12 overflow-x-auto">
-    <div class="mx-auto max-w-[1295px] px-4 lg:px-0 w-fit flex flex-row lg:grid lg:grid-cols-3 gap-y-4 gap-x-4 lg:gap-x-10 lg:col-span-2">
+  <div class="lg:col-span-2 pb-6 lg:pb-4 lg:p-0 lg:mb-12 relative">
+    <div class="absolute top-0 left-0 z-1 h-full w-4 lg:hidden bg-gradient-to-r from-white to-transparent"></div>
+    <div class="absolute top-0 right-0 z-1 h-full w-4 lg:hidden bg-gradient-to-l from-white to-transparent"></div>
+    <div class="overflow-x-auto">
+      <div class="mx-auto max-w-[1295px] px-4 lg:px-0 w-fit flex flex-row lg:grid lg:grid-cols-3 gap-y-4 gap-x-4 lg:gap-x-10 lg:col-span-2">
       <div class="border border-[#0000001A] rounded-lg p-5 bg-white grid grid-cols-[min-content_1fr] gap-x-4 w-[300px] lg:w-[unset] shrink-0 grow-0">
       <div class="text-green-primary opacity-30 self-start">
         <svg width="16" height="15" viewbox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -175,7 +178,7 @@ Shop now</button>
 
       <div class="flex flex-col">
         <p class="mb-4 grow text-sm">
-          The wine was very delightful and delicious, it's recommended for any occasion, and it's healthy since there's no alcohol content.        </p>
+          The wine was very delightful and delicious, it's recommended for any occasion. There's alcohol-free option which is healthier.        </p>
 
         <div class="flex flex-row gap-x-1 mb-2">
                       <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -208,7 +211,7 @@ Shop now</button>
 
       <div class="flex flex-col">
         <p class="mb-4 grow text-sm">
-          It taste really good! First time drinking this wine brand and I liked it. Even my family likes it. I will order from this shop and again and maybe try other flavors too. Thank you!        </p>
+          It tastes really good! First time drinking this wine brand and I liked it. Even my family likes it. I will order from this shop and again and maybe try other flavors too. Thank you!        </p>
 
         <div class="flex flex-row gap-x-1 mb-2">
                       <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -266,6 +269,7 @@ Shop now</button>
       </div>
     </div>
   </div>
+    </div>
   </div>
 
   <div class="grid lg:grid-cols-[200px_auto] overflow-x-clip lg:gap-y-4 items-start relative">
@@ -285,7 +289,7 @@ Shop now</button>
           </sidebar>
 
     <main class="mt-4 min-w-0 lg:mt-0 grow flex flex-col gap-y-4 lg:gap-y-0">
-              <div class="pt-8 lg:pt-12 lg:-mt-12 lg:pb-12 wine-type-group" id="everyday-red">
+              <div class="pt-4 lg:pt-12 lg:-mt-12 lg:pb-12 wine-type-group" id="everyday-red">
           <div class="mb-6 lg:mb-8 px-4 lg:pl-12 lg:pr-0 flex flex-row items-center justify-between gap-x-4">
             <div class="flex flex-col gap-y-3">
               <div class="grow flex flex-row items-center gap-x-6">
@@ -330,18 +334,26 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-classico.png" alt="Rosso Classico" data-wine="rosso-classico">
     </div>
 
-    <div class="relative">
-              <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
-          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
   Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-classico">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-classico">
+            Out of Stock          </div>
         </div>
-      
-      <div class="flex flex-col gap-y-2">
-                  <div class="lg:hidden flex flex-row flex-wrap gap-2">
-            <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
-  Bestseller!</div>
-          </div>
-        
+
         <h3 class=" name-text" data-wine="rosso-classico">
           Rosso Classico        </h3>
 
@@ -373,9 +385,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="rosso-classico">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-classico-light/">
@@ -383,10 +392,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-classico-light.png" alt="Rosso Classico Light" data-wine="rosso-classico-light">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-classico-light">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-classico-light">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="rosso-classico-light">
           Rosso Classico Light        </h3>
 
@@ -418,9 +439,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="rosso-classico-light">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-tradizionale/">
@@ -428,10 +446,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-tradizionale.png" alt="Rosso Tradizionale" data-wine="rosso-tradizionale">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-tradizionale">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-tradizionale">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="rosso-tradizionale">
           Rosso Tradizionale        </h3>
 
@@ -463,9 +493,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="rosso-tradizionale">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sangria/">
@@ -473,10 +500,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sangria.png" alt="Sangria" data-wine="sangria">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sangria">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sangria">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="sangria">
           Sangria        </h3>
 
@@ -508,9 +547,114 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
+</div>
+<div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
+  <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sparkling-red/">
+    <div class="self-stretch shrink-0 grow-0">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-red.png" alt="Sparkling Red" data-wine="sparkling-red">
+    </div>
 
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="sangria">
-    Out of Stock  </p>
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-red">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-red">
+            Out of Stock          </div>
+        </div>
+
+        <h3 class=" name-text" data-wine="sparkling-red">
+          Sparkling Red        </h3>
+
+        <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="sparkling-red"></h4>
+      </div>
+
+      <hr class="my-3 text-red-alternative opacity-50">
+
+      <p class="text-[#455A64]">
+        Made from premium <i>Vitis Vinifera</i> grapes, 100% grape juice with no sugar added      </p>
+
+              <div class="mt-4 flex flex-row flex-wrap gap-x-3 gap-y-2">
+          <div class="border border-[#0000001A] rounded-sm bg-white/50 px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold ">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/heart-label-icon.svg">
+      <p class="text-sm text-red-secondary/80">
+    For a guilt-free indulgence perfect for family celebrations  </p>
+</div>        </div>
+          </div>
+  </a>
+
+  <button class="rounded-full size-8 bg-white flex items-center justify-center absolute top-5 right-5 lg:top-4 lg:right-4 enabled:cursor-pointer disabled:opacity-50 add-to-cart-button hide-when-unavailable" data-wine="sparkling-red" data-product-id="8534293643456">
+    <svg class="text-red-primary size-5" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
+      <rect width="256" height="256" fill="none"></rect>
+      <line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+      <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+    </svg>
+  </button>
+</div>
+<div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
+  <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sparkling-strawberry/">
+    <div class="self-stretch shrink-0 grow-0">
+      <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-strawberry.png" alt="Sparkling Strawberry" data-wine="sparkling-strawberry">
+    </div>
+
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-strawberry">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-strawberry">
+            Out of Stock          </div>
+        </div>
+
+        <h3 class=" name-text" data-wine="sparkling-strawberry">
+          Sparkling Strawberry        </h3>
+
+        <h4 class="hidden text-[#455A64] font-extrabold price-text" data-wine="sparkling-strawberry"></h4>
+      </div>
+
+      <hr class="my-3 text-red-alternative opacity-50">
+
+      <p class="text-[#455A64]">
+        Made from premium <i>Vitis Vinifera</i> grapes, blended with natural strawberry extracts imported from Italy      </p>
+
+              <div class="mt-4 flex flex-row flex-wrap gap-x-3 gap-y-2">
+          <div class="border border-[#0000001A] rounded-sm bg-white/50 px-2 py-1 flex flex-row items-center gap-1.5 text-sm font-extrabold ">
+      <img class="size-4 object-contain" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/heart-label-icon.svg">
+      <p class="text-sm text-red-secondary/80">
+    For a guilt-free indulgence perfect for family celebrations  </p>
+</div>        </div>
+          </div>
+  </a>
+
+  <button class="rounded-full size-8 bg-white flex items-center justify-center absolute top-5 right-5 lg:top-4 lg:right-4 enabled:cursor-pointer disabled:opacity-50 add-to-cart-button hide-when-unavailable" data-wine="sparkling-strawberry" data-product-id="8534293676224">
+    <svg class="text-red-primary size-5" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
+      <rect width="256" height="256" fill="none"></rect>
+      <line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+      <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+    </svg>
+  </button>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/strawberry-passion/">
@@ -518,18 +662,26 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/strawberry-passion.png" alt="Strawberry Passion" data-wine="strawberry-passion">
     </div>
 
-    <div class="relative">
-              <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
-          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
   Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="strawberry-passion">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="strawberry-passion">
+            Out of Stock          </div>
         </div>
-      
-      <div class="flex flex-col gap-y-2">
-                  <div class="lg:hidden flex flex-row flex-wrap gap-2">
-            <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
-  Bestseller!</div>
-          </div>
-        
+
         <h3 class=" name-text" data-wine="strawberry-passion">
           Strawberry Passion        </h3>
 
@@ -561,9 +713,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="strawberry-passion">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/strawberry-passion-light/">
@@ -571,10 +720,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/strawberry-passion-light.png" alt="Strawberry Passion Light" data-wine="strawberry-passion-light">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="strawberry-passion-light">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="strawberry-passion-light">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="strawberry-passion-light">
           Strawberry Passion Light        </h3>
 
@@ -606,9 +767,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="strawberry-passion-light">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/wild-blackberry/">
@@ -616,18 +774,26 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/wild-blackberry.png" alt="Wild Blackberry" data-wine="wild-blackberry">
     </div>
 
-    <div class="relative">
-              <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
-          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
   Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="wild-blackberry">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="wild-blackberry">
+            Out of Stock          </div>
         </div>
-      
-      <div class="flex flex-col gap-y-2">
-                  <div class="lg:hidden flex flex-row flex-wrap gap-2">
-            <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
-  Bestseller!</div>
-          </div>
-        
+
         <h3 class=" name-text" data-wine="wild-blackberry">
           Wild Blackberry        </h3>
 
@@ -659,15 +825,12 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="wild-blackberry">
-    Out of Stock  </p>
 </div>
               </div>
             </div>
           </div>
         </div>
-              <div class="pt-8 lg:pt-12  lg:pb-12 wine-type-group" id="everyday-white">
+              <div class="pt-4 lg:pt-12  lg:pb-12 wine-type-group" id="everyday-white">
           <div class="mb-6 lg:mb-8 px-4 lg:pl-12 lg:pr-0 flex flex-row items-center justify-between gap-x-4">
             <div class="flex flex-col gap-y-3">
               <div class="grow flex flex-row items-center gap-x-6">
@@ -712,10 +875,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/bianco-classico.png" alt="Bianco Classico" data-wine="bianco-classico">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="bianco-classico">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="bianco-classico">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="bianco-classico">
           Bianco Classico        </h3>
 
@@ -747,9 +922,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="bianco-classico">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/luscious-peach/">
@@ -757,10 +929,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/luscious-peach.png" alt="Luscious Peach" data-wine="luscious-peach">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="luscious-peach">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="luscious-peach">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="luscious-peach">
           Luscious Peach        </h3>
 
@@ -792,15 +976,12 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="luscious-peach">
-    Out of Stock  </p>
 </div>
               </div>
             </div>
           </div>
         </div>
-              <div class="pt-8 lg:pt-12  lg:pb-12 wine-type-group" id="premium-red">
+              <div class="pt-4 lg:pt-12  lg:pb-12 wine-type-group" id="premium-red">
           <div class="mb-6 lg:mb-8 px-4 lg:pl-12 lg:pr-0 flex flex-row items-center justify-between gap-x-4">
             <div class="flex flex-col gap-y-3">
               <div class="grow flex flex-row items-center gap-x-6">
@@ -845,10 +1026,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace.png" alt="Rosso Vivace" data-wine="rosso-vivace">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-vivace">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-vivace">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="rosso-vivace">
           Rosso Vivace        </h3>
 
@@ -880,9 +1073,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="rosso-vivace">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-vivace-light/">
@@ -890,10 +1080,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace-light.png" alt="Rosso Vivace Light" data-wine="rosso-vivace-light">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-vivace-light">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-vivace-light">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="rosso-vivace-light">
           Rosso Vivace Light        </h3>
 
@@ -925,15 +1127,12 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="rosso-vivace-light">
-    Out of Stock  </p>
 </div>
               </div>
             </div>
           </div>
         </div>
-              <div class="pt-8 lg:pt-12  lg:pb-12 wine-type-group" id="premium-white">
+              <div class="pt-4 lg:pt-12  lg:pb-12 wine-type-group" id="premium-white">
           <div class="mb-6 lg:mb-8 px-4 lg:pl-12 lg:pr-0 flex flex-row items-center justify-between gap-x-4">
             <div class="flex flex-col gap-y-3">
               <div class="grow flex flex-row items-center gap-x-6">
@@ -978,10 +1177,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Vivace-transparent-scaled.png" alt="Bianco Vivace" data-wine="bianco-vivace">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="bianco-vivace">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="bianco-vivace">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="bianco-vivace">
           Bianco Vivace        </h3>
 
@@ -1013,15 +1224,12 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="bianco-vivace">
-    Out of Stock  </p>
 </div>
               </div>
             </div>
           </div>
         </div>
-              <div class="pt-8 lg:pt-12  lg:pb-12 wine-type-group" id="alcohol-free">
+              <div class="pt-4 lg:pt-12  lg:pb-12 wine-type-group" id="alcohol-free">
           <div class="mb-6 lg:mb-8 px-4 lg:pl-12 lg:pr-0 flex flex-row items-center justify-between gap-x-4">
             <div class="flex flex-col gap-y-3">
               <div class="grow flex flex-row items-center gap-x-6">
@@ -1066,18 +1274,26 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-red.png" alt="Sparkling Red" data-wine="sparkling-red">
     </div>
 
-    <div class="relative">
-              <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
-          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
   Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-red">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-red">
+            Out of Stock          </div>
         </div>
-      
-      <div class="flex flex-col gap-y-2">
-                  <div class="lg:hidden flex flex-row flex-wrap gap-2">
-            <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
-  Bestseller!</div>
-          </div>
-        
+
         <h3 class=" name-text" data-wine="sparkling-red">
           Sparkling Red        </h3>
 
@@ -1105,9 +1321,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="sparkling-red">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/sparkling-strawberry/">
@@ -1115,18 +1328,26 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-strawberry.png" alt="Sparkling Strawberry" data-wine="sparkling-strawberry">
     </div>
 
-    <div class="relative">
-              <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
-          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
+        <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
   Bestseller!</div>
+
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-strawberry">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-sm font-extrabold text-center text-white">
+  Bestseller!</div>
+
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="sparkling-strawberry">
+            Out of Stock          </div>
         </div>
-      
-      <div class="flex flex-col gap-y-2">
-                  <div class="lg:hidden flex flex-row flex-wrap gap-2">
-            <div class="border border-white/50 rounded-sm px-2 py-1 bg-green-primary text-base font-extrabold text-center text-white">
-  Bestseller!</div>
-          </div>
-        
+
         <h3 class=" name-text" data-wine="sparkling-strawberry">
           Sparkling Strawberry        </h3>
 
@@ -1154,15 +1375,12 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="sparkling-strawberry">
-    Out of Stock  </p>
 </div>
               </div>
             </div>
           </div>
         </div>
-              <div class="pt-8 lg:pt-12  lg:pb-12 wine-type-group" id="italian-collection">
+              <div class="pt-4 lg:pt-12  lg:pb-12 wine-type-group" id="italian-collection">
           <div class="mb-6 lg:mb-8 px-4 lg:pl-12 lg:pr-0 flex flex-row items-center justify-between gap-x-4">
             <div class="flex flex-col gap-y-3">
               <div class="grow flex flex-row items-center gap-x-6">
@@ -1208,10 +1426,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Cabernet-Sauvignon-transparent-scaled.png" alt="Cabernet Sauvignon" data-wine="cabernet-sauvignon">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="cabernet-sauvignon">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="cabernet-sauvignon">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="cabernet-sauvignon">
           Cabernet Sauvignon        </h3>
 
@@ -1243,9 +1473,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="cabernet-sauvignon">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/merlot/">
@@ -1253,10 +1480,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Merlot-transparent-scaled.png" alt="Merlot" data-wine="merlot">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="merlot">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="merlot">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="merlot">
           Merlot        </h3>
 
@@ -1288,9 +1527,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="merlot">
-    Out of Stock  </p>
 </div>
 <div class="rounded-2xl pl-2 pr-5 py-5 lg:px-6 lg:pb-6 lg:pt-0 cursor-pointer bg-red-custom-light relative lg:max-w-[312px] wine-card">
   <a class="flex flex-row items-stretch lg:flex-col gap-y-8" href="https://preview.emmanevangelista.com/novellino-2025/wine/rosso-dell-azienda/">
@@ -1298,10 +1534,22 @@ Shop now</button>
       <img class="w-25 lg:w-full lg:h-[300px] object-contain thumbnail" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Dell-Azienda-transparent-scaled.png" alt="Rosso Dell Azienda" data-wine="rosso-dell-azienda">
     </div>
 
-    <div class="relative">
-      
-      <div class="flex flex-col gap-y-2">
+    <div class="grow-1 shrink-1 relative">
+      <!-- DESKTOP ONLY -->
+      <div class="hidden absolute top-0 left-0 -translate-y-[calc(100%+8px)] lg:flex flex-row flex-wrap gap-2">
         
+        <div class="hidden lg:hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-dell-azienda">
+          Out of Stock        </div>
+      </div>
+
+      <div class="flex flex-col gap-y-2 pr-8 lg:pr-0">
+        <div class="flex lg:hidden flex-row flex-wrap gap-2">
+          
+          <!-- MOBILE -->
+          <div class="hidden border border-black/10 rounded-sm px-2 py-1 bg-white/24 top-5 right-5 text-red-primary/80 text-sm font-extrabold text-center out-of-stock-text" data-wine="rosso-dell-azienda">
+            Out of Stock          </div>
+        </div>
+
         <h3 class=" name-text" data-wine="rosso-dell-azienda">
           Rosso Dell Azienda        </h3>
 
@@ -1333,9 +1581,6 @@ Shop now</button>
       <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
     </svg>
   </button>
-
-  <p class="hidden border-white/24 rounded-sm px-2 py-1 bg-white/50 text-red-primary/80 text-sm font-extrabold absolute top-5 right-5 out-of-stock-text" data-wine="rosso-dell-azienda">
-    Out of Stock  </p>
 </div>
               </div>
             </div>
@@ -1494,7 +1739,7 @@ Shop now</button>
   </div>
 </footer>
 
-<div class="fixed z-60 bottom-18 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
+<div class="fixed z-60 bottom-4 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
   <!-- <div class="opacity-100 transition-opacity rounded-xl px-6 py-3 w-full md:w-90 bg-white shadow-[0_8px_24px_0_#959DA533] notification">
     <div class="mb-3 flex flex-row items-center gap-x-2 justify-between">
       <svg

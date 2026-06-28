@@ -88,7 +88,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
           </svg>
         </div>
 
-        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart()">
+        <div class="relative size-6 cursor-pointer cart-container" onclick="ShopifyBuyManager.openCart(); NotificationService.clearNotifications();">
           <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
             <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
           </svg>
@@ -192,7 +192,7 @@ Shop now</button>
 
       <div class="flex flex-col">
         <p class="mb-4 grow text-sm">
-          The wine was very delightful and delicious, it's recommended for any occasion, and it's healthy since there's no alcohol content.        </p>
+          The wine was very delightful and delicious, it's recommended for any occasion. There's alcohol-free option which is healthier.        </p>
 
         <div class="flex flex-row gap-x-1 mb-2">
                       <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@ Shop now</button>
 
       <div class="flex flex-col">
         <p class="mb-4 grow text-sm">
-          It taste really good! First time drinking this wine brand and I liked it. Even my family likes it. I will order from this shop and again and maybe try other flavors too. Thank you!        </p>
+          It tastes really good! First time drinking this wine brand and I liked it. Even my family likes it. I will order from this shop and again and maybe try other flavors too. Thank you!        </p>
 
         <div class="flex flex-row gap-x-1 mb-2">
                       <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -899,7 +899,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 1;" href="https://preview.emmanevangelista.com/novellino-2025/products/#everyday-red">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #D14760;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[110%] lg:h-[125%] absolute translate-y-3 lg:-translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-classico.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/strawberry-passion.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -909,7 +909,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 2;" href="https://preview.emmanevangelista.com/novellino-2025/products/#everyday-white">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #359158;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[110%] lg:h-[125%] absolute translate-y-3 lg:-translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/bianco-classico.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/luscious-peach.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -919,27 +919,17 @@ Shop wines
               <a class="block lg:order-none!" style="order: 5;" href="https://preview.emmanevangelista.com/novellino-2025/products/#alcohol-free">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #9A9A9A;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[110%] lg:h-[125%] absolute translate-y-3 lg:-translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-red.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-strawberry.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
               Alcohol Free            </h3>
           </div>
         </a>
-              <a class="block lg:order-none!" style="order: 6;" href="https://preview.emmanevangelista.com/novellino-2025/products/#italian-collection">
-          <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #AE782A;">
-            <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[110%] lg:h-[125%] absolute translate-y-6 lg:translate-y-0 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Merlot-transparent-scaled.png">
-            </div>
-
-            <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
-              Italian Collection            </h3>
-          </div>
-        </a>
               <a class="block lg:order-none!" style="order: 3;" href="https://preview.emmanevangelista.com/novellino-2025/products/#premium-red">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #580C22;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[110%] lg:h-[125%] absolute translate-y-3 lg:-translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace-light.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -949,11 +939,21 @@ Shop wines
               <a class="block lg:order-none!" style="order: 4;" href="https://preview.emmanevangelista.com/novellino-2025/products/#premium-white">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #08401D;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[110%] lg:h-[125%] absolute translate-y-3 lg:-translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Vivace-transparent-scaled.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-5 lg:translate-y-0 lg:h-[110%] object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Bianco-Vivace-transparent-scaled.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
               Premium White            </h3>
+          </div>
+        </a>
+              <a class="block lg:order-none!" style="order: 6;" href="https://preview.emmanevangelista.com/novellino-2025/products/#italian-collection">
+          <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #AE782A;">
+            <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-7 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Cabernet-Sauvignon-transparent-scaled.png">
+            </div>
+
+            <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
+              Italian Collection            </h3>
           </div>
         </a>
           </div>
@@ -1238,7 +1238,7 @@ Shop now</button>
   </div>
 </footer>
 
-<div class="fixed z-60 bottom-18 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
+<div class="fixed z-60 bottom-4 left-4 right-4 md:bottom-[unset] md:left-[unset] md:right-[max(1rem,calc((100vw-1440px)/2+1rem))] md:top-20 w-[calc(100%-2rem)] md:w-fit notification-container">
   <!-- <div class="opacity-100 transition-opacity rounded-xl px-6 py-3 w-full md:w-90 bg-white shadow-[0_8px_24px_0_#959DA533] notification">
     <div class="mb-3 flex flex-row items-center gap-x-2 justify-between">
       <svg
