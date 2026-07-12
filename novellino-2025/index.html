@@ -51,7 +51,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
 </script>
 <script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-3"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
-<meta name="generator" content="WordPress 7.0">
+<meta name="generator" content="WordPress 7.0.1">
 </head>
 <body class="flex flex-col min-h-screen bg-white ">
 <!-- <div id="main-body" class="h-full overflow-auto"> -->
@@ -304,9 +304,10 @@ Shop wines
         <path d="M12.0037 15.8295L12.7484 16.5742L17.3229 11.9998L12.7484 7.42529L12.0037 8.16997L15.3016 11.4678H7.32288V12.5317H15.3016L12.0037 15.8295Z" fill="currentColor"></path>
       </svg>
 
-      </button>
+            </button>
 
-    </a></div>
+  </a>
+    </div>
 
     <div id="perfect-pour-carousel" class="-mx-20 mb-6 flex flex-row items-stretch justify-center">
                 <div class="min-h-100 shrink-0 relative">
@@ -882,6 +883,187 @@ Shop wines
         }, 1000);
       }
 
+      // Issue #39: horizontal scrolling via gesture. Layers pointer/touch
+      // drag-to-scroll on top of the existing infinite-loop arrow navigation.
+      // While dragging we translate the whole track; once the drag passes a
+      // card's width we rotate a card from one end to the other so the loop
+      // stays seamless (matching what the arrows do). On release we snap to the
+      // nearest card.
+      (function () {
+        const carousel = document.getElementById("perfect-pour-carousel");
+        if (!carousel) {
+          return;
+        }
+
+        const DRAG_THRESHOLD = 8; // px of travel before a press becomes a drag
+
+        // Let the browser handle vertical scrolling while we take horizontal
+        // gestures, and stop native image/link dragging from hijacking the drag.
+        carousel.style.touchAction = "pan-y";
+        carousel.style.cursor = "grab";
+        carousel.style.userSelect = "none";
+        carousel.addEventListener("dragstart", (event) => event.preventDefault());
+
+        let isPointerDown = false;
+        let isDragging = false;
+        let startX = 0;
+        let offset = 0;
+        let activePointerId = null;
+        let suppressClick = false;
+
+        // Width of one card, including its horizontal margins.
+        function cardStep() {
+          const kids = carousel.children;
+          if (kids.length >= 2) {
+            return (
+              kids[1].getBoundingClientRect().left -
+              kids[0].getBoundingClientRect().left
+            );
+          }
+          if (kids.length === 1) {
+            return kids[0].getBoundingClientRect().width;
+          }
+          return 308;
+        }
+
+        function setTransform(px) {
+          carousel.style.transform = px ? "translateX(" + px + "px)" : "";
+        }
+
+        // Keep `offset` within (-step, step) by rotating cards end-to-end, so a
+        // long drag feels infinite. Adjusts `startX` in lockstep so the
+        // invariant `offset === pointerX - startX` still holds afterwards.
+        function normalize() {
+          if (carousel.children.length < 2) {
+            return;
+          }
+
+          let step = cardStep();
+          let guard = 0;
+          while (offset > step && guard++ < 100) {
+            carousel.insertBefore(carousel.lastElementChild, carousel.firstElementChild);
+            offset -= step;
+            startX += step;
+            step = cardStep();
+          }
+
+          guard = 0;
+          while (offset < -step && guard++ < 100) {
+            carousel.appendChild(carousel.firstElementChild);
+            offset += step;
+            startX -= step;
+            step = cardStep();
+          }
+        }
+
+        function onPointerDown(event) {
+          if (carouselIsAnimating) {
+            return;
+          }
+          if (event.button !== undefined && event.button !== 0) {
+            return; // primary button / touch / pen only
+          }
+
+          isPointerDown = true;
+          isDragging = false;
+          startX = event.clientX;
+          offset = 0;
+          activePointerId = event.pointerId;
+          carousel.style.transition = "none";
+          try {
+            carousel.setPointerCapture(event.pointerId);
+          } catch (_) {}
+        }
+
+        function onPointerMove(event) {
+          if (!isPointerDown) {
+            return;
+          }
+
+          const travel = event.clientX - startX;
+          if (!isDragging) {
+            if (Math.abs(travel) < DRAG_THRESHOLD) {
+              return;
+            }
+            isDragging = true;
+            carouselIsAnimating = true; // block the arrows while dragging
+            carousel.style.cursor = "grabbing";
+          }
+
+          offset = event.clientX - startX;
+          normalize();
+          setTransform(offset);
+        }
+
+        function onPointerUp() {
+          if (!isPointerDown) {
+            return;
+          }
+          isPointerDown = false;
+          try {
+            carousel.releasePointerCapture(activePointerId);
+          } catch (_) {}
+          carousel.style.cursor = "grab";
+
+          if (!isDragging) {
+            return; // a tap — let the click through to the card / add-to-cart
+          }
+          suppressClick = true; // it was a drag — swallow the click that follows
+
+          const step = cardStep();
+          let commit = 0;
+          if (offset > step / 4) {
+            commit = 1;
+          } else if (offset < -step / 4) {
+            commit = -1;
+          }
+
+          let settled = false;
+          const settle = () => {
+            if (settled) {
+              return;
+            }
+            settled = true;
+            carousel.removeEventListener("transitionend", settle);
+            carousel.style.transition = "none";
+            if (commit === 1) {
+              carousel.insertBefore(carousel.lastElementChild, carousel.firstElementChild);
+            } else if (commit === -1) {
+              carousel.appendChild(carousel.firstElementChild);
+            }
+            offset = 0;
+            setTransform(0);
+            isDragging = false;
+            carouselIsAnimating = false;
+          };
+
+          carousel.style.transition = "transform 0.3s ease-out";
+          setTransform(commit * step);
+          carousel.addEventListener("transitionend", settle);
+          setTimeout(settle, 350); // fallback if transitionend doesn't fire
+        }
+
+        carousel.addEventListener("pointerdown", onPointerDown);
+        carousel.addEventListener("pointermove", onPointerMove);
+        carousel.addEventListener("pointerup", onPointerUp);
+        carousel.addEventListener("pointercancel", onPointerUp);
+
+        // Swallow the synthetic click fired after a drag so cards don't navigate
+        // and the add-to-cart button doesn't fire. Capture phase runs before the
+        // card's own handlers.
+        carousel.addEventListener(
+          "click",
+          (event) => {
+            if (suppressClick) {
+              event.preventDefault();
+              event.stopPropagation();
+              suppressClick = false;
+            }
+          },
+          true,
+        );
+      })();
+
     </script>
   </div>
 </section>
@@ -899,7 +1081,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 1;" href="https://preview.emmanevangelista.com/novellino-2025/products/#everyday-red">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #D14760;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/strawberry-passion.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-classico.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -909,7 +1091,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 2;" href="https://preview.emmanevangelista.com/novellino-2025/products/#everyday-white">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #359158;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/luscious-peach.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/bianco-classico.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -919,7 +1101,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 5;" href="https://preview.emmanevangelista.com/novellino-2025/products/#alcohol-free">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #9A9A9A;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-strawberry.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/sparkling-red.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -929,7 +1111,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 3;" href="https://preview.emmanevangelista.com/novellino-2025/products/#premium-red">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #580C22;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace-light.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -949,7 +1131,7 @@ Shop wines
               <a class="block lg:order-none!" style="order: 6;" href="https://preview.emmanevangelista.com/novellino-2025/products/#italian-collection">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #AE782A;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-7 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Cabernet-Sauvignon-transparent-scaled.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-7 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Merlot-transparent-scaled.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">

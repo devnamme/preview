@@ -54,7 +54,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
 <script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-3"></script>
 <script id="nv-wine-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/wine.js?ver=2.0.0-beta-3"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
-<meta name="generator" content="WordPress 7.0">
+<meta name="generator" content="WordPress 7.0.1">
 <link rel="canonical" href="https://preview.emmanevangelista.com/novellino-2025/wine/sangria/">
 <link rel="shortlink" href="https://preview.emmanevangelista.com/novellino-2025/?p=4739">
 </head>
@@ -183,7 +183,7 @@ Shop now</button>
                   <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"> <defs> <mask id="icon-mask"> <rect width="32" height="32" fill="white"></rect> <path d="M8.98975 11.876H10.2971V18.1678H12.5516V19.4096H8.99535L8.98975 11.876Z" fill="black"></path> <path d="M15.5804 13.7643C16.2729 13.7555 16.9302 14.0718 17.3561 14.6178V13.8764H18.5762V19.4221H17.3561V18.6808C16.9302 19.2276 16.2729 19.543 15.5804 19.5342C14.0592 19.5342 12.9048 18.2349 12.9048 16.6481C12.9048 15.0605 14.0592 13.7643 15.5804 13.7643ZM15.8021 14.8748C14.8142 14.8748 14.1601 15.6521 14.1601 16.6473C14.1601 17.6432 14.8246 18.423 15.8021 18.423C16.7789 18.423 17.4434 17.6464 17.4434 16.6473C17.4434 15.6489 16.7893 14.8748 15.8021 14.8748Z" fill="black"></path> <path d="M19.5247 18.4581L22.4325 14.9835H19.568V13.8755H24.0081V14.8522L21.1107 18.3132H24.0737V19.4212H19.5239V18.4581" fill="black"></path> </mask> </defs> <path d="M16.0058 27.6911C15.8012 27.6926 15.6001 27.6402 15.422 27.5394C13.8986 26.658 2.6161 19.5838 2.19007 19.3678C1.86575 19.2164 1.64431 18.9066 1.60624 18.5506V8.62788C1.59781 8.25765 1.78089 7.90892 2.09068 7.70579L2.17234 7.659C3.26386 6.98188 6.91766 4.75235 7.49539 4.43123C7.6279 4.35248 7.77902 4.31034 7.93333 4.30859C8.07776 4.31034 8.21987 4.34637 8.34774 4.4135C8.34774 4.4135 13.4607 7.74647 14.243 8.04405C14.7916 8.2963 15.3903 8.42184 15.9939 8.41167C16.6783 8.42591 17.3542 8.26085 17.9549 7.93304C18.7195 7.53026 23.6049 4.43094 23.6575 4.43094C23.7807 4.35654 23.9222 4.31818 24.0661 4.31993C24.2204 4.3208 24.3715 4.36294 24.5037 4.44256C25.1692 4.81018 29.6986 7.58286 29.891 7.70521C30.2095 7.8973 30.4028 8.2437 30.399 8.61568V18.5384C30.3632 18.8953 30.1412 19.2063 29.8154 19.3556C29.3894 19.589 18.1418 26.6632 16.5891 27.5272C16.4127 27.6327 16.2113 27.6891 16.0058 27.6911Z" fill="currentColor" mask="url(#icon-mask)"></path> </svg>                </a>
                         </div>
         
-        <div class="fixed z-7 bottom-0 left-0 w-full mt-0 p-2 lg:px-0 bg-white lg:relative lg:mt-8 lg:w-unset lg:bg-transparent flex flex-col gap-y-2">
+        <div id="wine-cart-bar" class="fixed z-7 bottom-0 left-0 w-full mt-0 p-2 lg:px-0 bg-white lg:relative lg:mt-8 lg:w-unset lg:bg-transparent flex flex-col gap-y-2">
           <p class="font-md text-yellow-primary block lg:hidden stocks-left-text stocks-left-text-mobile" data-wine="sangria"></p>
 
           <div class="flex lg:flex-col gap-y-8 gap-x-3">
@@ -254,6 +254,18 @@ Buy now</button>
                   </div>
       </div>
     
+<div class="px-4 lg:px-0" id="reviews">
+  <div class="flex flex-row items-center gap-x-4 mb-5 flex-wrap gap-y-2">
+    <h3 class="text-red-primary">Customer Reviews</h3>
+
+      </div>
+
+      <p class="text-lg text-red-secondary/70">
+      No reviews yet. Be the first to review Sangria.
+    </p>
+  </div>
+
+
     <div class="px-4 lg:px-0">
       <h3 class="mb-4 text-red-primary">
         You may also like      </h3>
@@ -401,6 +413,22 @@ Buy now</button>
     </div>
   </div>
 </div>
+
+<div id="wine-cart-bar-spacer" aria-hidden="true" class="lg:hidden"></div>
+
+<style>
+  @media (max-width: 1023px) {
+    #wine-cart-bar {
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    #wine-cart-bar.cart-bar-hidden {
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+</style>
 
 <section class="px-4 pt-4 pb-8 lg:pt-8 lg:pb-16 lg:px-0">
   <div class="mx-auto max-w-[1240px] border-[1.5px] border-[#0000001A] rounded-2xl p-6 lg:py-12 lg:px-20 bg-white grid lg:grid-cols-[4fr_5fr] gap-x-32 gap-y-4">
