@@ -51,7 +51,7 @@ var storyData = {"logoUrl":"https://preview.emmanevangelista.com/novellino-2025/
 </script>
 <script id="nv-story-js" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/themes/novellino-2025/assets/js/story.js?ver=2.0.0-beta-3"></script>
 <link rel="https://api.w.org/" href="https://preview.emmanevangelista.com/novellino-2025/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://preview.emmanevangelista.com/novellino-2025/xmlrpc.php?rsd">
-<meta name="generator" content="WordPress 7.0.1">
+<meta name="generator" content="WordPress 7.0.2">
 </head>
 <body class="flex flex-col min-h-screen bg-white ">
 <!-- <div id="main-body" class="h-full overflow-auto"> -->
@@ -581,9 +581,9 @@ Shop wines
                 <div class="w-full h-100 bg-center bg-cover relative thumbnail" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Classico-gray-scaled.jpg);" data-wine="rosso-classico">
                   <div class="flex flex-row flex-wrap p-4 items-start justify-between">
                                           <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                        <div class="rounded-full size-3" style="background-color: #D14760">
+                        <div class="rounded-full size-3" style="background-color: #d14760">
                         </div>
-                        <p class="text-sm font-extrabold" style="color: #D14760">
+                        <p class="text-sm font-extrabold" style="color: #d14760">
                           Everyday Red                        </p>
                       </div>
                     
@@ -636,9 +636,9 @@ Shop wines
                 <div class="w-full h-100 bg-center bg-cover relative thumbnail" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Classico-Light-gray-scaled.jpg);" data-wine="rosso-classico-light">
                   <div class="flex flex-row flex-wrap p-4 items-start justify-between">
                                           <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                        <div class="rounded-full size-3" style="background-color: #D14760">
+                        <div class="rounded-full size-3" style="background-color: #d14760">
                         </div>
-                        <p class="text-sm font-extrabold" style="color: #D14760">
+                        <p class="text-sm font-extrabold" style="color: #d14760">
                           Everyday Red                        </p>
                       </div>
                     
@@ -742,9 +742,9 @@ Shop wines
                 <div class="w-full h-100 bg-center bg-cover relative thumbnail" style="background-image: url(https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2025/11/Rosso-Tradizionale-gray-scaled.jpg);" data-wine="rosso-tradizionale">
                   <div class="flex flex-row flex-wrap p-4 items-start justify-between">
                                           <div class="rounded-sm p-1 flex flex-row items-center gap-x-1.5 bg-[#FFFFFF3D]">
-                        <div class="rounded-full size-3" style="background-color: #D14760">
+                        <div class="rounded-full size-3" style="background-color: #d14760">
                         </div>
-                        <p class="text-sm font-extrabold" style="color: #D14760">
+                        <p class="text-sm font-extrabold" style="color: #d14760">
                           Everyday Red                        </p>
                       </div>
                     
@@ -966,13 +966,15 @@ Shop wines
 
           isPointerDown = true;
           isDragging = false;
+          suppressClick = false;
           startX = event.clientX;
           offset = 0;
           activePointerId = event.pointerId;
           carousel.style.transition = "none";
-          try {
-            carousel.setPointerCapture(event.pointerId);
-          } catch (_) {}
+          // Don't capture the pointer here: capturing on a plain tap makes the
+          // browser dispatch the follow-up click to the carousel instead of the
+          // card, so the card link and add-to-cart button never fire. Only
+          // capture once an actual drag begins (see onPointerMove).
         }
 
         function onPointerMove(event) {
@@ -988,6 +990,11 @@ Shop wines
             isDragging = true;
             carouselIsAnimating = true; // block the arrows while dragging
             carousel.style.cursor = "grabbing";
+            // Now that it's a real drag, capture the pointer so we keep getting
+            // move/up events even if it leaves the carousel.
+            try {
+              carousel.setPointerCapture(activePointerId);
+            } catch (_) {}
           }
 
           offset = event.clientX - startX;
@@ -1079,9 +1086,9 @@ Shop wines
 
     <div class="grid grid-cols-2 lg:grid-cols-3 grid-rows-auto gap-3 lg:gap-8">
               <a class="block lg:order-none!" style="order: 1;" href="https://preview.emmanevangelista.com/novellino-2025/products/#everyday-red">
-          <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #D14760;">
+          <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #d14760;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-classico.png">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-classico-light.png">
             </div>
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
@@ -1108,16 +1115,6 @@ Shop wines
               Alcohol Free            </h3>
           </div>
         </a>
-              <a class="block lg:order-none!" style="order: 3;" href="https://preview.emmanevangelista.com/novellino-2025/products/#premium-red">
-          <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #580C22;">
-            <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
-              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace.png">
-            </div>
-
-            <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
-              Premium Red            </h3>
-          </div>
-        </a>
               <a class="block lg:order-none!" style="order: 4;" href="https://preview.emmanevangelista.com/novellino-2025/products/#premium-white">
           <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #08401D;">
             <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
@@ -1136,6 +1133,16 @@ Shop wines
 
             <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
               Italian Collection            </h3>
+          </div>
+        </a>
+              <a class="block lg:order-none!" style="order: 3;" href="https://preview.emmanevangelista.com/novellino-2025/products/#premium-red">
+          <div class="rounded-lg px-4 lg:px-8 py-3 lg:py-6 w-full aspect-4/3 relative" style="background-color: #580C22;">
+            <div class="w-1/2 h-[calc(100%+48px)] top-0 left-0 absolute overflow-clip -translate-y-[48px]">
+              <img class="w-full h-[100%] lg:h-[105%] absolute translate-y-6 lg:translate-y-4 object-cover object-center" src="https://preview.emmanevangelista.com/novellino-2025/wp-content/uploads/2026/06/rosso-vivace.png">
+            </div>
+
+            <h3 class="w-1/2 ml-auto text-lg md:text-[28px] leading-[130%] text-right text-white">
+              Premium Red            </h3>
           </div>
         </a>
           </div>
@@ -1515,9 +1522,57 @@ Shop now</button>
       <p class="text-[#90A4AE]">Computed at checkout</p>
     </div>
 
+    <!-- Date of birth: captured onto the Shopify order as a checkout custom
+         attribute. Required — the checkout button stays disabled until valid.
+         Styled to match the theme's input components (components/input/*). -->
+    <div class="group flex flex-col gap-y-1 mb-6" data-field-name="buyer-dob">
+      <label for="cart-dob-input" class="text-base font-medium text-red-tertiary">
+        Date of birth
+        <span class="text-[#78909C] required-text">(required)</span>
+      </label>
+      <input id="cart-dob-input" type="date" class="border border-[#CFD8DC] rounded-sm p-3 min-h-[54px] text-base font-medium text-red-tertiary placeholder:text-[#78909C] group-data-has-error:border-red-alternative" oninput="ShopifyBuyManager.onDobInput(event)" aria-describedby="cart-dob-error">
+      <p id="cart-dob-error" class="cart-dob-error hidden text-sm font-medium text-red-alternative"></p>
+    </div>
+
     
   <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-red-primary bg-red-primary text-white w-full cart-checkout-button flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" disabled onclick="ShopifyBuyManager.proceedToCheckout()" role="button">
 Proceed to Checkout</button>
+
+  </div>
+</div>
+
+<!-- Date of birth modal: the Buy Now flow bypasses the cart drawer, so when no
+     valid DOB is stored yet it opens this to collect one before checkout. -->
+<div class="dob-modal-backdrop fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300" onclick="ShopifyBuyManager.closeDobModal()"></div>
+
+<div class="dob-modal fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-[400px] bg-white rounded-xl shadow-[0_8px_24px_0_#959DA533] opacity-0 scale-95 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="dob-modal-title">
+  <div class="p-6">
+    <div class="flex flex-row items-start justify-between gap-x-4">
+      <h3 id="dob-modal-title" class="text-red-primary">Confirm your date of birth</h3>
+
+      <button class="shrink-0 size-6 text-red-secondary cursor-pointer flex items-center justify-center" onclick="ShopifyBuyManager.closeDobModal()" aria-label="Close">
+        <svg class="size-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewbox="0 0 256 256">
+          <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <p class="mt-2 text-red-secondary">
+      Please enter your date of birth to continue to checkout.
+    </p>
+
+    <div class="group mt-5 flex flex-col gap-y-1" data-field-name="dob-modal">
+      <label for="dob-modal-input" class="text-base font-medium text-red-tertiary">
+        Date of birth
+        <span class="text-[#78909C] required-text">(required)</span>
+      </label>
+      <input id="dob-modal-input" type="date" class="border border-[#CFD8DC] rounded-sm p-3 min-h-[54px] text-base font-medium text-red-tertiary placeholder:text-[#78909C] group-data-has-error:border-red-alternative" oninput="ShopifyBuyManager.onDobModalInput(event)" aria-describedby="dob-modal-error">
+      <p id="dob-modal-error" class="dob-modal-error hidden text-sm font-medium text-red-alternative"></p>
+    </div>
+
+    
+  <button class="rounded-xl py-2.5 px-6 text-center text-base font-extrabold enabled:cursor-pointer border border-red-primary bg-red-primary text-white w-full mt-6 flex flex-row items-center justify-center gap-x-2.5 disabled:opacity-50" onclick="ShopifyBuyManager.submitDobModal()" role="button">
+Continue to Checkout</button>
 
   </div>
 </div>

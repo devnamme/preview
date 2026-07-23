@@ -1,5 +1,6 @@
 window.ShopifyBuyManager = (function () {
   const CHECKOUT_STORAGE_KEY = "nv_checkout_id";
+  const DOB_STORAGE_KEY = "nv_buyer_dob";
 
   let client = null;
   let readyPromise = null;
@@ -7,6 +8,8 @@ window.ShopifyBuyManager = (function () {
   let variants = {};
   let isMutating = false;
   let lineQuantityDebounce = null;
+  // Variant awaiting checkout while the Buy Now DOB modal is open.
+  let pendingBuyNowVariant = null;
 
   const SHOPIFY_DOMAIN = "81zwvz-ki.myshopify.com";
   const STOREFRONT_TOKEN = "fa72c12ec4f08ee0236fe9619fffd150";
@@ -299,7 +302,6 @@ window.ShopifyBuyManager = (function () {
 
     const itemsEl = document.querySelector(".cart-drawer-items");
     const emptyEl = document.querySelector(".cart-drawer-empty");
-    const checkoutButton = document.querySelector(".cart-checkout-button");
 
     if (items.length > 0) {
       if (itemsEl) {
@@ -307,7 +309,6 @@ window.ShopifyBuyManager = (function () {
         itemsEl.classList.remove("hidden");
       }
       if (emptyEl) emptyEl.classList.add("hidden");
-      if (checkoutButton) checkoutButton.disabled = false;
 
       // Lazily load each line's available stock, then re-render once so the
       // "+" button and "Only X in stock" note reflect inventory. Already-cached
@@ -323,8 +324,10 @@ window.ShopifyBuyManager = (function () {
         itemsEl.classList.add("hidden");
       }
       if (emptyEl) emptyEl.classList.remove("hidden");
-      if (checkoutButton) checkoutButton.disabled = true;
     }
+
+    // Enable/disable checkout based on cart contents + a valid DOB.
+    updateCheckoutButtonState();
 
     // Keep any product cards on the page in sync with the new cart contents.
     refreshProductStockUI();
@@ -625,18 +628,155 @@ window.ShopifyBuyManager = (function () {
         throw "variant not found";
       }
 
-      const newCheckout = await client.checkout.create();
-      const updatedCheckout = await client.checkout.addLineItems(
-        newCheckout.id,
-        [{ variantId: variant.id, quantity: 1 }],
-      );
-
-      window.open(updatedCheckout.webUrl);
+      // Buy Now skips the cart drawer (and its DOB field), so enforce the DOB
+      // here. If we already have a valid one (entered earlier in the drawer or a
+      // previous Buy Now, persisted in localStorage), reuse it and go straight
+      // to checkout. Otherwise collect it via the modal, which resumes the flow.
+      if (validateDob(currentDobValue()).valid) {
+        await executeBuyNow(variant);
+      } else {
+        pendingBuyNowVariant = variant;
+        openDobModal();
+      }
     } catch (error) {
       NotificationService.showNotification(
         NotificationService.TYPE.GENERIC_ERROR,
       );
       console.error(error);
+    }
+  }
+
+  // Create a one-off checkout for a single variant, stamp the buyer's DOB + age
+  // onto it (fail open — a failed attribute write shouldn't block the sale), and
+  // open Shopify's hosted checkout.
+  async function executeBuyNow(variant) {
+    let newCheckout = await client.checkout.create();
+    newCheckout = await client.checkout.addLineItems(newCheckout.id, [
+      { variantId: variant.id, quantity: 1 },
+    ]);
+
+    const value = currentDobValue();
+    const result = validateDob(value);
+    if (result.valid) {
+      try {
+        newCheckout = await client.checkout.updateAttributes(newCheckout.id, {
+          customAttributes: [
+            { key: "Date of Birth", value },
+            { key: "Age", value: String(result.age) },
+          ],
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    window.open(newCheckout.webUrl);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Buy Now DOB modal
+  // ---------------------------------------------------------------------------
+
+  function getDobModalInput() {
+    return document.getElementById("dob-modal-input");
+  }
+
+  function showDobModalError(message) {
+    const el = document.querySelector(".dob-modal-error");
+    if (!el) return;
+    if (message) {
+      el.textContent = message;
+      el.classList.remove("hidden");
+    } else {
+      el.textContent = "";
+      el.classList.add("hidden");
+    }
+
+    const group = el.closest(".group[data-field-name]");
+    if (group) {
+      if (message) group.dataset.hasError = "true";
+      else delete group.dataset.hasError;
+    }
+  }
+
+  function openDobModal() {
+    const modal = document.querySelector(".dob-modal");
+    const backdrop = document.querySelector(".dob-modal-backdrop");
+    const input = getDobModalInput();
+
+    if (input) {
+      input.max = todayISO();
+      input.value = getStoredDob();
+    }
+    showDobModalError("");
+
+    if (modal) {
+      modal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+      modal.classList.add("opacity-100", "scale-100");
+    }
+    if (backdrop) {
+      backdrop.classList.remove("opacity-0", "pointer-events-none");
+    }
+    document.body.classList.add("overflow-hidden");
+    if (input) input.focus();
+  }
+
+  function closeDobModal() {
+    const modal = document.querySelector(".dob-modal");
+    const backdrop = document.querySelector(".dob-modal-backdrop");
+
+    if (modal) {
+      modal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      modal.classList.remove("opacity-100", "scale-100");
+    }
+    if (backdrop) {
+      backdrop.classList.add("opacity-0", "pointer-events-none");
+    }
+    // Only release the scroll lock if the cart drawer isn't also holding it.
+    const drawerOpen = document
+      .querySelector(".cart-drawer")
+      ?.classList.contains("translate-x-full");
+    if (drawerOpen !== false) {
+      document.body.classList.remove("overflow-hidden");
+    }
+    pendingBuyNowVariant = null;
+  }
+
+  function onDobModalInput(event) {
+    const result = validateDob(event.target.value);
+    showDobModalError(result.valid ? "" : result.error);
+  }
+
+  async function submitDobModal() {
+    const input = getDobModalInput();
+    const value = input ? input.value : "";
+    const result = validateDob(value);
+
+    if (!result.valid) {
+      showDobModalError(result.error || "Please enter your date of birth.");
+      if (input) input.focus();
+      return;
+    }
+
+    // Persist and mirror into the drawer field so both checkout paths agree.
+    localStorage.setItem(DOB_STORAGE_KEY, value);
+    const drawerInput = getDobInput();
+    if (drawerInput) drawerInput.value = value;
+    showDobError("");
+    updateCheckoutButtonState();
+
+    const variant = pendingBuyNowVariant;
+    closeDobModal();
+
+    if (variant) {
+      try {
+        await executeBuyNow(variant);
+      } catch (error) {
+        NotificationService.showNotification(
+          NotificationService.TYPE.GENERIC_ERROR,
+        );
+        console.error(error);
+      }
     }
   }
 
@@ -714,7 +854,164 @@ window.ShopifyBuyManager = (function () {
     mutate(() => client.checkout.removeLineItems(checkout.id, [lineId]));
   }
 
-  function proceedToCheckout() {
+  // ---------------------------------------------------------------------------
+  // Buyer date of birth
+  //
+  // Collected in the cart drawer and attached to the Shopify order as checkout
+  // custom attributes (Date of Birth + computed Age), which show up in the admin
+  // order detail, order exports, and the Orders API. Required for data capture —
+  // the checkout button stays disabled until a valid, complete date is entered.
+  // This is not a legal age gate; no minimum age is enforced.
+  // ---------------------------------------------------------------------------
+
+  function getDobInput() {
+    return document.getElementById("cart-dob-input");
+  }
+
+  function getStoredDob() {
+    return localStorage.getItem(DOB_STORAGE_KEY) || "";
+  }
+
+  // Source of truth: the live input if present, else whatever we persisted.
+  function currentDobValue() {
+    const input = getDobInput();
+    return input ? input.value : getStoredDob();
+  }
+
+  function todayISO() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function computeAge(dobString) {
+    const dob = new Date(`${dobString}T00:00:00`);
+    const now = new Date();
+    let age = now.getFullYear() - dob.getFullYear();
+    const monthDelta = now.getMonth() - dob.getMonth();
+    if (monthDelta < 0 || (monthDelta === 0 && now.getDate() < dob.getDate())) {
+      age -= 1;
+    }
+    return age;
+  }
+
+  // A native date input hands us "YYYY-MM-DD" or "". Returns validity, the
+  // computed age, and a user-facing error message (empty when the field is
+  // simply blank, so we don't nag before they've typed anything).
+  function validateDob(dobString) {
+    if (!dobString) return { valid: false, age: null, error: "" };
+
+    const dob = new Date(`${dobString}T00:00:00`);
+    if (Number.isNaN(dob.getTime())) {
+      return { valid: false, age: null, error: "Please enter a valid date." };
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (dob > today) {
+      return {
+        valid: false,
+        age: null,
+        error: "Date of birth can't be in the future.",
+      };
+    }
+
+    const age = computeAge(dobString);
+    if (age > 120) {
+      return {
+        valid: false,
+        age: null,
+        error: "Please enter a valid date of birth.",
+      };
+    }
+
+    return { valid: true, age, error: "" };
+  }
+
+  function showDobError(message) {
+    const el = document.querySelector(".cart-dob-error");
+    if (!el) return;
+    if (message) {
+      el.textContent = message;
+      el.classList.remove("hidden");
+    } else {
+      el.textContent = "";
+      el.classList.add("hidden");
+    }
+
+    // Drive the theme's shared error styling (red border via
+    // group-data-has-error) on the field group, matching the contact form.
+    const group = el.closest(".group[data-field-name]");
+    if (group) {
+      if (message) group.dataset.hasError = "true";
+      else delete group.dataset.hasError;
+    }
+  }
+
+  // Enable "Proceed to Checkout" only when the cart has items AND the DOB is
+  // valid. Centralizes the button state so renderCart and the DOB input share it.
+  function updateCheckoutButtonState() {
+    const checkoutButton = document.querySelector(".cart-checkout-button");
+    if (!checkoutButton) return;
+    const hasItems = (checkout?.lineItems || []).length > 0;
+    checkoutButton.disabled = !(
+      hasItems && validateDob(currentDobValue()).valid
+    );
+  }
+
+  function onDobInput(event) {
+    const value = event.target.value;
+    const result = validateDob(value);
+
+    if (value) {
+      localStorage.setItem(DOB_STORAGE_KEY, value);
+    } else {
+      localStorage.removeItem(DOB_STORAGE_KEY);
+    }
+
+    showDobError(result.valid ? "" : result.error);
+    updateCheckoutButtonState();
+  }
+
+  // Prefill the input from storage on load and cap the picker at today, then
+  // sync the checkout button. Safe to call before the SDK is ready.
+  function hydrateDob() {
+    const input = getDobInput();
+    if (!input) return;
+    input.max = todayISO();
+    const stored = getStoredDob();
+    if (stored) input.value = stored;
+    updateCheckoutButtonState();
+  }
+
+  async function proceedToCheckout() {
+    const value = currentDobValue();
+    const result = validateDob(value);
+    if (!result.valid) {
+      showDobError(result.error || "Please enter your date of birth.");
+      const input = getDobInput();
+      if (input) input.focus();
+      updateCheckoutButtonState();
+      return;
+    }
+
+    // Stamp the DOB + age onto the checkout so they land on the Shopify order.
+    // Fail open: if the attribute write errors, log it but still let the sale
+    // proceed — this is data capture, not a hard gate.
+    try {
+      await ensureReady();
+      checkout = await client.checkout.updateAttributes(checkout.id, {
+        customAttributes: [
+          { key: "Date of Birth", value },
+          { key: "Age", value: String(result.age) },
+        ],
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
     if (checkout?.webUrl) {
       window.location.href = checkout.webUrl;
     }
@@ -799,12 +1096,19 @@ window.ShopifyBuyManager = (function () {
     commitLineQuantity,
     removeLine,
     proceedToCheckout,
+    onDobInput,
+    hydrateDob,
+    closeDobModal,
+    onDobModalInput,
+    submitDobModal,
     openCart,
     closeCart,
   };
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
+  window.ShopifyBuyManager.hydrateDob();
+
   document
     .querySelectorAll(".add-to-cart-button[data-wine][data-product-id]")
     .forEach((node) => {
