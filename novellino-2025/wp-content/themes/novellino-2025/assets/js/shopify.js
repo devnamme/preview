@@ -2,6 +2,11 @@ window.ShopifyBuyManager = (function () {
   const CHECKOUT_STORAGE_KEY = "nv_checkout_id";
   const DOB_STORAGE_KEY = "nv_buyer_dob";
 
+  // Legal age gate. The DOB itself is remembered across visits, but the consent
+  // checkbox deliberately is not — the buyer re-affirms it on every checkout.
+  const MIN_AGE = 18;
+  const UNDERAGE_MESSAGE = `You must be at least ${MIN_AGE} years old to purchase.`;
+
   let client = null;
   let readyPromise = null;
   let checkout = null;
@@ -326,6 +331,13 @@ window.ShopifyBuyManager = (function () {
       if (emptyEl) emptyEl.classList.remove("hidden");
     }
 
+    // An all-alcohol-free cart needs no age gate: hide the DOB + consent block
+    // and let the checkout button enable on cart contents alone.
+    const ageGate = document.querySelector(".cart-age-gate");
+    if (ageGate) {
+      ageGate.classList.toggle("hidden", cartIsAlcoholFree());
+    }
+
     // Enable/disable checkout based on cart contents + a valid DOB.
     updateCheckoutButtonState();
 
@@ -541,6 +553,31 @@ window.ShopifyBuyManager = (function () {
   // Cart actions
   // ---------------------------------------------------------------------------
 
+  // Alcohol-free products carry data-alcohol-free on their buy buttons (from
+  // the wine's wine_type term). The flag is stamped onto the line item as a
+  // hidden custom attribute so it travels with the checkout across pages —
+  // the cart persists via nv_checkout_id, so the DOM can't be re-consulted.
+  function lineItemAttributes(node) {
+    return node.dataset.alcoholFree
+      ? [{ key: "_alcohol_free", value: "true" }]
+      : [];
+  }
+
+  // True when every line item was stamped alcohol-free at add time. Items
+  // without the attribute (including any added before this feature shipped)
+  // count as alcoholic, so the age gate stays on.
+  function cartIsAlcoholFree() {
+    const items = checkout?.lineItems || [];
+    return (
+      items.length > 0 &&
+      items.every((li) =>
+        (li.customAttributes || []).some(
+          (attr) => attr.key === "_alcohol_free" && attr.value === "true",
+        ),
+      )
+    );
+  }
+
   async function onAddToCartClick(node) {
     const wineSelector = `[data-wine="${node.dataset.wine}"]`;
 
@@ -575,7 +612,11 @@ window.ShopifyBuyManager = (function () {
 
       try {
         checkout = await client.checkout.addLineItems(checkout.id, [
-          { variantId: variant.id, quantity },
+          {
+            variantId: variant.id,
+            quantity,
+            customAttributes: lineItemAttributes(node),
+          },
         ]);
         renderCart();
 
@@ -628,16 +669,26 @@ window.ShopifyBuyManager = (function () {
         throw "variant not found";
       }
 
-      // Buy Now skips the cart drawer (and its DOB field), so enforce the DOB
-      // here. If we already have a valid one (entered earlier in the drawer or a
-      // previous Buy Now, persisted in localStorage), reuse it and go straight
-      // to checkout. Otherwise collect it via the modal, which resumes the flow.
-      if (validateDob(currentDobValue()).valid) {
-        await executeBuyNow(variant);
-      } else {
-        pendingBuyNowVariant = variant;
-        openDobModal();
+      // Alcohol-free products need no age gate at all: straight to checkout,
+      // no DOB modal, no underage check.
+      if (node.dataset.alcoholFree) {
+        await executeBuyNow(variant, { skipAgeGate: true });
+        return;
       }
+
+      // A stored DOB we already know is under-age goes straight to the
+      // underage modal — no point flashing the DOB form first.
+      if (validateDob(getStoredDob()).underage) {
+        pendingBuyNowVariant = null;
+        openUnderageModal();
+        return;
+      }
+
+      // Buy Now skips the cart drawer (and its DOB field + consent box), so the
+      // modal always runs: it prefills any stored DOB, but consent is never
+      // persisted, so it has to be re-affirmed here before checkout opens.
+      pendingBuyNowVariant = variant;
+      openDobModal();
     } catch (error) {
       NotificationService.showNotification(
         NotificationService.TYPE.GENERIC_ERROR,
@@ -649,10 +700,23 @@ window.ShopifyBuyManager = (function () {
   // Create a one-off checkout for a single variant, stamp the buyer's DOB + age
   // onto it (fail open — a failed attribute write shouldn't block the sale), and
   // open Shopify's hosted checkout.
-  async function executeBuyNow(variant) {
+  async function executeBuyNow(variant, { skipAgeGate = false } = {}) {
+    // Last line of defence: never open a checkout for an under-age (or missing)
+    // date of birth, even if a caller reached here without going via the modal.
+    // Alcohol-free purchases (skipAgeGate) are exempt.
+    if (!skipAgeGate && !validateDob(currentDobValue()).valid) return;
+
     let newCheckout = await client.checkout.create();
     newCheckout = await client.checkout.addLineItems(newCheckout.id, [
-      { variantId: variant.id, quantity: 1 },
+      {
+        variantId: variant.id,
+        quantity: 1,
+        // Keep the flag consistent with cart-added lines in case this
+        // checkout is ever merged or inspected later.
+        customAttributes: skipAgeGate
+          ? [{ key: "_alcohol_free", value: "true" }]
+          : [],
+      },
     ]);
 
     const value = currentDobValue();
@@ -699,16 +763,37 @@ window.ShopifyBuyManager = (function () {
     }
   }
 
+  // The modal's submit mirrors the drawer's checkout button: it only unlocks on
+  // a valid, of-age date of birth plus a ticked consent box.
+  function updateDobModalSubmitState() {
+    const button = document.querySelector(".dob-modal-submit");
+    if (!button) return;
+    const input = getDobModalInput();
+    const value = input ? input.value : "";
+    button.disabled = !(
+      validateDob(value).valid && isChecked(getModalConsentInput())
+    );
+  }
+
   function openDobModal() {
     const modal = document.querySelector(".dob-modal");
     const backdrop = document.querySelector(".dob-modal-backdrop");
     const input = getDobModalInput();
 
+    const stored = getStoredDob();
     if (input) {
       input.max = todayISO();
-      input.value = getStoredDob();
+      input.value = stored;
     }
-    showDobModalError("");
+    // Consent is never carried over between openings.
+    const consent = getModalConsentInput();
+    if (consent) consent.checked = false;
+
+    // Show the under-18 block immediately for a stored date, but stay quiet
+    // when there's nothing entered yet.
+    const result = validateDob(stored);
+    showDobModalError(result.underage ? result.error : "");
+    updateDobModalSubmitState();
 
     if (modal) {
       modal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
@@ -718,7 +803,9 @@ window.ShopifyBuyManager = (function () {
       backdrop.classList.remove("opacity-0", "pointer-events-none");
     }
     document.body.classList.add("overflow-hidden");
-    if (input) input.focus();
+    // Intentionally not auto-focusing the input: focusing a type="date"
+    // field on mobile immediately opens the native date picker, which is a
+    // jarring UX the moment the modal appears.
   }
 
   function closeDobModal() {
@@ -745,6 +832,14 @@ window.ShopifyBuyManager = (function () {
   function onDobModalInput(event) {
     const result = validateDob(event.target.value);
     showDobModalError(result.valid ? "" : result.error);
+    updateDobModalSubmitState();
+
+    // An under-age date ends this purchase attempt: closing the DOB modal also
+    // clears pendingBuyNowVariant, so no checkout survives the hand-off.
+    if (result.underage) {
+      closeDobModal();
+      openUnderageModal();
+    }
   }
 
   async function submitDobModal() {
@@ -754,11 +849,18 @@ window.ShopifyBuyManager = (function () {
 
     if (!result.valid) {
       showDobModalError(result.error || "Please enter your date of birth.");
-      if (input) input.focus();
+      if (input && !result.underage) input.focus();
+      updateDobModalSubmitState();
+      return;
+    }
+
+    if (!isChecked(getModalConsentInput())) {
+      updateDobModalSubmitState();
       return;
     }
 
     // Persist and mirror into the drawer field so both checkout paths agree.
+    // The drawer's own consent box is left untouched — each path collects it.
     localStorage.setItem(DOB_STORAGE_KEY, value);
     const drawerInput = getDobInput();
     if (drawerInput) drawerInput.value = value;
@@ -778,6 +880,69 @@ window.ShopifyBuyManager = (function () {
         console.error(error);
       }
     }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Underage modal
+  //
+  // Shown whenever a DOB check comes back under MIN_AGE, on top of whichever
+  // surface triggered it (cart drawer or Buy Now DOB modal). The inline errors
+  // and disabled buttons underneath are left in place — they're the correct
+  // residual state once this modal closes.
+  // ---------------------------------------------------------------------------
+
+  function openUnderageModal() {
+    const modal = document.querySelector(".underage-modal");
+    const backdrop = document.querySelector(".underage-modal-backdrop");
+
+    if (modal) {
+      modal.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+      modal.classList.add("opacity-100", "scale-100");
+    }
+    if (backdrop) {
+      backdrop.classList.remove("opacity-0", "pointer-events-none");
+    }
+    document.body.classList.add("overflow-hidden");
+    // Unlike the DOB modal (whose date input would pop the mobile picker),
+    // focusing a button is safe and gives keyboard users a starting point.
+    modal?.querySelector("button")?.focus();
+  }
+
+  function closeUnderageModal() {
+    const modal = document.querySelector(".underage-modal");
+    const backdrop = document.querySelector(".underage-modal-backdrop");
+
+    if (modal) {
+      modal.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      modal.classList.remove("opacity-100", "scale-100");
+    }
+    if (backdrop) {
+      backdrop.classList.add("opacity-0", "pointer-events-none");
+    }
+    // Only release the scroll lock if the cart drawer isn't also holding it.
+    const drawerOpen = document
+      .querySelector(".cart-drawer")
+      ?.classList.contains("translate-x-full");
+    if (drawerOpen !== false) {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }
+
+  // openCart() is idempotent: from the drawer path the drawer is already open
+  // beneath this modal; from the Buy Now path it opens now, so "Back to cart"
+  // is honest either way.
+  function underageBackToCart() {
+    closeUnderageModal();
+    openCart();
+  }
+
+  function underageBrowseAlcoholFree(url) {
+    // Tear everything down before navigating: when already on the products
+    // page, assigning a same-page hash URL scrolls without a reload, so the
+    // modal, drawer, and scroll lock would otherwise linger.
+    closeUnderageModal();
+    closeCart();
+    window.location.href = url;
   }
 
   function findLine(lineId) {
@@ -859,9 +1024,9 @@ window.ShopifyBuyManager = (function () {
   //
   // Collected in the cart drawer and attached to the Shopify order as checkout
   // custom attributes (Date of Birth + computed Age), which show up in the admin
-  // order detail, order exports, and the Orders API. Required for data capture —
-  // the checkout button stays disabled until a valid, complete date is entered.
-  // This is not a legal age gate; no minimum age is enforced.
+  // order detail, order exports, and the Orders API. Also acts as the legal age
+  // gate: the checkout button stays disabled until a valid, complete date is
+  // entered AND it puts the buyer at MIN_AGE or older.
   // ---------------------------------------------------------------------------
 
   function getDobInput() {
@@ -899,13 +1064,21 @@ window.ShopifyBuyManager = (function () {
 
   // A native date input hands us "YYYY-MM-DD" or "". Returns validity, the
   // computed age, and a user-facing error message (empty when the field is
-  // simply blank, so we don't nag before they've typed anything).
+  // simply blank, so we don't nag before they've typed anything). `underage` is
+  // set when the date parses fine but the buyer is below the legal age, so
+  // callers can distinguish "not finished typing" from "not allowed to buy".
   function validateDob(dobString) {
-    if (!dobString) return { valid: false, age: null, error: "" };
+    if (!dobString)
+      return { valid: false, age: null, error: "", underage: false };
 
     const dob = new Date(`${dobString}T00:00:00`);
     if (Number.isNaN(dob.getTime())) {
-      return { valid: false, age: null, error: "Please enter a valid date." };
+      return {
+        valid: false,
+        age: null,
+        error: "Please enter a valid date.",
+        underage: false,
+      };
     }
 
     const today = new Date();
@@ -915,6 +1088,7 @@ window.ShopifyBuyManager = (function () {
         valid: false,
         age: null,
         error: "Date of birth can't be in the future.",
+        underage: false,
       };
     }
 
@@ -924,10 +1098,43 @@ window.ShopifyBuyManager = (function () {
         valid: false,
         age: null,
         error: "Please enter a valid date of birth.",
+        underage: false,
       };
     }
 
-    return { valid: true, age, error: "" };
+    if (age < MIN_AGE) {
+      return { valid: false, age, error: UNDERAGE_MESSAGE, underage: true };
+    }
+
+    return { valid: true, age, error: "", underage: false };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Age consent
+  //
+  // Both checkout paths require an explicit tick confirming the stated date of
+  // birth is truthful. Never persisted: it starts unchecked on every page load
+  // (and every time the Buy Now modal opens) so the buyer re-affirms each time.
+  // ---------------------------------------------------------------------------
+
+  function getConsentInput() {
+    return document.getElementById("cart-age-consent_1");
+  }
+
+  function getModalConsentInput() {
+    return document.getElementById("dob-modal-age-consent_1");
+  }
+
+  function isChecked(input) {
+    return !!(input && input.checked);
+  }
+
+  function onConsentChange() {
+    updateCheckoutButtonState();
+  }
+
+  function onDobModalConsentChange() {
+    updateDobModalSubmitState();
   }
 
   function showDobError(message) {
@@ -950,14 +1157,23 @@ window.ShopifyBuyManager = (function () {
     }
   }
 
-  // Enable "Proceed to Checkout" only when the cart has items AND the DOB is
-  // valid. Centralizes the button state so renderCart and the DOB input share it.
+  // Enable "Proceed to Checkout" only when the cart has items, the DOB is valid
+  // (which includes being at least MIN_AGE), and the consent box is ticked.
+  // Centralizes the button state so renderCart, the DOB input and the consent
+  // checkbox all share it.
   function updateCheckoutButtonState() {
     const checkoutButton = document.querySelector(".cart-checkout-button");
     if (!checkoutButton) return;
     const hasItems = (checkout?.lineItems || []).length > 0;
+    // No age gate for an all-alcohol-free cart.
+    if (cartIsAlcoholFree()) {
+      checkoutButton.disabled = !hasItems;
+      return;
+    }
     checkoutButton.disabled = !(
-      hasItems && validateDob(currentDobValue()).valid
+      hasItems &&
+      validateDob(currentDobValue()).valid &&
+      isChecked(getConsentInput())
     );
   }
 
@@ -973,26 +1189,52 @@ window.ShopifyBuyManager = (function () {
 
     showDobError(result.valid ? "" : result.error);
     updateCheckoutButtonState();
+
+    // No modal when nothing in the cart is alcoholic (the gate is hidden in
+    // that state anyway — this is belt and braces).
+    if (result.underage && !cartIsAlcoholFree()) {
+      openUnderageModal();
+    }
   }
 
   // Prefill the input from storage on load and cap the picker at today, then
   // sync the checkout button. Safe to call before the SDK is ready.
   function hydrateDob() {
+    // Clear any consent the browser restored on reload / back-forward cache —
+    // it must be re-affirmed for each checkout.
+    const consent = getConsentInput();
+    if (consent) consent.checked = false;
+
     const input = getDobInput();
     if (!input) return;
     input.max = todayISO();
     const stored = getStoredDob();
-    if (stored) input.value = stored;
+    if (stored) {
+      input.value = stored;
+      // Surface the under-18 block right away rather than waiting for an edit.
+      const result = validateDob(stored);
+      showDobError(result.underage ? result.error : "");
+    }
     updateCheckoutButtonState();
   }
 
   async function proceedToCheckout() {
     const value = currentDobValue();
     const result = validateDob(value);
-    if (!result.valid) {
+    // An all-alcohol-free cart skips the age gate entirely; the DOB/Age
+    // attributes below are still stamped when a valid DOB happens to exist.
+    const ageGateRequired = !cartIsAlcoholFree();
+    if (ageGateRequired && !result.valid) {
       showDobError(result.error || "Please enter your date of birth.");
       const input = getDobInput();
-      if (input) input.focus();
+      // Don't pull focus back into the date field when the problem is the age
+      // itself — there's nothing useful for them to re-enter.
+      if (input && !result.underage) input.focus();
+      updateCheckoutButtonState();
+      return;
+    }
+
+    if (ageGateRequired && !isChecked(getConsentInput())) {
       updateCheckoutButtonState();
       return;
     }
@@ -1000,16 +1242,18 @@ window.ShopifyBuyManager = (function () {
     // Stamp the DOB + age onto the checkout so they land on the Shopify order.
     // Fail open: if the attribute write errors, log it but still let the sale
     // proceed — this is data capture, not a hard gate.
-    try {
-      await ensureReady();
-      checkout = await client.checkout.updateAttributes(checkout.id, {
-        customAttributes: [
-          { key: "Date of Birth", value },
-          { key: "Age", value: String(result.age) },
-        ],
-      });
-    } catch (error) {
-      console.error(error);
+    if (result.valid) {
+      try {
+        await ensureReady();
+        checkout = await client.checkout.updateAttributes(checkout.id, {
+          customAttributes: [
+            { key: "Date of Birth", value },
+            { key: "Age", value: String(result.age) },
+          ],
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     if (checkout?.webUrl) {
@@ -1097,14 +1341,25 @@ window.ShopifyBuyManager = (function () {
     removeLine,
     proceedToCheckout,
     onDobInput,
+    onConsentChange,
     hydrateDob,
     closeDobModal,
     onDobModalInput,
+    onDobModalConsentChange,
     submitDobModal,
+    closeUnderageModal,
+    underageBackToCart,
+    underageBrowseAlcoholFree,
     openCart,
     closeCart,
   };
 })();
+
+// Returning via the back/forward cache restores the page (and the ticked
+// consent box) without re-running DOMContentLoaded, so re-hydrate here too.
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) window.ShopifyBuyManager.hydrateDob();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   window.ShopifyBuyManager.hydrateDob();
